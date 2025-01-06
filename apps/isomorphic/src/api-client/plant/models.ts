@@ -657,6 +657,8 @@ export type StoreData = {
           lat: number;
           long: number;
         };
+        createdAt: string;
+        updatedAt: string;
       }>;
       meta: {
         pages: number;
@@ -676,6 +678,8 @@ export type StoreData = {
           lat: number;
           long: number;
         };
+        createdAt: string;
+        updatedAt: string;
       };
     };
     Update: {
@@ -689,6 +693,8 @@ export type StoreData = {
           lat: number;
           long: number;
         };
+        createdAt: string;
+        updatedAt: string;
       };
     };
     Delete: {
@@ -702,6 +708,8 @@ export type StoreData = {
           lat: number;
           long: number;
         };
+        createdAt: string;
+        updatedAt: string;
       };
     };
   };
