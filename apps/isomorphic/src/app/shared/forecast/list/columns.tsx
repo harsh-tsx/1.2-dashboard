@@ -20,7 +20,7 @@ import useExampleStore from '@/store/plant/plant/plant.service';
 import { plantSchema } from '@/validators/plant.schema';
 
 const columnHelper = createColumnHelper<ListTableDataType>();
-
+//
 export const ListColumns = [
   // columnHelper.display({
   //   id: 'select',
