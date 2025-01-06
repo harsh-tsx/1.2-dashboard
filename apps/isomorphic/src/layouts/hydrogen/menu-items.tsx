@@ -78,12 +78,12 @@ export const menuItems = [
     ...can(101)
   },
   // label end
-  {
-    name: 'Sample',
-    href: '/sample/list',
-    icon: <PiEyedropperSample />,
-    ...can(101)
-  },
+  // {
+  //   name: 'Sample',
+  //   href: '/sample/list',
+  //   icon: <PiEyedropperSample />,
+  //   ...can(101)
+  // },
   {
     name: 'Roles & Permissions',
     href: routes.rolesPermissions,

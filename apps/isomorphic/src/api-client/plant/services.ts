@@ -12,6 +12,7 @@ import type {
   ForecastData,
   OrderData,
   ExampleData,
+  EmployeeData,
   WaterCanBatchData,
 } from './models';
 
@@ -679,6 +680,81 @@ export class ExampleService {
     return __request(OpenAPI, {
       method: 'DELETE',
       url: '/plant/example/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+}
+
+export class EmployeeService {
+  /**
+   * @returns any Employee list response
+   * @throws ApiError
+   */
+  public static list(
+    data: EmployeeData['payloads']['List']
+  ): CancelablePromise<EmployeeData['responses']['List']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/employees/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+
+  /**
+   * @returns any Employee create response
+   * @throws ApiError
+   */
+  public static create(
+    data: EmployeeData['payloads']['Create']
+  ): CancelablePromise<EmployeeData['responses']['Create']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'POST',
+      url: '/plant/employees/',
+      headers: {},
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any Employee update response
+   * @throws ApiError
+   */
+  public static update(
+    data: EmployeeData['payloads']['Update']
+  ): CancelablePromise<EmployeeData['responses']['Update']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'PUT',
+      url: '/plant/employees/',
+      headers: {},
+      query: {
+        ...query,
+      },
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any Employee delete response
+   * @throws ApiError
+   */
+  public static delete(
+    data: EmployeeData['payloads']['Delete']
+  ): CancelablePromise<EmployeeData['responses']['Delete']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'DELETE',
+      url: '/plant/employees/',
       headers: {},
       query: {
         ...query,

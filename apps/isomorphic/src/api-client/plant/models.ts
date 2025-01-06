@@ -922,6 +922,7 @@ export type ForecastData = {
             long: number;
           };
         };
+        status: string;
         createdAt: string;
         updatedAt: string;
       }>;
@@ -948,6 +949,7 @@ export type ForecastData = {
             long: number;
           };
         };
+        status: string;
         createdAt: string;
         updatedAt: string;
       };
@@ -968,6 +970,7 @@ export type ForecastData = {
             long: number;
           };
         };
+        status: string;
         createdAt: string;
         updatedAt: string;
       };
@@ -988,6 +991,7 @@ export type ForecastData = {
             long: number;
           };
         };
+        status: string;
         createdAt: string;
         updatedAt: string;
       };
@@ -1008,6 +1012,7 @@ export type ForecastData = {
             long: number;
           };
         };
+        status: string;
         createdAt: string;
         updatedAt: string;
       };
@@ -1089,9 +1094,12 @@ export type OrderData = {
               long: number;
             };
           };
+          status: string;
           createdAt: string;
           updatedAt: string;
         };
+        createdAt: string;
+        updatedAt: string;
       }>;
       meta: {
         pages: number;
@@ -1130,9 +1138,12 @@ export type OrderData = {
               long: number;
             };
           };
+          status: string;
           createdAt: string;
           updatedAt: string;
         };
+        createdAt: string;
+        updatedAt: string;
       };
     };
     Update: {
@@ -1165,9 +1176,12 @@ export type OrderData = {
               long: number;
             };
           };
+          status: string;
           createdAt: string;
           updatedAt: string;
         };
+        createdAt: string;
+        updatedAt: string;
       };
     };
     Delete: {
@@ -1200,9 +1214,12 @@ export type OrderData = {
               long: number;
             };
           };
+          status: string;
           createdAt: string;
           updatedAt: string;
         };
+        createdAt: string;
+        updatedAt: string;
       };
     };
   };
@@ -1296,6 +1313,147 @@ export type ExampleData = {
         age: number;
         createdAt: string;
         updatedAt: string;
+      };
+    };
+  };
+};
+
+export type EmployeeData = {
+  payloads: {
+    List: {
+      authorization?: string;
+
+      query: {
+        page: string;
+        size: string;
+      };
+    };
+    Create: {
+      authorization?: string;
+      requestBody: {
+        name: string;
+        password: string;
+        plant: string;
+        status: string;
+      };
+
+      query?: {};
+    };
+    Update: {
+      authorization?: string;
+      requestBody: {
+        name: string;
+        password: string;
+        plant: string;
+        status: string;
+      };
+
+      query: {
+        id: string;
+      };
+    };
+    Delete: {
+      authorization?: string;
+
+      query: {
+        id: string;
+      };
+    };
+  };
+
+  responses: {
+    List: {
+      status: boolean;
+      message: string;
+      data: Array<{
+        _id: string;
+        id: string;
+        name: string;
+        password: string;
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
+      }>;
+      meta: {
+        pages: number;
+        total: number;
+        page: number;
+        size: number;
+      };
+    };
+    Create: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id: string;
+        name: string;
+        password: string;
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
+      };
+    };
+    Update: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id: string;
+        name: string;
+        password: string;
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
+      };
+    };
+    Delete: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id: string;
+        name: string;
+        password: string;
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
       };
     };
   };

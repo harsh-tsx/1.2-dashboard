@@ -13,6 +13,7 @@ export default function TableRowActionGroup({
   deletePopoverTitle = "Delete the appointment",
   deletePopoverDescription = "Are you sure you want to delete this item?",
   className,
+  Additional
 }: {
   onDelete?: () => void;
   editUrl?: string;
@@ -21,6 +22,7 @@ export default function TableRowActionGroup({
   deletePopoverTitle?: string;
   deletePopoverDescription?: string;
   className?: string;
+  Additional?: React.FC
 }) {
   return (
     <Flex
@@ -29,6 +31,10 @@ export default function TableRowActionGroup({
       gap="3"
       className={cn("pe-3", className)}
     >
+      {
+        Additional ?
+          <Additional /> : <></>
+      }
       <Tooltip
         size="sm"
         content="Edit Item"

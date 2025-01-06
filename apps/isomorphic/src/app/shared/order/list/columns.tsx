@@ -16,7 +16,7 @@ import GlobalSchemaForm from '../../common/GlobalSchemaForm';
 import { number, object, string } from 'yup';
 import { createExampleSchema } from '@/validators/create-example';
 import { injectDefaults } from '@core/utils/yup-helper'
-import useExampleStore from '@/store/plant/forecast/forecast.service';
+import useExampleStore from '@/store/plant/order/order.service';
 import { plantSchema } from '@/validators/plant.schema';
 import { PiSealCheckFill } from "react-icons/pi";
 import { PiSealCheckLight } from "react-icons/pi";
@@ -121,32 +121,6 @@ export const ListColumns = [
           />
         }}
         deletePopoverDescription={`Are you sure you want to delete this ${row.original._id} shipment?`}
-        Additional={() => {
-          return <Tooltip
-            size="sm"
-            content="Approve Forecast"
-            placement="top"
-            color="invert"
-          >
-            <ActionIcon
-              as="span"
-              size="sm"
-              variant="outline"
-              onClick={() => {
-                useExampleStore.getState().select(row.original._id);
-                useExampleStore.getState().order();
-              }}
-            >
-              {
-                row.original.status == "APPROVED" ?
-
-                  <PiSealCheckFill className="size-4" color='#008000' />
-                  :
-                  <PiSealCheckLight className="size-4" />
-              }
-            </ActionIcon>
-          </Tooltip>
-        }}
       />
     ),
   }),

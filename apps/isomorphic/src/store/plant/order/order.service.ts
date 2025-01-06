@@ -1,29 +1,29 @@
 import { create } from 'zustand'
 import { combine } from 'zustand/middleware'
 import toast from 'react-hot-toast'
-import { ForecastData } from '@/api-client/plant/models'
-import { ForecastService } from '@/api-client/PlantApi'
+import { OrderData } from '@/api-client/plant/models'
+import { OrderService } from '@/api-client/PlantApi'
 
 
 
-export type Forecast = ForecastData['responses']['List']['data'][0]
+export type Order = OrderData['responses']['List']['data'][0]
 
 
 
 let timeOut: any
 
-const useForecastStore = create(
+const useOrderStore = create(
   combine(
     {
       example: {
         id: null as any,
-        list: [] as Forecast[],
+        list: [] as Order[],
         total: 0,
         page: 0,
         size: 10,
         search: null as string | null,
         paginate: true as boolean,
-        detail: undefined as Forecast | undefined,
+        detail: undefined as Order | undefined,
         isUser: false as boolean
         // timeOut: null as any
       }
@@ -35,7 +35,7 @@ const useForecastStore = create(
             example: { page, size, search, paginate }
           } = get()
 
-          toast.promise(ForecastService.list({
+          toast.promise(OrderService.list({
             query: {
               page: page as any,
               size: size as any,
@@ -86,7 +86,7 @@ const useForecastStore = create(
                 paginate: paginate ?? true
               }
             }))
-            useForecastStore.getState().get.list()
+            useOrderStore.getState().get.list()
           }
 
           if (search) {
@@ -98,7 +98,7 @@ const useForecastStore = create(
           }
           init()
         },
-        detail: async (id?: string, data?: Forecast, isUser?: boolean) => {
+        detail: async (id?: string, data?: Order, isUser?: boolean) => {
           set(prev => ({
             ...prev,
             example: {
@@ -111,29 +111,29 @@ const useForecastStore = create(
         }
       },
       select: (id: any) => set(prev => ({ example: { ...prev.example, id: id } })),
-      add: async (bodyData: ForecastData['payloads']['Create']['requestBody']) => {
+      add: async (bodyData: OrderData['payloads']['Create']['requestBody']) => {
         let id = get().example.id
         let isUser = get().example.isUser
 
         toast.promise(
           id
-            ? ForecastService.update({
+            ? OrderService.update({
               query: {
                 id: id,
               },
               requestBody: bodyData as any,
-            }) : ForecastService.create({
+            }) : OrderService.create({
               requestBody: bodyData,
             }),
           {
             loading: id ? 'Updating' : 'Adding',
             success: res => {
-              useForecastStore.getState().get.paginate({})
-              useForecastStore.getState().select(null)
+              useOrderStore.getState().get.paginate({})
+              useOrderStore.getState().select(null)
               return res?.message
             },
             error: err => {
-              useForecastStore.getState().select(null)
+              useOrderStore.getState().select(null)
               return err
             }
           }
@@ -144,39 +144,21 @@ const useForecastStore = create(
 
         if (!id) return toast.error('No plan to delete')
 
-        toast.promise(ForecastService.delete({ query: { id: id } }), {
+        toast.promise(OrderService.delete({ query: { id: id } }), {
           loading: 'deleting',
           success: res => {
-            useForecastStore.getState().get.paginate({})
-            useForecastStore.getState().select(null)
+            useOrderStore.getState().get.paginate({})
+            useOrderStore.getState().select(null)
             return res?.message
           },
           error: err => {
-            useForecastStore.getState().select(null)
+            useOrderStore.getState().select(null)
             return err
           }
         })
       },
-      order: async () => {
-        let id = get().example.id
-
-        if (!id) return toast.error('No plan to delete')
-
-        toast.promise(ForecastService.createOrder({ query: { id: id } }), {
-          loading: 'creating order',
-          success: res => {
-            useForecastStore.getState().get.paginate({})
-            useForecastStore.getState().select(null)
-            return res?.message
-          },
-          error: err => {
-            useForecastStore.getState().select(null)
-            return err
-          }
-        })
-      }
     })
   )
 )
 
-export default useForecastStore
+export default useOrderStore
