@@ -9,7 +9,7 @@ import { routes } from '@/config/routes';
 import { loginSchema, LoginSchema } from '@/validators/login.schema';
 
 const initialValues: LoginSchema = {
-  email: 'admin@admin.com',
+  phone: 'admin@admin.com',
   password: 'admin',
   rememberMe: true,
 };
@@ -39,8 +39,8 @@ export default function SignInForm() {
               placeholder="Enter your email"
               rounded="pill"
               className="[&>label>span]:font-medium"
-              {...register('email')}
-              error={errors.email?.message}
+              {...register('phone')}
+              error={errors.phone?.message}
             />
             <Password
               label="Password"
