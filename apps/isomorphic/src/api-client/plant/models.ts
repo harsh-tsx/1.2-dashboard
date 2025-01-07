@@ -1382,6 +1382,8 @@ export type EmployeeData = {
           updatedAt: string;
         };
         status: string;
+        createdAt: string;
+        updatedAt: string;
       }>;
       meta: {
         pages: number;
@@ -1410,6 +1412,8 @@ export type EmployeeData = {
           updatedAt: string;
         };
         status: string;
+        createdAt: string;
+        updatedAt: string;
       };
     };
     Update: {
@@ -1432,6 +1436,8 @@ export type EmployeeData = {
           updatedAt: string;
         };
         status: string;
+        createdAt: string;
+        updatedAt: string;
       };
     };
     Delete: {
@@ -1454,6 +1460,8 @@ export type EmployeeData = {
           updatedAt: string;
         };
         status: string;
+        createdAt: string;
+        updatedAt: string;
       };
     };
   };

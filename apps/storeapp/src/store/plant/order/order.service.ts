@@ -1,0 +1,119 @@
+import { create } from 'zustand'
+import { combine } from 'zustand/middleware'
+import toast from 'react-hot-toast'
+import { OrderData } from '@/api-client/store/models'
+import { OrderService } from '@/api-client/PlantApi'
+
+
+
+export type Order = OrderData['responses']['List']['data'][0]
+
+
+
+let timeOut: any
+
+const useOrderStore = create(
+  combine(
+    {
+      example: {
+        id: null as any,
+        list: [] as Order[],
+        total: 0,
+        page: 0,
+        size: 10,
+        search: null as string | null,
+        paginate: true as boolean,
+        detail: undefined as Order | undefined,
+        isUser: false as boolean
+        // timeOut: null as any
+      }
+    },
+    (set, get) => ({
+      get: {
+        list: async () => {
+          const {
+            example: { page, size, search, paginate }
+          } = get()
+
+          toast.promise(OrderService.list({
+            query: {
+              page: page as any,
+              size: size as any,
+            }
+          }), {
+            loading: 'fetching...',
+            success: res => {
+              console.log('res: ', res)
+              set(prev => ({
+                example: {
+                  ...prev.example,
+                  list: res.data,
+                  total: res?.meta?.total
+                }
+              }))
+              return res?.message || 'fetched'
+            },
+            error: err => {
+              return ""
+              // return err
+            }
+          }, {
+            id: "api-toast"
+          })
+        },
+        paginate: ({
+          page,
+          size,
+          search,
+          paginate
+        }: {
+          page?: number
+          size?: number
+          search?: string
+          paginate?: boolean
+        }) => {
+          set(prev => ({ example: { ...prev.example, search: search || '' } }))
+
+          clearTimeout(timeOut)
+
+          const init = () => {
+            set(prev => ({
+              example: {
+                ...prev.example,
+                page: page || prev.example.page,
+                size: size || prev.example.size,
+                search: search || prev.example.search,
+                paginate: paginate ?? true
+              }
+            }))
+            useOrderStore.getState().get.list()
+          }
+
+          if (search) {
+            timeOut = setTimeout(() => {
+              init()
+            }, 1000)
+            set(prev => ({ example: { ...prev.example, search: search } }))
+            return
+          }
+          init()
+        },
+        detail: async (id?: string, data?: Order, isUser?: boolean) => {
+          set(prev => ({
+            ...prev,
+            example: {
+              ...prev.example,
+              detail: data,
+              id: data?._id,
+              isUser: !!isUser
+            }
+          }))
+        }
+      },
+      select: (id: any) => set(prev => ({ example: { ...prev.example, id: id } })),
+
+    })
+  )
+)
+
+export default useOrderStore

@@ -11,6 +11,7 @@
 		"clean": "turbo clean && rm -rf node_modules .turbo",
 		"cache:clean": "turbo cache:clean && rm -rf .turbo",
 		"iso:dev": "turbo dev --filter=iso",
+		"store:dev": "turbo dev --filter=store",
 		"iso:lint": "turbo lint --filter=iso",
 		"iso:build": "turbo build --filter=iso",
 		"iso:start": "turbo start --filter=iso",
@@ -32,7 +33,8 @@
 		"intl:clean": "turbo clean --filter=intl",
 		"gen-icons": "turbo gen-icons --filter=core",
 		"prepare": "husky",
-		"api": "openapi-ts"
+		"api": "openapi-ts",
+		"store:api": "cd apps/storeapp && openapi-ts"
 	},
 	"devDependencies": {
 		"eslint": "8.57.0",

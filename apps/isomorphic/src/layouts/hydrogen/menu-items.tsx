@@ -59,6 +59,7 @@ import {
 import { GiWaterGallon } from "react-icons/gi";
 import { SiFuturelearn } from "react-icons/si";
 import { CiReceipt } from "react-icons/ci";
+import { GrUserWorker } from "react-icons/gr";
 
 const can = (moduleId: number) => ({ moduleId });
 
@@ -133,6 +134,13 @@ export const menuItems = [
     name: 'Order',
     href: '/order/list',
     icon: <CiReceipt />,
+    ...can(101)
+  },
+
+  {
+    name: 'Employee',
+    href: '/employee/list',
+    icon: <GrUserWorker />,
     ...can(101)
   },
 
