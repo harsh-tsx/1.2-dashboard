@@ -4,7 +4,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import { env } from '@/env.mjs';
 import isEqual from 'lodash/isEqual';
 import { pagesOptions } from './pages-options';
-import { PlantApi } from '@/api-client/PlantApi';
+// import { PlantApi } from '@/api-client/PlantApi';
 
 export const authOptions: NextAuthOptions = {
   // debug: true,
