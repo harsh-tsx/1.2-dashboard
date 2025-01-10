@@ -1,6 +1,6 @@
 import { ApiError } from 'next/dist/server/api-utils'
 import { OpenAPI } from './plant/core/OpenAPI'
-import { useSession } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/auth-options'
 
@@ -38,6 +38,7 @@ OpenAPI.interceptors.response.use((req) => {
     }
 
     if (req.status == 401) {
+        signOut();
         console.log("leaving exiting the page")
         // window.localStorage.clear();
         setTimeout(() => {

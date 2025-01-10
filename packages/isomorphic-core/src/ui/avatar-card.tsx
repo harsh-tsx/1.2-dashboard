@@ -11,8 +11,8 @@ interface AvatarCardProps {
 }
 
 export default function AvatarCard({
-  src,
-  name,
+  src = "",
+  name = "",
   className,
   description,
   avatarProps,
