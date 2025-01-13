@@ -20,6 +20,7 @@ const useWaterCanBatchStore = create(
         list: [] as WaterCanBatch[],
         total: 0,
         page: 0,
+        pages: 0,
         size: 10,
         search: null as string | null,
         paginate: true as boolean,
@@ -48,7 +49,8 @@ const useWaterCanBatchStore = create(
                 watercanbatch: {
                   ...prev.watercanbatch,
                   list: res.data,
-                  total: res?.meta?.total
+                  total: res?.meta?.total,
+                  pages: res?.meta?.pages,
                 }
               }))
               return res?.message || 'fetched'
@@ -80,7 +82,7 @@ const useWaterCanBatchStore = create(
             set(prev => ({
               watercanbatch: {
                 ...prev.watercanbatch,
-                page: page || prev.watercanbatch.page,
+                page: page ?? prev.watercanbatch.page,
                 size: size || prev.watercanbatch.size,
                 search: search || prev.watercanbatch.search,
                 paginate: paginate ?? true

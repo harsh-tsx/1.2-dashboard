@@ -24,6 +24,9 @@ export default function UsersTable() {
           pageSize: 10,
         },
       },
+
+      manualPagination: true,
+      pageCount: adminStore.admin.pages,
       meta: {
         handleDeleteRow: async (row) => {
           // setData((prev) => prev.filter((r) => r._id !== row._id));
@@ -40,6 +43,12 @@ export default function UsersTable() {
       enableColumnResizing: false,
     },
   });
+
+  const state = table.getState();
+
+  useEffect(() => {
+    adminStore.get.paginate({ page: state.pagination.pageIndex, size: state.pagination.pageSize })
+  }, [state.pagination]);
 
   useEffect(() => {
     setData(adminStore.admin.list)

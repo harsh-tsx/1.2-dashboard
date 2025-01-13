@@ -20,6 +20,7 @@ const useForecastStore = create(
         list: [] as Forecast[],
         total: 0,
         page: 0,
+        pages: 0,
         size: 10,
         search: null as string | null,
         paginate: true as boolean,
@@ -48,7 +49,8 @@ const useForecastStore = create(
                 example: {
                   ...prev.example,
                   list: res.data,
-                  total: res?.meta?.total
+                  total: res?.meta?.total,
+                  pages: res?.meta?.pages,
                 }
               }))
               return res?.message || 'fetched'
@@ -80,7 +82,7 @@ const useForecastStore = create(
             set(prev => ({
               example: {
                 ...prev.example,
-                page: page || prev.example.page,
+                page: page ?? prev.example.page,
                 size: size || prev.example.size,
                 search: search || prev.example.search,
                 paginate: paginate ?? true

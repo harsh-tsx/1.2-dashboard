@@ -90,7 +90,7 @@ const useModuleStore = create(
             set(prev => ({
               module: {
                 ...prev.module,
-                page: page || prev.module.page,
+                page: page ?? prev.module.page,
                 size: size || prev.module.size,
                 search: search || prev.module.search,
                 paginate: paginate ?? true

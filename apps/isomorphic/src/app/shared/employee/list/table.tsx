@@ -29,6 +29,9 @@ export default function TableComponent({ list }: { list: ListTableDataType[] }) 
           pageSize: 10,
         },
       },
+
+      manualPagination: true,
+      pageCount: store.example.pages,
       meta: {
         handleDeleteRow: async (row) => {
           store.select(row._id)
@@ -43,6 +46,12 @@ export default function TableComponent({ list }: { list: ListTableDataType[] }) 
       enableColumnResizing: false,
     },
   });
+
+  const state = table.getState();
+
+  useEffect(() => {
+    store.get.paginate({ page: state.pagination.pageIndex, size: state.pagination.pageSize })
+  }, [state.pagination]);
 
   useEffect(() => {
     setData(list);

@@ -20,6 +20,7 @@ const useStoreStore = create(
         list: [] as Store[],
         total: 0,
         page: 0,
+        pages: 0,
         size: 10,
         search: null as string | null,
         paginate: true as boolean,
@@ -48,7 +49,8 @@ const useStoreStore = create(
                 store: {
                   ...prev.store,
                   list: res.data,
-                  total: res?.meta?.total
+                  total: res?.meta?.total,
+                  pages: res?.meta?.pages,
                 }
               }))
               return res?.message || 'fetched'
@@ -80,7 +82,7 @@ const useStoreStore = create(
             set(prev => ({
               store: {
                 ...prev.store,
-                page: page || prev.store.page,
+                page: page ?? prev.store.page,
                 size: size || prev.store.size,
                 search: search || prev.store.search,
                 paginate: paginate ?? true

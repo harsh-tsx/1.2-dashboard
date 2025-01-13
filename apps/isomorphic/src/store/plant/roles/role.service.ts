@@ -102,7 +102,7 @@ const useRoleStore = create(
             set(prev => ({
               role: {
                 ...prev.role,
-                page: page || prev.role.page,
+                page: page ?? prev.role.page,
                 size: size || prev.role.size,
                 search: search || prev.role.search,
                 paginate: paginate ?? true

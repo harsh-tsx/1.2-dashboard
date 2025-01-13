@@ -80,7 +80,7 @@ const useExampleStore = create(
             set(prev => ({
               example: {
                 ...prev.example,
-                page: page || prev.example.page,
+                page: page ?? prev.example.page,
                 size: size || prev.example.size,
                 search: search || prev.example.search,
                 paginate: paginate ?? true

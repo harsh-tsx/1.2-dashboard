@@ -76,7 +76,7 @@ export default function RoleCard({
           </Title>
         </div>
 
-        <Dropdown className={className} placement="bottom-end">
+        {/* <Dropdown className={className} placement="bottom-end">
           <Dropdown.Trigger>
             <ActionIcon
               as="span"
@@ -105,7 +105,7 @@ export default function RoleCard({
               Remove Role
             </Dropdown.Item>
           </Dropdown.Menu>
-        </Dropdown>
+        </Dropdown> */}
       </header>
 
       <div className="mt-4 flex items-center gap-2">
