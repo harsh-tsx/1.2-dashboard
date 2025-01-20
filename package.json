@@ -34,7 +34,8 @@
 		"gen-icons": "turbo gen-icons --filter=core",
 		"prepare": "husky",
 		"api": "openapi-ts",
-		"store:api": "cd apps/storeapp && openapi-ts"
+		"store:api": "cd apps/storeapp && openapi-ts",
+		"push": "git add . && git commit -m 'bug fixes' && git push origin main"
 	},
 	"devDependencies": {
 		"eslint": "8.57.0",

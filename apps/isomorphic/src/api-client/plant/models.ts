@@ -605,6 +605,7 @@ export type StoreData = {
 
       query: {
         page: string;
+        search?: string;
         size: string;
       };
     };
@@ -651,12 +652,14 @@ export type StoreData = {
       message: string;
       data: Array<{
         _id: string;
+        id: number;
         name: string;
         address: string;
         coordinate: {
           lat: number;
           long: number;
         };
+        code: string;
         createdAt: string;
         updatedAt: string;
       }>;
@@ -672,12 +675,14 @@ export type StoreData = {
       message: string;
       data: {
         _id: string;
+        id: number;
         name: string;
         address: string;
         coordinate: {
           lat: number;
           long: number;
         };
+        code: string;
         createdAt: string;
         updatedAt: string;
       };
@@ -687,12 +692,14 @@ export type StoreData = {
       message: string;
       data: {
         _id: string;
+        id: number;
         name: string;
         address: string;
         coordinate: {
           lat: number;
           long: number;
         };
+        code: string;
         createdAt: string;
         updatedAt: string;
       };
@@ -702,12 +709,14 @@ export type StoreData = {
       message: string;
       data: {
         _id: string;
+        id: number;
         name: string;
         address: string;
         coordinate: {
           lat: number;
           long: number;
         };
+        code: string;
         createdAt: string;
         updatedAt: string;
       };
@@ -774,6 +783,7 @@ export type WaterCanData = {
           createdAt: string;
           updatedAt: string;
         };
+        rotations: number;
         createdAt: string;
         updatedAt: string;
       }>;
@@ -803,6 +813,7 @@ export type WaterCanData = {
           createdAt: string;
           updatedAt: string;
         };
+        rotations: number;
         createdAt: string;
         updatedAt: string;
       };
@@ -826,6 +837,7 @@ export type WaterCanData = {
           createdAt: string;
           updatedAt: string;
         };
+        rotations: number;
         createdAt: string;
         updatedAt: string;
       };
@@ -849,6 +861,7 @@ export type WaterCanData = {
           createdAt: string;
           updatedAt: string;
         };
+        rotations: number;
         createdAt: string;
         updatedAt: string;
       };
@@ -915,12 +928,16 @@ export type ForecastData = {
         date: string;
         store: {
           _id: string;
+          id?: number;
           name: string;
           address: string;
           coordinate: {
             lat: number;
             long: number;
           };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
         };
         status: string;
         createdAt: string;
@@ -942,12 +959,16 @@ export type ForecastData = {
         date: string;
         store: {
           _id: string;
+          id?: number;
           name: string;
           address: string;
           coordinate: {
             lat: number;
             long: number;
           };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
         };
         status: string;
         createdAt: string;
@@ -963,12 +984,16 @@ export type ForecastData = {
         date: string;
         store: {
           _id: string;
+          id?: number;
           name: string;
           address: string;
           coordinate: {
             lat: number;
             long: number;
           };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
         };
         status: string;
         createdAt: string;
@@ -984,12 +1009,16 @@ export type ForecastData = {
         date: string;
         store: {
           _id: string;
+          id?: number;
           name: string;
           address: string;
           coordinate: {
             lat: number;
             long: number;
           };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
         };
         status: string;
         createdAt: string;
@@ -1005,12 +1034,16 @@ export type ForecastData = {
         date: string;
         store: {
           _id: string;
+          id?: number;
           name: string;
           address: string;
           coordinate: {
             lat: number;
             long: number;
           };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
         };
         status: string;
         createdAt: string;
@@ -1074,12 +1107,16 @@ export type OrderData = {
         status: string;
         store: {
           _id: string;
+          id?: number;
           name: string;
           address: string;
           coordinate: {
             lat: number;
             long: number;
           };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
         };
         forecast: {
           _id: string;
@@ -1087,12 +1124,16 @@ export type OrderData = {
           date: string;
           store: {
             _id: string;
+            id?: number;
             name: string;
             address: string;
             coordinate: {
               lat: number;
               long: number;
             };
+            code?: string;
+            createdAt: string;
+            updatedAt: string;
           };
           status: string;
           createdAt: string;
@@ -1118,12 +1159,16 @@ export type OrderData = {
         status: string;
         store: {
           _id: string;
+          id?: number;
           name: string;
           address: string;
           coordinate: {
             lat: number;
             long: number;
           };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
         };
         forecast: {
           _id: string;
@@ -1131,12 +1176,16 @@ export type OrderData = {
           date: string;
           store: {
             _id: string;
+            id?: number;
             name: string;
             address: string;
             coordinate: {
               lat: number;
               long: number;
             };
+            code?: string;
+            createdAt: string;
+            updatedAt: string;
           };
           status: string;
           createdAt: string;
@@ -1156,12 +1205,16 @@ export type OrderData = {
         status: string;
         store: {
           _id: string;
+          id?: number;
           name: string;
           address: string;
           coordinate: {
             lat: number;
             long: number;
           };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
         };
         forecast: {
           _id: string;
@@ -1169,12 +1222,16 @@ export type OrderData = {
           date: string;
           store: {
             _id: string;
+            id?: number;
             name: string;
             address: string;
             coordinate: {
               lat: number;
               long: number;
             };
+            code?: string;
+            createdAt: string;
+            updatedAt: string;
           };
           status: string;
           createdAt: string;
@@ -1194,12 +1251,16 @@ export type OrderData = {
         status: string;
         store: {
           _id: string;
+          id?: number;
           name: string;
           address: string;
           coordinate: {
             lat: number;
             long: number;
           };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
         };
         forecast: {
           _id: string;
@@ -1207,12 +1268,16 @@ export type OrderData = {
           date: string;
           store: {
             _id: string;
+            id?: number;
             name: string;
             address: string;
             coordinate: {
               lat: number;
               long: number;
             };
+            code?: string;
+            createdAt: string;
+            updatedAt: string;
           };
           status: string;
           createdAt: string;

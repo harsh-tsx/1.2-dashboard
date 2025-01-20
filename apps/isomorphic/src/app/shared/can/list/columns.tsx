@@ -83,6 +83,13 @@ export const ListColumns = [
     cell: ({ row }) => row.original.status,
   }),
 
+  columnHelper.accessor('rotations', {
+    id: 'rotations',
+    size: 200,
+    header: 'rotations',
+    cell: ({ row }) => row.original.rotations,
+  }),
+
   columnHelper.accessor('createdAt', {
     id: 'date',
     size: 150,
