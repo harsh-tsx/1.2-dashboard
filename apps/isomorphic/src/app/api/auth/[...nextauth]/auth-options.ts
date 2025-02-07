@@ -4,7 +4,6 @@ import GoogleProvider from 'next-auth/providers/google';
 import { env } from '@/env.mjs';
 import isEqual from 'lodash/isEqual';
 import { pagesOptions } from './pages-options';
-import { PlantApi } from '@/api-client/PlantApi';
 
 export const authOptions: NextAuthOptions = {
   // debug: true,
@@ -17,7 +16,6 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async session({ session, token }: any) {
-      console.log("session called")
       return {
         ...session,
         user: {
@@ -55,7 +53,6 @@ export const authOptions: NextAuthOptions = {
       name: 'Credentials',
       credentials: {},
       async authorize(credentials: any) {
-        console.log("🚀 ~ authorize ~ credentials:", credentials)
         try {
 
           // You need to provide your own logic here that takes the credentials
@@ -83,7 +80,7 @@ export const authOptions: NextAuthOptions = {
           // ) {
           //   return user as any;
           // }
-          return credentials;
+          return JSON.parse(credentials?.data) as any;
         } catch (error) {
           console.log("🚀 ~ authorize ~ error:", error)
 

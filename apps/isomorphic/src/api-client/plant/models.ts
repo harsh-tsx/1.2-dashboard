@@ -540,6 +540,7 @@ export type PlantData = {
           lat: number;
           long: number;
         };
+        type: number;
         createdAt: string;
         updatedAt: string;
       }>;
@@ -561,6 +562,7 @@ export type PlantData = {
           lat: number;
           long: number;
         };
+        type: number;
         createdAt: string;
         updatedAt: string;
       };
@@ -576,6 +578,7 @@ export type PlantData = {
           lat: number;
           long: number;
         };
+        type: number;
         createdAt: string;
         updatedAt: string;
       };
@@ -591,6 +594,129 @@ export type PlantData = {
           lat: number;
           long: number;
         };
+        type: number;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+  };
+};
+
+export type WarehouseData = {
+  payloads: {
+    List: {
+      authorization?: string;
+
+      query: {
+        page: string;
+        size: string;
+      };
+    };
+    Create: {
+      authorization?: string;
+      requestBody: {
+        name: string;
+        address: string;
+        coordinate: {
+          lat: number;
+          long: number;
+        };
+        type?: number;
+      };
+
+      query?: {};
+    };
+    Update: {
+      authorization?: string;
+      requestBody: {
+        name: string;
+        address: string;
+        coordinate: {
+          lat: number;
+          long: number;
+        };
+      };
+
+      query: {
+        id: string;
+      };
+    };
+    Delete: {
+      authorization?: string;
+
+      query: {
+        id: string;
+      };
+    };
+  };
+
+  responses: {
+    List: {
+      status: boolean;
+      message: string;
+      data: Array<{
+        _id: string;
+        name: string;
+        address: string;
+        coordinate: {
+          lat: number;
+          long: number;
+        };
+        type: number;
+        createdAt: string;
+        updatedAt: string;
+      }>;
+      meta: {
+        pages: number;
+        total: number;
+        page: number;
+        size: number;
+      };
+    };
+    Create: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        name: string;
+        address: string;
+        coordinate: {
+          lat: number;
+          long: number;
+        };
+        type: number;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Update: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        name: string;
+        address: string;
+        coordinate: {
+          lat: number;
+          long: number;
+        };
+        type: number;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Delete: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        name: string;
+        address: string;
+        coordinate: {
+          lat: number;
+          long: number;
+        };
+        type: number;
         createdAt: string;
         updatedAt: string;
       };
@@ -724,6 +850,110 @@ export type StoreData = {
   };
 };
 
+export type StoreTimeData = {
+  payloads: {
+    List: {
+      authorization?: string;
+
+      query: {
+        page: string;
+        size: string;
+        store: string;
+      };
+    };
+    Create: {
+      authorization?: string;
+      requestBody: {
+        store: string;
+        from: number;
+        to: number;
+      };
+
+      query?: {};
+    };
+    Update: {
+      authorization?: string;
+      requestBody: {
+        store: string;
+        from: number;
+        to: number;
+      };
+
+      query: {
+        id: string;
+      };
+    };
+    Delete: {
+      authorization?: string;
+
+      query: {
+        id: string;
+      };
+    };
+  };
+
+  responses: {
+    List: {
+      status: boolean;
+      message: string;
+      data: Array<{
+        _id: string;
+        id: number;
+        store: string;
+        from: number;
+        to: number;
+        createdAt: string;
+        updatedAt: string;
+      }>;
+      meta: {
+        pages: number;
+        total: number;
+        page: number;
+        size: number;
+      };
+    };
+    Create: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id: number;
+        store: string;
+        from: number;
+        to: number;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Update: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id: number;
+        store: string;
+        from: number;
+        to: number;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Delete: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id: number;
+        store: string;
+        from: number;
+        to: number;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+  };
+};
+
 export type WaterCanData = {
   payloads: {
     List: {
@@ -780,6 +1010,7 @@ export type WaterCanData = {
             lat: number;
             long: number;
           };
+          type: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -810,6 +1041,7 @@ export type WaterCanData = {
             lat: number;
             long: number;
           };
+          type: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -834,6 +1066,7 @@ export type WaterCanData = {
             lat: number;
             long: number;
           };
+          type: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -858,6 +1091,7 @@ export type WaterCanData = {
             lat: number;
             long: number;
           };
+          type: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1443,6 +1677,7 @@ export type EmployeeData = {
             lat: number;
             long: number;
           };
+          type: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1473,6 +1708,7 @@ export type EmployeeData = {
             lat: number;
             long: number;
           };
+          type: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1497,6 +1733,7 @@ export type EmployeeData = {
             lat: number;
             long: number;
           };
+          type: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1521,6 +1758,7 @@ export type EmployeeData = {
             lat: number;
             long: number;
           };
+          type: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1585,6 +1823,7 @@ export type WaterCanBatchData = {
             lat: number;
             long: number;
           };
+          type: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1614,6 +1853,7 @@ export type WaterCanBatchData = {
             lat: number;
             long: number;
           };
+          type: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1637,6 +1877,7 @@ export type WaterCanBatchData = {
             lat: number;
             long: number;
           };
+          type: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1660,6 +1901,7 @@ export type WaterCanBatchData = {
             lat: number;
             long: number;
           };
+          type: number;
           createdAt: string;
           updatedAt: string;
         };

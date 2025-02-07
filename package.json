@@ -4,7 +4,7 @@
 	"description": "A nextjs template to build dashboard",
 	"private": true,
 	"scripts": {
-		"dev": "turbo dev",
+		"dev": "turbo dev --filter=iso",
 		"lint": "turbo lint",
 		"build": "turbo build",
 		"start": "turbo start",

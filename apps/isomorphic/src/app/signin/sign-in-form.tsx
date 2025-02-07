@@ -12,8 +12,8 @@ import { loginSchema, LoginSchema } from '@/validators/login.schema';
 import { PlantAdminAuthService } from '@/api-client/PlantApi';
 
 const initialValues: LoginSchema = {
-  phone: 'plantadmin',
-  password: 'Admin@123',
+  phone: '',
+  password: '',
   rememberMe: true,
 };
 
@@ -28,7 +28,7 @@ export default function SignInForm() {
     if (request.status) {
       localStorage.setItem("accessToken", request?.data?.token || "")
       signIn('credentials', {
-        ...request.data,
+        data: JSON.stringify(request.data),
       });
     }
 

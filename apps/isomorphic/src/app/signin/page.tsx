@@ -31,7 +31,7 @@ export default function SignIn() {
         <div className="relative mx-auto aspect-[4/3.37] w-[500px] xl:w-[620px] 2xl:w-[820px]">
           <Image
             src={
-              'https://isomorphic-furyroad.s3.amazonaws.com/public/auth/sign-up.webp'
+              '/sign-in-thumbnail.jpg'
             }
             alt="Sign Up Thumbnail"
             fill

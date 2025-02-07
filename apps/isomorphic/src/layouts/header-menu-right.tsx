@@ -5,11 +5,12 @@ import SettingsButton from '@/layouts/settings-button';
 import RingBellSolidIcon from '@core/components/icons/ring-bell-solid';
 import ChatSolidIcon from '@core/components/icons/chat-solid';
 import NotificationDropdown from './notification-dropdown';
+// import { EngageSpotNotification } from '@/app/shared/common/EngageSpotNotification';
 
 export default function HeaderMenuRight() {
   return (
-    <div className="ms-auto grid shrink-0 grid-cols-4 items-center gap-2 text-gray-700 xs:gap-3 xl:gap-4">
-      <NotificationDropdown>
+    <div className="ms-auto grid shrink-0 grid-cols-3 items-center gap-2 text-gray-700 xs:gap-3 xl:gap-4">
+      {/* <NotificationDropdown>
         <ActionIcon
           aria-label="Notification"
           variant="text"
@@ -23,8 +24,8 @@ export default function HeaderMenuRight() {
             className="absolute right-2.5 top-2.5 -translate-y-1/3 translate-x-1/2"
           />
         </ActionIcon>
-      </NotificationDropdown>
-      <MessagesDropdown>
+      </NotificationDropdown> */}
+      {/* <MessagesDropdown>
         <ActionIcon
           aria-label="Messages"
           variant="text"
@@ -38,8 +39,8 @@ export default function HeaderMenuRight() {
             className="absolute right-2.5 top-2.5 -translate-y-1/3 translate-x-1/2"
           />
         </ActionIcon>
-      </MessagesDropdown>
-
+      </MessagesDropdown> */}
+      {/* <EngageSpotNotification /> */}
       <SettingsButton />
       <ProfileMenu />
     </div>

@@ -55,6 +55,7 @@ import {
   PiUserDuotone,
   PiUserGearDuotone,
   PiUserPlusDuotone,
+  PiWarehouseLight,
 } from 'react-icons/pi';
 import { GiWaterGallon } from "react-icons/gi";
 import { SiFuturelearn } from "react-icons/si";
@@ -76,7 +77,7 @@ export const menuItems = [
   // label start
   {
     name: 'Overview',
-    ...can(101)
+    ...can(1)
   },
   // label end
   // {
@@ -89,37 +90,44 @@ export const menuItems = [
     name: 'Roles & Permissions',
     href: routes.rolesPermissions,
     icon: <PiFolderLockDuotone />,
-    ...can(102)
+    ...can(2)
   },
   {
     name: 'Plant',
     href: '/plant/list',
     icon: <PiNuclearPlant />,
-    ...can(101)
+    ...can(3)
+  },
+
+  {
+    name: 'Warehouse',
+    href: '/warehouse/list',
+    icon: <PiWarehouseLight />,
+    ...can(4)
   },
 
   {
     name: 'Store',
     href: '/store/list',
     icon: <PiStorefront />,
-    ...can(101)
+    ...can(5)
   },
 
   {
     name: 'Water Can',
     href: '#',
     icon: <GiWaterGallon />,
-    ...can(102),
+    ...can(6),
     dropdownItems: [
       {
         name: 'Batch',
         href: routes.waterCan.batch,
-        ...can(102)
+        ...can(6)
       },
       {
         name: 'Cans',
         href: routes.waterCan.cans,
-        ...can(102)
+        ...can(7)
       },
     ],
   },
@@ -127,21 +135,21 @@ export const menuItems = [
     name: 'Forecast',
     href: '/forecast/list',
     icon: <SiFuturelearn />,
-    ...can(101)
+    ...can(8)
   },
 
   {
     name: 'Order',
     href: '/order/list',
     icon: <CiReceipt />,
-    ...can(101)
+    ...can(9)
   },
 
   {
     name: 'Employee',
     href: '/employee/list',
     icon: <GrUserWorker />,
-    ...can(101)
+    ...can(10)
   },
 
   // // label start

@@ -7,7 +7,9 @@ import type {
   PlantAdminData,
   ModuleData,
   PlantData,
+  WarehouseData,
   StoreData,
+  StoreTimeData,
   WaterCanData,
   ForecastData,
   OrderData,
@@ -295,6 +297,81 @@ export class PlantService {
   }
 }
 
+export class WarehouseService {
+  /**
+   * @returns any Plants list response
+   * @throws ApiError
+   */
+  public static list(
+    data: WarehouseData['payloads']['List']
+  ): CancelablePromise<WarehouseData['responses']['List']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/warehouse/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+
+  /**
+   * @returns any Plants create response
+   * @throws ApiError
+   */
+  public static create(
+    data: WarehouseData['payloads']['Create']
+  ): CancelablePromise<WarehouseData['responses']['Create']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'POST',
+      url: '/plant/warehouse/',
+      headers: {},
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any Plants update response
+   * @throws ApiError
+   */
+  public static update(
+    data: WarehouseData['payloads']['Update']
+  ): CancelablePromise<WarehouseData['responses']['Update']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'PUT',
+      url: '/plant/warehouse/',
+      headers: {},
+      query: {
+        ...query,
+      },
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any Plants delete response
+   * @throws ApiError
+   */
+  public static delete(
+    data: WarehouseData['payloads']['Delete']
+  ): CancelablePromise<WarehouseData['responses']['Delete']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'DELETE',
+      url: '/plant/warehouse/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+}
+
 export class StoreService {
   /**
    * @returns any Stores list response
@@ -362,6 +439,81 @@ export class StoreService {
     return __request(OpenAPI, {
       method: 'DELETE',
       url: '/plant/stores/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+}
+
+export class StoreTimeService {
+  /**
+   * @returns any StoreTimes list response
+   * @throws ApiError
+   */
+  public static list(
+    data: StoreTimeData['payloads']['List']
+  ): CancelablePromise<StoreTimeData['responses']['List']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/store-time/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+
+  /**
+   * @returns any StoreTimes create response
+   * @throws ApiError
+   */
+  public static create(
+    data: StoreTimeData['payloads']['Create']
+  ): CancelablePromise<StoreTimeData['responses']['Create']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'POST',
+      url: '/plant/store-time/',
+      headers: {},
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any StoreTimes update response
+   * @throws ApiError
+   */
+  public static update(
+    data: StoreTimeData['payloads']['Update']
+  ): CancelablePromise<StoreTimeData['responses']['Update']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'PUT',
+      url: '/plant/store-time/',
+      headers: {},
+      query: {
+        ...query,
+      },
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any StoreTimes delete response
+   * @throws ApiError
+   */
+  public static delete(
+    data: StoreTimeData['payloads']['Delete']
+  ): CancelablePromise<StoreTimeData['responses']['Delete']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'DELETE',
+      url: '/plant/store-time/',
       headers: {},
       query: {
         ...query,
