@@ -4,7 +4,10 @@ import { request as __request } from './core/request';
 import type {
   PlantAdminAuthData,
   PlantRoleData,
+  WareHouseRoleData,
   PlantAdminData,
+  WareHouseAdminData,
+  AdminPlantRelationData,
   ModuleData,
   PlantData,
   WarehouseData,
@@ -127,6 +130,81 @@ export class PlantRoleService {
   }
 }
 
+export class WareHouseRoleService {
+  /**
+   * @returns any Roles list response
+   * @throws ApiError
+   */
+  public static list(
+    data: WareHouseRoleData['payloads']['List']
+  ): CancelablePromise<WareHouseRoleData['responses']['List']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/warehouse-roles/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+
+  /**
+   * @returns any Roles create response
+   * @throws ApiError
+   */
+  public static create(
+    data: WareHouseRoleData['payloads']['Create']
+  ): CancelablePromise<WareHouseRoleData['responses']['Create']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'POST',
+      url: '/plant/warehouse-roles/',
+      headers: {},
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any Roles update response
+   * @throws ApiError
+   */
+  public static update(
+    data: WareHouseRoleData['payloads']['Update']
+  ): CancelablePromise<WareHouseRoleData['responses']['Update']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'PUT',
+      url: '/plant/warehouse-roles/',
+      headers: {},
+      query: {
+        ...query,
+      },
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any Roles delete response
+   * @throws ApiError
+   */
+  public static delete(
+    data: WareHouseRoleData['payloads']['Delete']
+  ): CancelablePromise<WareHouseRoleData['responses']['Delete']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'DELETE',
+      url: '/plant/warehouse-roles/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+}
+
 export class PlantAdminService {
   /**
    * @returns any admins Response
@@ -194,6 +272,136 @@ export class PlantAdminService {
     return __request(OpenAPI, {
       method: 'DELETE',
       url: '/plant/admins/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+}
+
+export class WareHouseAdminService {
+  /**
+   * @returns any admins Response
+   * @throws ApiError
+   */
+  public static adminList(
+    data: WareHouseAdminData['payloads']['AdminList']
+  ): CancelablePromise<WareHouseAdminData['responses']['AdminList']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/warehouse-admins/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+
+  /**
+   * @returns any admins Response
+   * @throws ApiError
+   */
+  public static adminCreate(
+    data: WareHouseAdminData['payloads']['AdminCreate']
+  ): CancelablePromise<WareHouseAdminData['responses']['AdminCreate']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'POST',
+      url: '/plant/warehouse-admins/',
+      headers: {},
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any admins Response
+   * @throws ApiError
+   */
+  public static adminUpdate(
+    data: WareHouseAdminData['payloads']['AdminUpdate']
+  ): CancelablePromise<WareHouseAdminData['responses']['AdminUpdate']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'PUT',
+      url: '/plant/warehouse-admins/',
+      headers: {},
+      query: {
+        ...query,
+      },
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any admins Response
+   * @throws ApiError
+   */
+  public static adminDelete(
+    data: WareHouseAdminData['payloads']['AdminDelete']
+  ): CancelablePromise<WareHouseAdminData['responses']['AdminDelete']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'DELETE',
+      url: '/plant/warehouse-admins/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+}
+
+export class AdminPlantRelationService {
+  /**
+   * @returns any AdminPlantRelation list response
+   * @throws ApiError
+   */
+  public static list(
+    data: AdminPlantRelationData['payloads']['List']
+  ): CancelablePromise<AdminPlantRelationData['responses']['List']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/admin-plant-relation/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+
+  /**
+   * @returns any AdminPlantRelation create response
+   * @throws ApiError
+   */
+  public static create(
+    data: AdminPlantRelationData['payloads']['Create']
+  ): CancelablePromise<AdminPlantRelationData['responses']['Create']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'POST',
+      url: '/plant/admin-plant-relation/',
+      headers: {},
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any AdminPlantRelation delete response
+   * @throws ApiError
+   */
+  public static delete(
+    data: AdminPlantRelationData['payloads']['Delete']
+  ): CancelablePromise<AdminPlantRelationData['responses']['Delete']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'DELETE',
+      url: '/plant/admin-plant-relation/',
       headers: {},
       query: {
         ...query,

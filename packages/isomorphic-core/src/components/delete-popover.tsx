@@ -10,7 +10,7 @@ type DeletePopoverProps = {
 
 export default function DeletePopover({ title, description, onDelete }: DeletePopoverProps) {
   return (
-    <Popover placement="left">
+    <Popover placement="bottom"  >
       <Popover.Trigger>
         <ActionIcon
           size="sm"

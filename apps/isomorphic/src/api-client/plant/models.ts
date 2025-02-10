@@ -36,6 +36,7 @@ export type PlantAdminAuthData = {
           order: string | number;
           super_admin: boolean;
           color: string;
+          type: number;
         };
         children_count?: number;
         admin_create_limit?: number;
@@ -63,6 +64,7 @@ export type PlantAdminAuthData = {
           order: string | number;
           super_admin: boolean;
           color: string;
+          type: number;
         };
         children_count?: number;
         admin_create_limit?: number;
@@ -92,6 +94,7 @@ export type PlantRoleData = {
         super_admin?: boolean;
         order: string | number;
         color: string;
+        type?: number;
       };
 
       query?: {};
@@ -130,6 +133,7 @@ export type PlantRoleData = {
         order: string | number;
         super_admin: boolean;
         color: string;
+        type: number;
       }>;
       meta: {
         pages: number;
@@ -148,6 +152,7 @@ export type PlantRoleData = {
         order: string | number;
         super_admin: boolean;
         color: string;
+        type: number;
       };
     };
     Update: {
@@ -160,6 +165,7 @@ export type PlantRoleData = {
         order: string | number;
         super_admin: boolean;
         color: string;
+        type: number;
       };
     };
     Delete: {
@@ -172,6 +178,115 @@ export type PlantRoleData = {
         order: string | number;
         super_admin: boolean;
         color: string;
+        type: number;
+      };
+    };
+  };
+};
+
+export type WareHouseRoleData = {
+  payloads: {
+    List: {
+      authorization?: string;
+
+      query: {
+        page: string;
+        size: string;
+      };
+    };
+    Create: {
+      authorization?: string;
+      requestBody: {
+        name: string;
+        permissions: unknown;
+        super_admin?: boolean;
+        order: string | number;
+        color: string;
+        type?: number;
+      };
+
+      query?: {};
+    };
+    Update: {
+      authorization?: string;
+      requestBody: {
+        name: string;
+        permissions: unknown;
+        super_admin?: boolean;
+        order: string | number;
+        color: string;
+      };
+
+      query: {
+        id: string;
+      };
+    };
+    Delete: {
+      authorization?: string;
+
+      query: {
+        id: string;
+      };
+    };
+  };
+
+  responses: {
+    List: {
+      status: boolean;
+      message: string;
+      data: Array<{
+        _id: string;
+        name: string;
+        permissions: Record<string, unknown>;
+        order: string | number;
+        super_admin: boolean;
+        color: string;
+        type: number;
+      }>;
+      meta: {
+        pages: number;
+        total: number;
+        page: number;
+        size: number;
+      };
+    };
+    Create: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        name: string;
+        permissions: Record<string, unknown>;
+        order: string | number;
+        super_admin: boolean;
+        color: string;
+        type: number;
+      };
+    };
+    Update: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        name: string;
+        permissions: Record<string, unknown>;
+        order: string | number;
+        super_admin: boolean;
+        color: string;
+        type: number;
+      };
+    };
+    Delete: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        name: string;
+        permissions: Record<string, unknown>;
+        order: string | number;
+        super_admin: boolean;
+        color: string;
+        type: number;
       };
     };
   };
@@ -202,6 +317,7 @@ export type PlantAdminData = {
         expire_at?: string | number;
         admin_create_limit?: string | number;
         permissions?: unknown;
+        type?: number;
       };
 
       query?: {};
@@ -274,6 +390,7 @@ export type PlantAdminData = {
             order: string | number;
             super_admin: boolean;
             color: string;
+            type: number;
           };
         }>;
         role: {
@@ -283,7 +400,10 @@ export type PlantAdminData = {
           order: string | number;
           super_admin: boolean;
           color: string;
+          type: number;
         };
+        plants: number;
+        type: number;
       }>;
       meta: {
         pages: number;
@@ -332,6 +452,7 @@ export type PlantAdminData = {
             order: string | number;
             super_admin: boolean;
             color: string;
+            type: number;
           };
         }>;
         role: {
@@ -341,7 +462,10 @@ export type PlantAdminData = {
           order: string | number;
           super_admin: boolean;
           color: string;
+          type: number;
         };
+        plants: number;
+        type: number;
       };
     };
     AdminUpdate: {
@@ -384,6 +508,7 @@ export type PlantAdminData = {
             order: string | number;
             super_admin: boolean;
             color: string;
+            type: number;
           };
         }>;
         role: {
@@ -393,7 +518,10 @@ export type PlantAdminData = {
           order: string | number;
           super_admin: boolean;
           color: string;
+          type: number;
         };
+        plants: number;
+        type: number;
       };
     };
     AdminDelete: {
@@ -436,6 +564,7 @@ export type PlantAdminData = {
             order: string | number;
             super_admin: boolean;
             color: string;
+            type: number;
           };
         }>;
         role: {
@@ -445,7 +574,475 @@ export type PlantAdminData = {
           order: string | number;
           super_admin: boolean;
           color: string;
+          type: number;
         };
+        plants: number;
+        type: number;
+      };
+    };
+  };
+};
+
+export type WareHouseAdminData = {
+  payloads: {
+    AdminList: {
+      authorization?: string;
+
+      query: {
+        page: string;
+        requestType?: string;
+        search?: string;
+        size: string;
+      };
+    };
+    AdminCreate: {
+      authorization?: string;
+      requestBody: {
+        name: string;
+        phone: string;
+        email: string;
+        password_unhashed: string;
+        password?: string;
+        role: string;
+        parent?: string;
+        expire_at?: string | number;
+        admin_create_limit?: string | number;
+        permissions?: unknown;
+        type?: number;
+      };
+
+      query?: {};
+    };
+    AdminUpdate: {
+      authorization?: string;
+      requestBody: {
+        name: string;
+        phone: string;
+        email: string;
+        password_unhashed: string;
+        password?: string;
+        role: string;
+        expire_at?: string | number;
+        admin_create_limit?: string | number;
+        permissions?: unknown;
+      };
+
+      query: {
+        id: string;
+      };
+    };
+    AdminDelete: {
+      authorization?: string;
+
+      query: {
+        id: string;
+      };
+    };
+  };
+
+  responses: {
+    AdminList: {
+      status: boolean;
+      message: string;
+      data: Array<{
+        _id: string;
+        name: string;
+        permissions: unknown;
+        super_admin: boolean;
+        phone?: string;
+        email?: string;
+        password?: string;
+        password_unhashed?: string;
+        token?: string;
+        parent: unknown;
+        createdAt: string;
+        updatedAt: string;
+        expire_at: string;
+        children_count: number;
+        children: unknown;
+        admins: Array<{
+          _id: string;
+          name: string;
+          permissions: unknown;
+          super_admin: boolean;
+          phone?: string;
+          password?: string;
+          token?: string;
+          parent: unknown;
+          createdAt: string;
+          updatedAt: string;
+          expire_at: string;
+          children_count: number;
+          children: unknown;
+          role: {
+            _id: string;
+            name: string;
+            permissions: Record<string, unknown>;
+            order: string | number;
+            super_admin: boolean;
+            color: string;
+            type: number;
+          };
+        }>;
+        role: {
+          _id: string;
+          name: string;
+          permissions: Record<string, unknown>;
+          order: string | number;
+          super_admin: boolean;
+          color: string;
+          type: number;
+        };
+        plants: number;
+        type: number;
+      }>;
+      meta: {
+        pages: number;
+        total: number;
+        page: number;
+        size: number;
+      };
+    };
+    AdminCreate: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        name: string;
+        permissions: unknown;
+        super_admin: boolean;
+        phone?: string;
+        email?: string;
+        password?: string;
+        password_unhashed?: string;
+        token?: string;
+        parent: unknown;
+        createdAt: string;
+        updatedAt: string;
+        expire_at: string;
+        children_count: number;
+        children: unknown;
+        admins: Array<{
+          _id: string;
+          name: string;
+          permissions: unknown;
+          super_admin: boolean;
+          phone?: string;
+          password?: string;
+          token?: string;
+          parent: unknown;
+          createdAt: string;
+          updatedAt: string;
+          expire_at: string;
+          children_count: number;
+          children: unknown;
+          role: {
+            _id: string;
+            name: string;
+            permissions: Record<string, unknown>;
+            order: string | number;
+            super_admin: boolean;
+            color: string;
+            type: number;
+          };
+        }>;
+        role: {
+          _id: string;
+          name: string;
+          permissions: Record<string, unknown>;
+          order: string | number;
+          super_admin: boolean;
+          color: string;
+          type: number;
+        };
+        plants: number;
+        type: number;
+      };
+    };
+    AdminUpdate: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        name: string;
+        permissions: unknown;
+        super_admin: boolean;
+        phone?: string;
+        email?: string;
+        password?: string;
+        password_unhashed?: string;
+        token?: string;
+        parent: unknown;
+        createdAt: string;
+        updatedAt: string;
+        expire_at: string;
+        children_count: number;
+        children: unknown;
+        admins: Array<{
+          _id: string;
+          name: string;
+          permissions: unknown;
+          super_admin: boolean;
+          phone?: string;
+          password?: string;
+          token?: string;
+          parent: unknown;
+          createdAt: string;
+          updatedAt: string;
+          expire_at: string;
+          children_count: number;
+          children: unknown;
+          role: {
+            _id: string;
+            name: string;
+            permissions: Record<string, unknown>;
+            order: string | number;
+            super_admin: boolean;
+            color: string;
+            type: number;
+          };
+        }>;
+        role: {
+          _id: string;
+          name: string;
+          permissions: Record<string, unknown>;
+          order: string | number;
+          super_admin: boolean;
+          color: string;
+          type: number;
+        };
+        plants: number;
+        type: number;
+      };
+    };
+    AdminDelete: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        name: string;
+        permissions: unknown;
+        super_admin: boolean;
+        phone?: string;
+        email?: string;
+        password?: string;
+        password_unhashed?: string;
+        token?: string;
+        parent: unknown;
+        createdAt: string;
+        updatedAt: string;
+        expire_at: string;
+        children_count: number;
+        children: unknown;
+        admins: Array<{
+          _id: string;
+          name: string;
+          permissions: unknown;
+          super_admin: boolean;
+          phone?: string;
+          password?: string;
+          token?: string;
+          parent: unknown;
+          createdAt: string;
+          updatedAt: string;
+          expire_at: string;
+          children_count: number;
+          children: unknown;
+          role: {
+            _id: string;
+            name: string;
+            permissions: Record<string, unknown>;
+            order: string | number;
+            super_admin: boolean;
+            color: string;
+            type: number;
+          };
+        }>;
+        role: {
+          _id: string;
+          name: string;
+          permissions: Record<string, unknown>;
+          order: string | number;
+          super_admin: boolean;
+          color: string;
+          type: number;
+        };
+        plants: number;
+        type: number;
+      };
+    };
+  };
+};
+
+export type AdminPlantRelationData = {
+  payloads: {
+    List: {
+      authorization?: string;
+
+      query: {
+        admin: string;
+        page: string;
+        size: string;
+      };
+    };
+    Create: {
+      authorization?: string;
+      requestBody: {
+        admin: string;
+        plant: string;
+      };
+
+      query?: {};
+    };
+    Delete: {
+      authorization?: string;
+
+      query: {
+        id: string;
+      };
+    };
+  };
+
+  responses: {
+    List: {
+      status: boolean;
+      message: string;
+      data: Array<{
+        _id: string;
+        admin: {
+          _id?: string;
+          phone?: string;
+          password?: string;
+          token?: string;
+          name?: string;
+          email?: string;
+          password_changed?: boolean;
+          super_admin?: boolean;
+          role: {
+            _id: string;
+            name: string;
+            permissions: Record<string, unknown>;
+            order: string | number;
+            super_admin: boolean;
+            color: string;
+            type: number;
+          };
+          children_count?: number;
+          admin_create_limit?: number;
+          createdAt?: string;
+          updatedAt?: string;
+          ip?: string;
+        };
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      }>;
+      meta: {
+        pages: number;
+        total: number;
+        page: number;
+        size: number;
+      };
+    };
+    Create: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        admin: {
+          _id?: string;
+          phone?: string;
+          password?: string;
+          token?: string;
+          name?: string;
+          email?: string;
+          password_changed?: boolean;
+          super_admin?: boolean;
+          role: {
+            _id: string;
+            name: string;
+            permissions: Record<string, unknown>;
+            order: string | number;
+            super_admin: boolean;
+            color: string;
+            type: number;
+          };
+          children_count?: number;
+          admin_create_limit?: number;
+          createdAt?: string;
+          updatedAt?: string;
+          ip?: string;
+        };
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Delete: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        admin: {
+          _id?: string;
+          phone?: string;
+          password?: string;
+          token?: string;
+          name?: string;
+          email?: string;
+          password_changed?: boolean;
+          super_admin?: boolean;
+          role: {
+            _id: string;
+            name: string;
+            permissions: Record<string, unknown>;
+            order: string | number;
+            super_admin: boolean;
+            color: string;
+            type: number;
+          };
+          children_count?: number;
+          admin_create_limit?: number;
+          createdAt?: string;
+          updatedAt?: string;
+          ip?: string;
+        };
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
       };
     };
   };
@@ -500,6 +1097,7 @@ export type PlantData = {
           lat: number;
           long: number;
         };
+        type?: number;
       };
 
       query?: {};

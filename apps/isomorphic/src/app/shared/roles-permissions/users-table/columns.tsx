@@ -3,7 +3,7 @@
 import AvatarCard from '@core/ui/avatar-card';
 import DateCell from '@core/ui/date-cell';
 import { createColumnHelper } from '@tanstack/react-table';
-import { ActionIcon, Badge, Checkbox, Flex, Tooltip } from 'rizzui';
+import { ActionIcon, Badge, Checkbox, Flex, Text, Tooltip } from 'rizzui';
 import { UsersTableDataType } from '.';
 import { getStatusBadge } from '@core/components/table-utils/get-status-badge';
 import TableRowActionGroup from '@core/components/table-utils/table-row-action-group';
@@ -17,6 +17,7 @@ import ModalButton from '../../modal-button';
 import CreateUser from '../create-user';
 import ModalIconButton from '../../modal-icon-button';
 import useAdminStore from '@/store/plant/admins/admins.service';
+import AdminPlantRelation from '../admin-plant-relation';
 
 const columnHelper = createColumnHelper<UsersTableDataType>();
 
@@ -67,6 +68,45 @@ export const usersColumns = [
     size: 150,
     header: 'Role',
     cell: ({ row }) => row.original.role?.name,
+  }),
+  columnHelper.accessor('plants', {
+    id: 'plants',
+    size: 50,
+    header: 'Plants/Warehouse',
+    cell: ({ row }) => {
+      return (
+        <Flex
+          align="center"
+          justify="center"
+        // className={cn("pe-3")}
+        >
+          <Text>
+            {row.original.plants || 0}
+          </Text>
+          <Tooltip
+            size="sm"
+            content="Edit Item"
+            placement="top"
+            color="invert"
+          >
+            <ModalIconButton
+              // label="Add New User"
+              icon={
+                <PencilIcon className="size-4" />
+              }
+              view={<AdminPlantRelation admin={row.original} />}
+              customSize="600px"
+              className="mt-0"
+              onClickCustom={() => {
+                useAdminStore.getState().select(row.original._id)
+              }}
+
+            />
+          </Tooltip>
+
+        </Flex>
+      )
+    },
   }),
   columnHelper.accessor('createdAt', {
     id: 'createdAt',

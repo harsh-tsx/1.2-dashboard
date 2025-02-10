@@ -35,27 +35,30 @@ export default function TableRowActionGroup({
         Additional ?
           <Additional /> : <></>
       }
-      <Tooltip
-        size="sm"
-        content="Edit Item"
-        placement="top"
-        color="invert"
-      >
-        {
-          Edit ?
-            <Edit /> :
-            <Link href={editUrl}>
-              <ActionIcon
-                as="span"
-                size="sm"
-                variant="outline"
-                aria-label="Edit Item"
-              >
-                <PencilIcon className="size-4" />
-              </ActionIcon>
-            </Link>
-        }
-      </Tooltip>
+      {
+        editUrl || Edit ?
+          <Tooltip
+            size="sm"
+            content="Edit Item"
+            placement="top"
+            color="invert"
+          >
+            {
+              Edit ?
+                <Edit /> :
+                <Link href={editUrl}>
+                  <ActionIcon
+                    as="span"
+                    size="sm"
+                    variant="outline"
+                    aria-label="Edit Item"
+                  >
+                    <PencilIcon className="size-4" />
+                  </ActionIcon>
+                </Link>
+            }
+          </Tooltip> : <></>
+      }
       {
         viewUrl ?
           <Tooltip

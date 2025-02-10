@@ -29,7 +29,7 @@ export default function CreateRole() {
     console.log("🚀 ~ CreateRole ~ data:", data)
     // set timeout ony required to display loading state of the create category button
     setLoading(true);
-
+    store.select(null)
     await store.add({
       color: data.roleColor,
       name: data.roleName,
