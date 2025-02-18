@@ -17,6 +17,8 @@ import {
 } from 'react-icons/pi';
 import { useMedia } from 'react-use';
 import { Badge, Button, Flex, Input, Text } from 'rizzui';
+import RefreshIndicator from '../../common/refresh-indicator';
+import useWaterCanStore from '@/store/plant/can/can.service';
 
 const paymentStatusOptions = Object.entries(shippingStatuses).map(
   ([value, label]) => ({
@@ -83,6 +85,12 @@ export default function Filters<TData extends Record<string, any>>({
           <PiFunnel className="me-1.5 h-[18px] w-[18px]" strokeWidth={1.7} />
           {isLarge && showFilters ? 'Hide Filters' : 'Filters'}
         </Button>
+
+        <RefreshIndicator
+          onClick={async () => {
+            useWaterCanStore.getState().get.paginate({});
+          }}
+        />
 
         <ToggleColumns table={table} />
       </Flex>

@@ -1,9 +1,9 @@
-import usePlantStore from '@/store/plant/plant/plant.service';
+import usePlantStore from '@/store/plant/warehouse/warehouse.service';
 import { object, SchemaDescription, string } from 'yup'
 
 
-export const adminPlantRelationSchema = object().shape({
-    plant: string().label("Plant/Warehouse").meta({
+export const adminWarehouseRelationSchema = object().shape({
+    plant: string().label("Warehouse").meta({
         type: "select", selectProps: {
             disableDefaultFilter: true
         },

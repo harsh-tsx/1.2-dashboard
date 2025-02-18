@@ -21,7 +21,7 @@ export default function DeletePopover({ title, description, onDelete }: DeletePo
           <TrashIcon className="size-4" />
         </ActionIcon>
       </Popover.Trigger>
-      <Popover.Content className="z-10">
+      <Popover.Content className="z-[99999]">
         {({ setOpen }) => (
           <div className="w-56 pb-2 pt-1 text-left rtl:text-right">
             <Title

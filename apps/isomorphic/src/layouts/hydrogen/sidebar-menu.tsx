@@ -94,6 +94,19 @@ export function SidebarMenu() {
                                   : 'opacity-40'
                               )}
                             />{' '}
+                            {dropdownItem?.icon && (
+                              <span
+                                className={cn(
+                                  'me-2 inline-flex  items-center justify-center rounded-md [&>svg]:h-[20px] [&>svg]:w-[20px]',
+                                  isChildActive
+                                    ? 'text-primary h-4 w-4'
+                                    : 'text-gray-800 dark:text-gray-500 dark:group-hover:text-gray-700 h-3 w-3'
+                                )}
+                              >
+                                {dropdownItem?.icon}
+                              </span>
+                            )}
+
                             <span className="truncate">
                               {dropdownItem?.name}
                             </span>

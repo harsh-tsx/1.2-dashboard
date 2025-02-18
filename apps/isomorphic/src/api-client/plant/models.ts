@@ -1717,6 +1717,7 @@ export type ForecastData = {
         watercans: number;
         date: string;
         store: string;
+        store_admin_approval?: boolean;
       };
 
       query?: {};
@@ -1772,6 +1773,7 @@ export type ForecastData = {
           updatedAt: string;
         };
         status: string;
+        store_admin_approval: boolean;
         createdAt: string;
         updatedAt: string;
       }>;
@@ -1803,6 +1805,7 @@ export type ForecastData = {
           updatedAt: string;
         };
         status: string;
+        store_admin_approval: boolean;
         createdAt: string;
         updatedAt: string;
       };
@@ -1828,6 +1831,7 @@ export type ForecastData = {
           updatedAt: string;
         };
         status: string;
+        store_admin_approval: boolean;
         createdAt: string;
         updatedAt: string;
       };
@@ -1853,6 +1857,7 @@ export type ForecastData = {
           updatedAt: string;
         };
         status: string;
+        store_admin_approval: boolean;
         createdAt: string;
         updatedAt: string;
       };
@@ -1878,6 +1883,7 @@ export type ForecastData = {
           updatedAt: string;
         };
         status: string;
+        store_admin_approval: boolean;
         createdAt: string;
         updatedAt: string;
       };
@@ -1968,6 +1974,7 @@ export type OrderData = {
             updatedAt: string;
           };
           status: string;
+          store_admin_approval: boolean;
           createdAt: string;
           updatedAt: string;
         };
@@ -2020,6 +2027,7 @@ export type OrderData = {
             updatedAt: string;
           };
           status: string;
+          store_admin_approval: boolean;
           createdAt: string;
           updatedAt: string;
         };
@@ -2066,6 +2074,7 @@ export type OrderData = {
             updatedAt: string;
           };
           status: string;
+          store_admin_approval: boolean;
           createdAt: string;
           updatedAt: string;
         };
@@ -2112,6 +2121,7 @@ export type OrderData = {
             updatedAt: string;
           };
           status: string;
+          store_admin_approval: boolean;
           createdAt: string;
           updatedAt: string;
         };

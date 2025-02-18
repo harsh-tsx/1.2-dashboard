@@ -92,36 +92,36 @@ export const ListColumns = [
     header: 'Created At',
     cell: ({ row }) => <DateCell date={new Date(row.original.createdAt)} />,
   }),
-  columnHelper.display({
-    id: 'actions',
-    size: 120,
-    cell: ({
-      row,
-      table: {
-        options: { meta },
-      },
-    }) => (
-      <TableRowActionGroup
-        deletePopoverTitle="Delete the shipment"
-        onDelete={() => {
-          meta?.handleDeleteRow?.(row.original);
-        }}
-        Edit={() => {
-          return <ModalIconButton
-            icon={
-              <PencilIcon className="size-4" />
-            }
-            view={<GlobalSchemaForm onSubmitCb={useExampleStore.getState().add} schema={injectDefaults(plantSchema, row.original).label("Edit").meta({ button: "Update" })} />}
-            customSize="600px"
-            className="mt-0"
-            onClickCustom={() => {
-              useExampleStore
-                .getState().select(row.original._id)
-            }}
-          />
-        }}
-        deletePopoverDescription={`Are you sure you want to delete this ${row.original._id} shipment?`}
-      />
-    ),
-  }),
+  // columnHelper.display({
+  //   id: 'actions',
+  //   size: 120,
+  //   cell: ({
+  //     row,
+  //     table: {
+  //       options: { meta },
+  //     },
+  //   }) => (
+  //     <TableRowActionGroup
+  //       deletePopoverTitle="Delete the shipment"
+  //       onDelete={() => {
+  //         meta?.handleDeleteRow?.(row.original);
+  //       }}
+  //       Edit={() => {
+  //         return <ModalIconButton
+  //           icon={
+  //             <PencilIcon className="size-4" />
+  //           }
+  //           view={<GlobalSchemaForm onSubmitCb={useExampleStore.getState().add} schema={injectDefaults(plantSchema, row.original).label("Edit").meta({ button: "Update" })} />}
+  //           customSize="600px"
+  //           className="mt-0"
+  //           onClickCustom={() => {
+  //             useExampleStore
+  //               .getState().select(row.original._id)
+  //           }}
+  //         />
+  //       }}
+  //       deletePopoverDescription={`Are you sure you want to delete this ${row.original._id} shipment?`}
+  //     />
+  //   ),
+  // }),
 ];

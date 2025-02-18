@@ -91,6 +91,7 @@ export const routes = {
   },
   eventCalendar: '/event-calendar',
   rolesPermissions: '/roles-permissions',
+  rolesPermissionsWarehouse: '/roles-permissions-warehouse',
   invoice: {
     home: '/invoice',
     create: '/invoice/create',

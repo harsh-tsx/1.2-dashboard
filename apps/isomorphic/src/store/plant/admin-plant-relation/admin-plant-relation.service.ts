@@ -3,6 +3,7 @@ import { combine } from 'zustand/middleware'
 import toast from 'react-hot-toast'
 import { AdminPlantRelationData } from '@/api-client/plant/models'
 import { AdminPlantRelationService } from '@/api-client/PlantApi'
+import useAdminStore from '../admins/admins.service'
 
 
 
@@ -130,6 +131,7 @@ const useAdminPlantRelationStore = create(
           {
             loading: id ? 'Updating' : 'Adding',
             success: res => {
+              useAdminStore.getState().get.paginate({})
               useAdminPlantRelationStore.getState().get.paginate({ admin: admin })
               useAdminPlantRelationStore.getState().select(null)
               return res?.message

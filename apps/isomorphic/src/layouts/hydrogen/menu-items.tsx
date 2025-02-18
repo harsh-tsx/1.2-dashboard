@@ -93,29 +93,41 @@ export const menuItems = [
     ...can(6),
     dropdownItems: [
       {
-        name: 'Roles & Permissions',
-        href: routes.rolesPermissions,
-        icon: <PiFolderLockDuotone />,
-        ...can(2)
-      },
-      {
         name: 'List',
         href: '/plant/list',
         icon: <PiNuclearPlant />,
         ...can(3)
       },
+      {
+        name: 'Roles & Permissions',
+        href: routes.rolesPermissions,
+        icon: <PiFolderLockDuotone />,
+        ...can(2)
+      },
+
     ],
   },
-
-
-
   {
     name: 'Warehouse',
     href: '/warehouse/list',
     icon: <PiWarehouseLight />,
-    ...can(4)
-  },
+    ...can(4),
+    dropdownItems: [
+      {
+        name: 'List',
+        href: '/warehouse/list',
+        icon: <PiWarehouseLight />,
+        ...can(4)
+      },
+      {
+        name: 'Roles & Permissions',
+        href: routes.rolesPermissionsWarehouse,
+        icon: <PiFolderLockDuotone />,
+        ...can(2)
+      },
 
+    ],
+  },
   {
     name: 'Store',
     href: '/store/list',

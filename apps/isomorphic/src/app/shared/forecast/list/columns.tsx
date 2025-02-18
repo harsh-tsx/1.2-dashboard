@@ -106,25 +106,27 @@ export const ListColumns = [
         onDelete={() => {
           meta?.handleDeleteRow?.(row.original);
         }}
-        Edit={() => {
-          return <ModalIconButton
-            icon={
-              <PencilIcon className="size-4" />
-            }
-            view={<GlobalSchemaForm onSubmitCb={useExampleStore.getState().add} schema={injectDefaults(plantSchema, row.original).label("Edit").meta({ button: "Update" })} />}
-            customSize="600px"
-            className="mt-0"
-            onClickCustom={() => {
-              useExampleStore
-                .getState().select(row.original._id)
-            }}
-          />
-        }}
+        // Edit={() => {
+        //   return <ModalIconButton
+        //     icon={
+        //       <PencilIcon className="size-4" />
+        //     }
+        //     view={<GlobalSchemaForm onSubmitCb={useExampleStore.getState().add} schema={injectDefaults(plantSchema, row.original).label("Edit").meta({ button: "Update" })} />}
+        //     customSize="600px"
+        //     className="mt-0"
+        //     onClickCustom={() => {
+        //       useExampleStore
+        //         .getState().select(row.original._id)
+        //     }}
+        //   />
+        // }}
+        editUrl=''
         deletePopoverDescription={`Are you sure you want to delete this ${row.original._id} shipment?`}
+        hideDelete={true}
         Additional={() => {
           return <Tooltip
             size="sm"
-            content="Approve Forecast"
+            content="Acknowledged Forecast"
             placement="top"
             color="invert"
           >
@@ -133,12 +135,16 @@ export const ListColumns = [
               size="sm"
               variant="outline"
               onClick={() => {
+                if (row.original.status == "ACKNOWLEDGED") {
+                  return;
+                }
                 useExampleStore.getState().select(row.original._id);
                 useExampleStore.getState().order();
               }}
+              disabled={row.original.status == "ACKNOWLEDGED"}
             >
               {
-                row.original.status == "APPROVED" ?
+                row.original.status == "ACKNOWLEDGED" ?
 
                   <PiSealCheckFill className="size-4" color='#008000' />
                   :

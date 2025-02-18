@@ -22,10 +22,9 @@ import GlobalSchemaForm from '../common/GlobalSchemaForm';
 import { adminWarehouseRelationSchema } from '@/validators/admin-warehouse-relation.schema';
 import { Admin } from '@/store/plant/admins/admins.service';
 import useAdminPlantRelationStore from '@/store/plant/admin-plant-relation/admin-plant-relation.service';
-import usePlantStore from '@/store/plant/plant/plant.service';
+import usePlantStore from '@/store/plant/warehouse/warehouse.service';
 import { useTanStackTable } from '@core/components/table/custom/use-TanStack-Table';
 import { ListColumns } from './admin-plant-relation-columns';
-import { adminPlantRelationSchema } from '@/validators/admin-plant-relation.schema copy';
 
 export type ListTableDataType = AdminPlantRelationData;
 
@@ -99,7 +98,7 @@ export default function AdminPlantRelation({ admin }: { admin?: Admin }) {
             rowClassName: 'last:border-0',
           }}
         />
-        <GlobalSchemaForm schema={adminPlantRelationSchema} onSubmitCb={onSubmit} />
+        <GlobalSchemaForm schema={adminWarehouseRelationSchema} onSubmitCb={onSubmit} />
       </Box>
     </>
   );
