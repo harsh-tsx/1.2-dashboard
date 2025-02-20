@@ -1511,3 +1511,16 @@ div[style='z-index: 1000001;'],
 [dir='rtl'] :is(.rizzui-checkbox-icon, .rizzui-switch-on-icon) {
   @apply -scale-x-100;
 }
+
+.swiper{
+  width: 100% !important;
+}
+.swiper-slide{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.swiper-slide img{
+  object-fit: contain !important;
+}

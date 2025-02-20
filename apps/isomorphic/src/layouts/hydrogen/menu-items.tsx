@@ -56,6 +56,7 @@ import {
   PiUserGearDuotone,
   PiUserPlusDuotone,
   PiWarehouseLight,
+  PiWarning,
 } from 'react-icons/pi';
 import { GiWaterGallon } from "react-icons/gi";
 import { SiFuturelearn } from "react-icons/si";
@@ -165,6 +166,12 @@ export const menuItems = [
     href: '/order/list',
     icon: <CiReceipt />,
     ...can(9)
+  },
+  {
+    name: 'Complaints',
+    href: '/complaint/list',
+    icon: <PiWarning />,
+    ...can(5)
   },
 
   {

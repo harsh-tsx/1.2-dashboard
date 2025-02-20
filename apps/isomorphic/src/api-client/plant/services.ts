@@ -12,6 +12,7 @@ import type {
   PlantData,
   WarehouseData,
   StoreData,
+  StoreComplaintData,
   StoreTimeData,
   WaterCanData,
   ForecastData,
@@ -647,6 +648,64 @@ export class StoreService {
     return __request(OpenAPI, {
       method: 'DELETE',
       url: '/plant/stores/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+}
+
+export class StoreComplaintService {
+  /**
+   * @returns any Store Complaint list response
+   * @throws ApiError
+   */
+  public static list(
+    data: StoreComplaintData['payloads']['List']
+  ): CancelablePromise<StoreComplaintData['responses']['List']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/store-complaint/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+
+  /**
+   * @returns any Store Complaint update response
+   * @throws ApiError
+   */
+  public static update(
+    data: StoreComplaintData['payloads']['Update']
+  ): CancelablePromise<StoreComplaintData['responses']['Update']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'PUT',
+      url: '/plant/store-complaint/',
+      headers: {},
+      query: {
+        ...query,
+      },
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any Store Complaint delete response
+   * @throws ApiError
+   */
+  public static delete(
+    data: StoreComplaintData['payloads']['Delete']
+  ): CancelablePromise<StoreComplaintData['responses']['Delete']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'DELETE',
+      url: '/plant/store-complaint/',
       headers: {},
       query: {
         ...query,

@@ -1448,6 +1448,578 @@ export type StoreData = {
   };
 };
 
+export type StoreComplaintData = {
+  payloads: {
+    List: {
+      authorization?: string;
+
+      query: {
+        page: string;
+        size: string;
+      };
+    };
+    Update: {
+      authorization?: string;
+      requestBody: {
+        status: string;
+        remark: string;
+        plant_admin?: string;
+      };
+
+      query: {
+        id: string;
+      };
+    };
+    Delete: {
+      authorization?: string;
+
+      query: {
+        id: string;
+      };
+    };
+  };
+
+  responses: {
+    List: {
+      status: boolean;
+      message: string;
+      data: Array<{
+        _id: string;
+        id: number;
+        store: {
+          _id: string;
+          id?: number;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          city: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+        };
+        order: {
+          _id: string;
+          watercans: number;
+          date: string;
+          status: string;
+          store: {
+            _id: string;
+            id?: number;
+            name: string;
+            address: string;
+            coordinate: {
+              lat: number;
+              long: number;
+            };
+            code?: string;
+            createdAt: string;
+            updatedAt: string;
+            sector: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+          };
+          forecast: {
+            _id: string;
+            watercans: number;
+            date: string;
+            store: {
+              _id: string;
+              id?: number;
+              name: string;
+              address: string;
+              coordinate: {
+                lat: number;
+                long: number;
+              };
+              code?: string;
+              createdAt: string;
+              updatedAt: string;
+              sector: {
+                _id: string;
+                name: string;
+                createdAt: string;
+                updatedAt: string;
+              };
+              city: {
+                _id: string;
+                name: string;
+                createdAt: string;
+                updatedAt: string;
+              };
+            };
+            status: string;
+            store_admin_approval: boolean;
+            createdAt: string;
+            updatedAt: string;
+          };
+          createdAt: string;
+          updatedAt: string;
+        };
+        store_employee: {
+          _id: string;
+          id: string;
+          name: string;
+          password: string;
+          plant: {
+            _id: string;
+            name: string;
+            address: string;
+            coordinate: {
+              lat: number;
+              long: number;
+            };
+            type: number;
+            createdAt: string;
+            updatedAt: string;
+          };
+          status: string;
+          createdAt: string;
+          updatedAt: string;
+        };
+        store_admin: {
+          _id?: string;
+          phone?: string;
+          password?: string;
+          token?: string;
+          name?: string;
+          email?: string;
+          password_changed?: boolean;
+          super_admin?: boolean;
+          role: {
+            _id: string;
+            name: string;
+            permissions: Record<string, unknown>;
+            order: string | number;
+            super_admin: boolean;
+            color: string;
+          };
+          children_count?: number;
+          admin_create_limit?: number;
+          createdAt?: string;
+          updatedAt?: string;
+          ip?: string;
+        };
+        plant_admin: {
+          _id?: string;
+          phone?: string;
+          password?: string;
+          token?: string;
+          name?: string;
+          email?: string;
+          password_changed?: boolean;
+          super_admin?: boolean;
+          role: {
+            _id: string;
+            name: string;
+            permissions: Record<string, unknown>;
+            order: string | number;
+            super_admin: boolean;
+            color: string;
+            type: number;
+          };
+          children_count?: number;
+          admin_create_limit?: number;
+          createdAt?: string;
+          updatedAt?: string;
+          ip?: string;
+        };
+        type: string;
+        watercans: number;
+        status: string;
+        description: string;
+        images: Array<string>;
+        store_admin_approval: boolean;
+        remark: string;
+        createdAt: string;
+        updatedAt: string;
+      }>;
+      meta: {
+        pages: number;
+        total: number;
+        page: number;
+        size: number;
+      };
+    };
+    Update: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id: number;
+        store: {
+          _id: string;
+          id?: number;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          city: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+        };
+        order: {
+          _id: string;
+          watercans: number;
+          date: string;
+          status: string;
+          store: {
+            _id: string;
+            id?: number;
+            name: string;
+            address: string;
+            coordinate: {
+              lat: number;
+              long: number;
+            };
+            code?: string;
+            createdAt: string;
+            updatedAt: string;
+            sector: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+          };
+          forecast: {
+            _id: string;
+            watercans: number;
+            date: string;
+            store: {
+              _id: string;
+              id?: number;
+              name: string;
+              address: string;
+              coordinate: {
+                lat: number;
+                long: number;
+              };
+              code?: string;
+              createdAt: string;
+              updatedAt: string;
+              sector: {
+                _id: string;
+                name: string;
+                createdAt: string;
+                updatedAt: string;
+              };
+              city: {
+                _id: string;
+                name: string;
+                createdAt: string;
+                updatedAt: string;
+              };
+            };
+            status: string;
+            store_admin_approval: boolean;
+            createdAt: string;
+            updatedAt: string;
+          };
+          createdAt: string;
+          updatedAt: string;
+        };
+        store_employee: {
+          _id: string;
+          id: string;
+          name: string;
+          password: string;
+          plant: {
+            _id: string;
+            name: string;
+            address: string;
+            coordinate: {
+              lat: number;
+              long: number;
+            };
+            type: number;
+            createdAt: string;
+            updatedAt: string;
+          };
+          status: string;
+          createdAt: string;
+          updatedAt: string;
+        };
+        store_admin: {
+          _id?: string;
+          phone?: string;
+          password?: string;
+          token?: string;
+          name?: string;
+          email?: string;
+          password_changed?: boolean;
+          super_admin?: boolean;
+          role: {
+            _id: string;
+            name: string;
+            permissions: Record<string, unknown>;
+            order: string | number;
+            super_admin: boolean;
+            color: string;
+          };
+          children_count?: number;
+          admin_create_limit?: number;
+          createdAt?: string;
+          updatedAt?: string;
+          ip?: string;
+        };
+        plant_admin: {
+          _id?: string;
+          phone?: string;
+          password?: string;
+          token?: string;
+          name?: string;
+          email?: string;
+          password_changed?: boolean;
+          super_admin?: boolean;
+          role: {
+            _id: string;
+            name: string;
+            permissions: Record<string, unknown>;
+            order: string | number;
+            super_admin: boolean;
+            color: string;
+            type: number;
+          };
+          children_count?: number;
+          admin_create_limit?: number;
+          createdAt?: string;
+          updatedAt?: string;
+          ip?: string;
+        };
+        type: string;
+        watercans: number;
+        status: string;
+        description: string;
+        images: Array<string>;
+        store_admin_approval: boolean;
+        remark: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Delete: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id: number;
+        store: {
+          _id: string;
+          id?: number;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          city: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+        };
+        order: {
+          _id: string;
+          watercans: number;
+          date: string;
+          status: string;
+          store: {
+            _id: string;
+            id?: number;
+            name: string;
+            address: string;
+            coordinate: {
+              lat: number;
+              long: number;
+            };
+            code?: string;
+            createdAt: string;
+            updatedAt: string;
+            sector: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+          };
+          forecast: {
+            _id: string;
+            watercans: number;
+            date: string;
+            store: {
+              _id: string;
+              id?: number;
+              name: string;
+              address: string;
+              coordinate: {
+                lat: number;
+                long: number;
+              };
+              code?: string;
+              createdAt: string;
+              updatedAt: string;
+              sector: {
+                _id: string;
+                name: string;
+                createdAt: string;
+                updatedAt: string;
+              };
+              city: {
+                _id: string;
+                name: string;
+                createdAt: string;
+                updatedAt: string;
+              };
+            };
+            status: string;
+            store_admin_approval: boolean;
+            createdAt: string;
+            updatedAt: string;
+          };
+          createdAt: string;
+          updatedAt: string;
+        };
+        store_employee: {
+          _id: string;
+          id: string;
+          name: string;
+          password: string;
+          plant: {
+            _id: string;
+            name: string;
+            address: string;
+            coordinate: {
+              lat: number;
+              long: number;
+            };
+            type: number;
+            createdAt: string;
+            updatedAt: string;
+          };
+          status: string;
+          createdAt: string;
+          updatedAt: string;
+        };
+        store_admin: {
+          _id?: string;
+          phone?: string;
+          password?: string;
+          token?: string;
+          name?: string;
+          email?: string;
+          password_changed?: boolean;
+          super_admin?: boolean;
+          role: {
+            _id: string;
+            name: string;
+            permissions: Record<string, unknown>;
+            order: string | number;
+            super_admin: boolean;
+            color: string;
+          };
+          children_count?: number;
+          admin_create_limit?: number;
+          createdAt?: string;
+          updatedAt?: string;
+          ip?: string;
+        };
+        plant_admin: {
+          _id?: string;
+          phone?: string;
+          password?: string;
+          token?: string;
+          name?: string;
+          email?: string;
+          password_changed?: boolean;
+          super_admin?: boolean;
+          role: {
+            _id: string;
+            name: string;
+            permissions: Record<string, unknown>;
+            order: string | number;
+            super_admin: boolean;
+            color: string;
+            type: number;
+          };
+          children_count?: number;
+          admin_create_limit?: number;
+          createdAt?: string;
+          updatedAt?: string;
+          ip?: string;
+        };
+        type: string;
+        watercans: number;
+        status: string;
+        description: string;
+        images: Array<string>;
+        store_admin_approval: boolean;
+        remark: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+  };
+};
+
 export type StoreTimeData = {
   payloads: {
     List: {
@@ -1771,6 +2343,18 @@ export type ForecastData = {
           code?: string;
           createdAt: string;
           updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          city: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
         };
         status: string;
         store_admin_approval: boolean;
@@ -1803,6 +2387,18 @@ export type ForecastData = {
           code?: string;
           createdAt: string;
           updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          city: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
         };
         status: string;
         store_admin_approval: boolean;
@@ -1829,6 +2425,18 @@ export type ForecastData = {
           code?: string;
           createdAt: string;
           updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          city: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
         };
         status: string;
         store_admin_approval: boolean;
@@ -1855,6 +2463,18 @@ export type ForecastData = {
           code?: string;
           createdAt: string;
           updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          city: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
         };
         status: string;
         store_admin_approval: boolean;
@@ -1881,6 +2501,18 @@ export type ForecastData = {
           code?: string;
           createdAt: string;
           updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          city: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
         };
         status: string;
         store_admin_approval: boolean;
@@ -1955,6 +2587,18 @@ export type OrderData = {
           code?: string;
           createdAt: string;
           updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          city: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
         };
         forecast: {
           _id: string;
@@ -1972,6 +2616,18 @@ export type OrderData = {
             code?: string;
             createdAt: string;
             updatedAt: string;
+            sector: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
           };
           status: string;
           store_admin_approval: boolean;
@@ -2008,6 +2664,18 @@ export type OrderData = {
           code?: string;
           createdAt: string;
           updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          city: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
         };
         forecast: {
           _id: string;
@@ -2025,6 +2693,18 @@ export type OrderData = {
             code?: string;
             createdAt: string;
             updatedAt: string;
+            sector: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
           };
           status: string;
           store_admin_approval: boolean;
@@ -2055,6 +2735,18 @@ export type OrderData = {
           code?: string;
           createdAt: string;
           updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          city: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
         };
         forecast: {
           _id: string;
@@ -2072,6 +2764,18 @@ export type OrderData = {
             code?: string;
             createdAt: string;
             updatedAt: string;
+            sector: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
           };
           status: string;
           store_admin_approval: boolean;
@@ -2102,6 +2806,18 @@ export type OrderData = {
           code?: string;
           createdAt: string;
           updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          city: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
         };
         forecast: {
           _id: string;
@@ -2119,6 +2835,18 @@ export type OrderData = {
             code?: string;
             createdAt: string;
             updatedAt: string;
+            sector: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
           };
           status: string;
           store_admin_approval: boolean;
