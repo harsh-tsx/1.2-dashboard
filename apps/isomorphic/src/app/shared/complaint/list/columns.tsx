@@ -142,6 +142,7 @@ export const ListColumns = [
       {row.original.status}
     </Badge>,
   }),
+  //
 
   columnHelper.accessor('remark', {
     id: 'scanned_outside',
