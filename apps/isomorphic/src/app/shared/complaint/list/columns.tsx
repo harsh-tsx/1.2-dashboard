@@ -253,7 +253,7 @@ export const ListColumns = [
                     {
                       row.original.images.map(item => {
                         return (
-                          <SwiperSlide>
+                          <SwiperSlide key={item} >
                             <Image src={item} alt={row.original.remark} width={200} height={200} className='rounded-[10px]' />
                           </SwiperSlide>)
                       })
