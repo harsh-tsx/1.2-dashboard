@@ -80,7 +80,7 @@ export const ListColumns = [
             icon={
               <PencilIcon className="size-4" />
             }
-            view={<GlobalSchemaForm onSubmitCb={useSectorStore.getState().add} schema={injectDefaults(sectorSchema, row.original).label("Edit").meta({ button: "Update" })} />}
+            view={<GlobalSchemaForm onSubmitCb={useSectorStore.getState().add as any} schema={injectDefaults(sectorSchema, row.original).label("Edit").meta({ button: "Update" })} />}
             customSize="600px"
             className="mt-0"
             onClickCustom={() => {

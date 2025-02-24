@@ -69,7 +69,7 @@ export const ListColumns = [
             icon={
               <PencilIcon className="size-4" />
             }
-            view={<GlobalSchemaForm onSubmitCb={useCityStore.getState().add} schema={injectDefaults(citySchema, row.original).label("Edit").meta({ button: "Update" })} />}
+            view={<GlobalSchemaForm onSubmitCb={useCityStore.getState().add as any} schema={injectDefaults(citySchema, row.original).label("Edit").meta({ button: "Update" })} />}
             customSize="600px"
             className="mt-0"
             onClickCustom={() => {
