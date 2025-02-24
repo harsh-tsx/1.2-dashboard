@@ -17,6 +17,7 @@ import {
   PiChartBarDuotone,
   PiChartLineUpDuotone,
   PiChatCenteredDotsDuotone,
+  PiCityLight,
   PiCodesandboxLogoDuotone,
   PiCoinDuotone,
   PiCreditCardDuotone,
@@ -60,7 +61,7 @@ import {
 } from 'react-icons/pi';
 import { GiWaterGallon } from "react-icons/gi";
 import { SiFuturelearn } from "react-icons/si";
-import { CiReceipt } from "react-icons/ci";
+import { CiMap, CiReceipt } from "react-icons/ci";
 import { GrUserWorker } from "react-icons/gr";
 
 const can = (moduleId: number) => ({ moduleId });
@@ -128,6 +129,18 @@ export const menuItems = [
       },
 
     ],
+  },
+  {
+    name: 'City',
+    href: '/city/list',
+    icon: <PiCityLight />,
+    ...can(3)
+  },
+  {
+    name: 'Sector',
+    href: '/sector/list',
+    icon: <CiMap />,
+    ...can(3)
   },
   {
     name: 'Store',
