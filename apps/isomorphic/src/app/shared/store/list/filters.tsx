@@ -121,6 +121,8 @@ function FilterElements<T extends Record<string, any>>({
   }, []);
 
   useEffect(() => {
+    if (!selectedCities?.value) return;
+
     sectorStore.get.paginate({ cities: selectedCities?.value })
   }, [selectedCities,]);
 
