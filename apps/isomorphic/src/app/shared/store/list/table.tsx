@@ -11,14 +11,15 @@ import { Box } from 'rizzui';
 import { exportToCSV } from '@core/utils/export-to-csv';
 import useStore, { Store } from '@/store/plant/store/store.service';
 import { useEffect } from 'react';
+import useSectorStore from '@/store/plant/sector/sector.service';
 
 export type ListTableDataType = Store;
 
-export default function TableComponent({ list }: { list: ListTableDataType[] }) {
+export default function TableComponent() {
   const store = useStore();
 
   const { table, setData } = useTanStackTable<ListTableDataType>({
-    tableData: list,
+    tableData: store.store.list,
     columnConfig: ListColumns,
     options: {
       initialState: {
@@ -27,7 +28,6 @@ export default function TableComponent({ list }: { list: ListTableDataType[] }) 
           pageSize: 10,
         },
       },
-
       manualPagination: true,
       pageCount: store.store.pages,
       meta: {
@@ -48,12 +48,14 @@ export default function TableComponent({ list }: { list: ListTableDataType[] }) 
   const state = table.getState();
 
   useEffect(() => {
-    store.get.paginate({ page: state.pagination.pageIndex, size: state.pagination.pageSize })
+    // useSectorStore.getState().get.paginate({})
+
+    store.get.paginate({ page: state.pagination.pageIndex, size: state.pagination.pageSize, source: "", source_value: "" })
   }, [state.pagination]);
 
   useEffect(() => {
-    setData(list);
-  }, [list])
+    setData(store.store.list);
+  }, [store.store.list])
 
   const selectedData = table
     .getSelectedRowModel()

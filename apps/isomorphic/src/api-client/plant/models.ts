@@ -1330,7 +1330,10 @@ export type StoreData = {
       query: {
         page: string;
         search?: string;
+        sectors?: string;
         size: string;
+        source?: string;
+        sourceValue?: unknown;
       };
     };
     Create: {
@@ -1342,6 +1345,7 @@ export type StoreData = {
           lat: number;
           long: number;
         };
+        sector: string;
       };
 
       query?: {};
@@ -1355,6 +1359,7 @@ export type StoreData = {
           lat: number;
           long: number;
         };
+        sector: string;
       };
 
       query: {
@@ -1362,6 +1367,13 @@ export type StoreData = {
       };
     };
     Delete: {
+      authorization?: string;
+
+      query: {
+        id: string;
+      };
+    };
+    Detail: {
       authorization?: string;
 
       query: {
@@ -1376,14 +1388,207 @@ export type StoreData = {
       message: string;
       data: Array<{
         _id: string;
-        id: number;
+        id?: number;
         name: string;
         address: string;
         coordinate: {
           lat: number;
           long: number;
         };
-        code: string;
+        code?: string;
+        createdAt: string;
+        updatedAt: string;
+        sector: {
+          _id: string;
+          name: string;
+          city: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          createdAt: string;
+          updatedAt: string;
+        };
+      }>;
+      meta: {
+        pages: number;
+        total: number;
+        page: number;
+        size: number;
+      };
+    };
+    Create: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id?: number;
+        name: string;
+        address: string;
+        coordinate: {
+          lat: number;
+          long: number;
+        };
+        code?: string;
+        createdAt: string;
+        updatedAt: string;
+        sector: {
+          _id: string;
+          name: string;
+          city: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          createdAt: string;
+          updatedAt: string;
+        };
+      };
+    };
+    Update: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id?: number;
+        name: string;
+        address: string;
+        coordinate: {
+          lat: number;
+          long: number;
+        };
+        code?: string;
+        createdAt: string;
+        updatedAt: string;
+        sector: {
+          _id: string;
+          name: string;
+          city: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          createdAt: string;
+          updatedAt: string;
+        };
+      };
+    };
+    Delete: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id?: number;
+        name: string;
+        address: string;
+        coordinate: {
+          lat: number;
+          long: number;
+        };
+        code?: string;
+        createdAt: string;
+        updatedAt: string;
+        sector: {
+          _id: string;
+          name: string;
+          city: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          createdAt: string;
+          updatedAt: string;
+        };
+      };
+    };
+    Detail: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id?: number;
+        name: string;
+        address: string;
+        coordinate: {
+          lat: number;
+          long: number;
+        };
+        code?: string;
+        createdAt: string;
+        updatedAt: string;
+        sector: {
+          _id: string;
+          name: string;
+          city: {
+            _id: string;
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          createdAt: string;
+          updatedAt: string;
+        };
+      };
+    };
+  };
+};
+
+export type StoreCityData = {
+  payloads: {
+    List: {
+      authorization?: string;
+
+      query: {
+        page: string;
+        search?: string;
+        size: string;
+      };
+    };
+    Create: {
+      authorization?: string;
+      requestBody: {
+        name: string;
+      };
+
+      query?: {};
+    };
+    Update: {
+      authorization?: string;
+      requestBody: {
+        name: string;
+      };
+
+      query: {
+        id: string;
+      };
+    };
+    Delete: {
+      authorization?: string;
+
+      query: {
+        id: string;
+      };
+    };
+    Detail: {
+      authorization?: string;
+
+      query: {
+        id: string;
+      };
+    };
+  };
+
+  responses: {
+    List: {
+      status: boolean;
+      message: string;
+      data: Array<{
+        _id: string;
+        name: string;
         createdAt: string;
         updatedAt: string;
       }>;
@@ -1399,14 +1604,7 @@ export type StoreData = {
       message: string;
       data: {
         _id: string;
-        id: number;
         name: string;
-        address: string;
-        coordinate: {
-          lat: number;
-          long: number;
-        };
-        code: string;
         createdAt: string;
         updatedAt: string;
       };
@@ -1416,14 +1614,7 @@ export type StoreData = {
       message: string;
       data: {
         _id: string;
-        id: number;
         name: string;
-        address: string;
-        coordinate: {
-          lat: number;
-          long: number;
-        };
-        code: string;
         createdAt: string;
         updatedAt: string;
       };
@@ -1433,14 +1624,155 @@ export type StoreData = {
       message: string;
       data: {
         _id: string;
-        id: number;
         name: string;
-        address: string;
-        coordinate: {
-          lat: number;
-          long: number;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Detail: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        name: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+  };
+};
+
+export type StoreSectorData = {
+  payloads: {
+    List: {
+      authorization?: string;
+
+      query: {
+        cities?: string;
+        page: string;
+        search?: string;
+        size: string;
+      };
+    };
+    Create: {
+      authorization?: string;
+      requestBody: {
+        name: string;
+        city: string;
+      };
+
+      query?: {};
+    };
+    Update: {
+      authorization?: string;
+      requestBody: {
+        name: string;
+        city: string;
+      };
+
+      query: {
+        id: string;
+      };
+    };
+    Delete: {
+      authorization?: string;
+
+      query: {
+        id: string;
+      };
+    };
+    Detail: {
+      authorization?: string;
+
+      query: {
+        id: string;
+      };
+    };
+  };
+
+  responses: {
+    List: {
+      status: boolean;
+      message: string;
+      data: Array<{
+        _id: string;
+        name: string;
+        city: {
+          _id: string;
+          name: string;
+          createdAt: string;
+          updatedAt: string;
         };
-        code: string;
+        createdAt: string;
+        updatedAt: string;
+      }>;
+      meta: {
+        pages: number;
+        total: number;
+        page: number;
+        size: number;
+      };
+    };
+    Create: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        name: string;
+        city: {
+          _id: string;
+          name: string;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Update: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        name: string;
+        city: {
+          _id: string;
+          name: string;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Delete: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        name: string;
+        city: {
+          _id: string;
+          name: string;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Detail: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        name: string;
+        city: {
+          _id: string;
+          name: string;
+          createdAt: string;
+          updatedAt: string;
+        };
         createdAt: string;
         updatedAt: string;
       };
@@ -1501,12 +1833,12 @@ export type StoreComplaintData = {
           sector: {
             _id: string;
             name: string;
-            createdAt: string;
-            updatedAt: string;
-          };
-          city: {
-            _id: string;
-            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
             createdAt: string;
             updatedAt: string;
           };
@@ -1531,12 +1863,12 @@ export type StoreComplaintData = {
             sector: {
               _id: string;
               name: string;
-              createdAt: string;
-              updatedAt: string;
-            };
-            city: {
-              _id: string;
-              name: string;
+              city: {
+                _id: string;
+                name: string;
+                createdAt: string;
+                updatedAt: string;
+              };
               createdAt: string;
               updatedAt: string;
             };
@@ -1560,12 +1892,12 @@ export type StoreComplaintData = {
               sector: {
                 _id: string;
                 name: string;
-                createdAt: string;
-                updatedAt: string;
-              };
-              city: {
-                _id: string;
-                name: string;
+                city: {
+                  _id: string;
+                  name: string;
+                  createdAt: string;
+                  updatedAt: string;
+                };
                 createdAt: string;
                 updatedAt: string;
               };
@@ -1684,12 +2016,12 @@ export type StoreComplaintData = {
           sector: {
             _id: string;
             name: string;
-            createdAt: string;
-            updatedAt: string;
-          };
-          city: {
-            _id: string;
-            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
             createdAt: string;
             updatedAt: string;
           };
@@ -1714,12 +2046,12 @@ export type StoreComplaintData = {
             sector: {
               _id: string;
               name: string;
-              createdAt: string;
-              updatedAt: string;
-            };
-            city: {
-              _id: string;
-              name: string;
+              city: {
+                _id: string;
+                name: string;
+                createdAt: string;
+                updatedAt: string;
+              };
               createdAt: string;
               updatedAt: string;
             };
@@ -1743,12 +2075,12 @@ export type StoreComplaintData = {
               sector: {
                 _id: string;
                 name: string;
-                createdAt: string;
-                updatedAt: string;
-              };
-              city: {
-                _id: string;
-                name: string;
+                city: {
+                  _id: string;
+                  name: string;
+                  createdAt: string;
+                  updatedAt: string;
+                };
                 createdAt: string;
                 updatedAt: string;
               };
@@ -1861,12 +2193,12 @@ export type StoreComplaintData = {
           sector: {
             _id: string;
             name: string;
-            createdAt: string;
-            updatedAt: string;
-          };
-          city: {
-            _id: string;
-            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
             createdAt: string;
             updatedAt: string;
           };
@@ -1891,12 +2223,12 @@ export type StoreComplaintData = {
             sector: {
               _id: string;
               name: string;
-              createdAt: string;
-              updatedAt: string;
-            };
-            city: {
-              _id: string;
-              name: string;
+              city: {
+                _id: string;
+                name: string;
+                createdAt: string;
+                updatedAt: string;
+              };
               createdAt: string;
               updatedAt: string;
             };
@@ -1920,12 +2252,12 @@ export type StoreComplaintData = {
               sector: {
                 _id: string;
                 name: string;
-                createdAt: string;
-                updatedAt: string;
-              };
-              city: {
-                _id: string;
-                name: string;
+                city: {
+                  _id: string;
+                  name: string;
+                  createdAt: string;
+                  updatedAt: string;
+                };
                 createdAt: string;
                 updatedAt: string;
               };
@@ -2346,12 +2678,12 @@ export type ForecastData = {
           sector: {
             _id: string;
             name: string;
-            createdAt: string;
-            updatedAt: string;
-          };
-          city: {
-            _id: string;
-            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
             createdAt: string;
             updatedAt: string;
           };
@@ -2390,12 +2722,12 @@ export type ForecastData = {
           sector: {
             _id: string;
             name: string;
-            createdAt: string;
-            updatedAt: string;
-          };
-          city: {
-            _id: string;
-            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
             createdAt: string;
             updatedAt: string;
           };
@@ -2428,12 +2760,12 @@ export type ForecastData = {
           sector: {
             _id: string;
             name: string;
-            createdAt: string;
-            updatedAt: string;
-          };
-          city: {
-            _id: string;
-            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
             createdAt: string;
             updatedAt: string;
           };
@@ -2466,12 +2798,12 @@ export type ForecastData = {
           sector: {
             _id: string;
             name: string;
-            createdAt: string;
-            updatedAt: string;
-          };
-          city: {
-            _id: string;
-            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
             createdAt: string;
             updatedAt: string;
           };
@@ -2504,12 +2836,12 @@ export type ForecastData = {
           sector: {
             _id: string;
             name: string;
-            createdAt: string;
-            updatedAt: string;
-          };
-          city: {
-            _id: string;
-            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
             createdAt: string;
             updatedAt: string;
           };
@@ -2590,12 +2922,12 @@ export type OrderData = {
           sector: {
             _id: string;
             name: string;
-            createdAt: string;
-            updatedAt: string;
-          };
-          city: {
-            _id: string;
-            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
             createdAt: string;
             updatedAt: string;
           };
@@ -2619,12 +2951,12 @@ export type OrderData = {
             sector: {
               _id: string;
               name: string;
-              createdAt: string;
-              updatedAt: string;
-            };
-            city: {
-              _id: string;
-              name: string;
+              city: {
+                _id: string;
+                name: string;
+                createdAt: string;
+                updatedAt: string;
+              };
               createdAt: string;
               updatedAt: string;
             };
@@ -2667,12 +2999,12 @@ export type OrderData = {
           sector: {
             _id: string;
             name: string;
-            createdAt: string;
-            updatedAt: string;
-          };
-          city: {
-            _id: string;
-            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
             createdAt: string;
             updatedAt: string;
           };
@@ -2696,12 +3028,12 @@ export type OrderData = {
             sector: {
               _id: string;
               name: string;
-              createdAt: string;
-              updatedAt: string;
-            };
-            city: {
-              _id: string;
-              name: string;
+              city: {
+                _id: string;
+                name: string;
+                createdAt: string;
+                updatedAt: string;
+              };
               createdAt: string;
               updatedAt: string;
             };
@@ -2738,12 +3070,12 @@ export type OrderData = {
           sector: {
             _id: string;
             name: string;
-            createdAt: string;
-            updatedAt: string;
-          };
-          city: {
-            _id: string;
-            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
             createdAt: string;
             updatedAt: string;
           };
@@ -2767,12 +3099,12 @@ export type OrderData = {
             sector: {
               _id: string;
               name: string;
-              createdAt: string;
-              updatedAt: string;
-            };
-            city: {
-              _id: string;
-              name: string;
+              city: {
+                _id: string;
+                name: string;
+                createdAt: string;
+                updatedAt: string;
+              };
               createdAt: string;
               updatedAt: string;
             };
@@ -2809,12 +3141,12 @@ export type OrderData = {
           sector: {
             _id: string;
             name: string;
-            createdAt: string;
-            updatedAt: string;
-          };
-          city: {
-            _id: string;
-            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
             createdAt: string;
             updatedAt: string;
           };
@@ -2838,12 +3170,12 @@ export type OrderData = {
             sector: {
               _id: string;
               name: string;
-              createdAt: string;
-              updatedAt: string;
-            };
-            city: {
-              _id: string;
-              name: string;
+              city: {
+                _id: string;
+                name: string;
+                createdAt: string;
+                updatedAt: string;
+              };
               createdAt: string;
               updatedAt: string;
             };

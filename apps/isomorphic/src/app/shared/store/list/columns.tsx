@@ -15,9 +15,10 @@ import PencilIcon from '@core/components/icons/pencil';
 import GlobalSchemaForm from '../../common/GlobalSchemaForm';
 import { number, object, string } from 'yup';
 import { createExampleSchema } from '@/validators/create-example';
-import { injectDefaults } from '@core/utils/yup-helper'
+import { injectDefaults, injectMeta } from '@core/utils/yup-helper'
 import useExampleStore from '@/store/plant/store/store.service';
 import { plantSchema } from '@/validators/plant.schema';
+import { storeSchema } from '@/validators/store.schema';
 
 const columnHelper = createColumnHelper<ListTableDataType>();
 
@@ -65,8 +66,15 @@ export const ListColumns = [
       <AvatarCard
         src={row.original.name}
         name={row.original.name}
+        description={row.original?.code}
       />
     ),
+  }),
+  columnHelper.accessor('code', {
+    id: 'code',
+    size: 150,
+    header: 'Code',
+    cell: ({ row }) => row.original?.code,
   }),
   columnHelper.accessor('address', {
     id: 'lat',
@@ -110,7 +118,7 @@ export const ListColumns = [
             icon={
               <PencilIcon className="size-4" />
             }
-            view={<GlobalSchemaForm onSubmitCb={useExampleStore.getState().add} schema={injectDefaults(plantSchema, row.original).label("Edit").meta({ button: "Update" })} />}
+            view={<GlobalSchemaForm onSubmitCb={useExampleStore.getState().add} schema={injectMeta(injectDefaults(storeSchema, row.original).label("Edit"), { button: "Update" })} />}
             customSize="600px"
             className="mt-0"
             onClickCustom={() => {

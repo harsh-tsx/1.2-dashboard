@@ -1,4 +1,6 @@
-import { array, number, object, string } from "yup";
+import useSectorStore from "@/store/plant/sector/sector.service";
+import { useEffect } from "react";
+import { array, number, object, SchemaDescription, string } from "yup";
 
 export const storeSchema = object().shape({
     name: string().label("Store Name").required(),
@@ -21,14 +23,33 @@ export const storeSchema = object().shape({
             }
         ] as any
     }).default(null),
-    // coordinate2: object().shape({ lat: number(), long: number() }).oneOf([
-    //     {
-    //         label: "Delhi",
-    //         value: 1
-    //     },
-    //     {
-    //         label: "Jaipur",
-    //         value: 2
-    //     }
-    // ] as any).label("Location").meta({ type: 'select' }).default(null),
-}).label("Add").meta({ button: "Create" })
+    sector: string().label("Sector").meta({
+        type: "select", selectProps: {
+            disableDefaultFilter: true,
+            onSearchChange: (search: string, field: SchemaDescription & {
+                meta: any;
+            }) => {
+                useSectorStore.getState().get.paginate({ search: search })
+            }
+        },
+        cb: (field: SchemaDescription & {
+            meta: any;
+        }
+        ) => {
+            const store = useSectorStore.getState();
+            field.meta.oneOf = store.example.list.map((item) => ({ value: item._id, label: `${item?.name} (${item.city?.name})` }))
+            return;
+        }
+    }).default(null),
+
+
+}).label("Add").meta({
+    button: "Create",
+    InitState: () => {
+        const sectorStore = useSectorStore();
+        useEffect(() => {
+            sectorStore.get.paginate({})
+        }, [])
+    },
+
+} as any)

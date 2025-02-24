@@ -22,11 +22,6 @@ type StatType = {
 type Props = {}
 
 const Main = (props: Props) => {
-    const store = useExampleStore();
-
-    useEffect(() => {
-        store.get.paginate({})
-    }, []);
 
     return (
         <>
@@ -38,7 +33,7 @@ const Main = (props: Props) => {
                 </div>
             </SimpleBar> */}
             {
-                <TableComponent list={store.store.list} />
+                <TableComponent />
             }
         </>
     )

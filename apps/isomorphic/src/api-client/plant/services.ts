@@ -12,6 +12,8 @@ import type {
   PlantData,
   WarehouseData,
   StoreData,
+  StoreCityData,
+  StoreSectorData,
   StoreComplaintData,
   StoreTimeData,
   WaterCanData,
@@ -648,6 +650,210 @@ export class StoreService {
     return __request(OpenAPI, {
       method: 'DELETE',
       url: '/plant/stores/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+
+  /**
+   * @returns any Stores list response
+   * @throws ApiError
+   */
+  public static detail(
+    data: StoreData['payloads']['Detail']
+  ): CancelablePromise<StoreData['responses']['Detail']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/stores/detail',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+}
+
+export class StoreCityService {
+  /**
+   * @returns any Stores City list response
+   * @throws ApiError
+   */
+  public static list(
+    data: StoreCityData['payloads']['List']
+  ): CancelablePromise<StoreCityData['responses']['List']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/store-city/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+
+  /**
+   * @returns any Stores City create response
+   * @throws ApiError
+   */
+  public static create(
+    data: StoreCityData['payloads']['Create']
+  ): CancelablePromise<StoreCityData['responses']['Create']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'POST',
+      url: '/plant/store-city/',
+      headers: {},
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any Stores City update response
+   * @throws ApiError
+   */
+  public static update(
+    data: StoreCityData['payloads']['Update']
+  ): CancelablePromise<StoreCityData['responses']['Update']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'PUT',
+      url: '/plant/store-city/',
+      headers: {},
+      query: {
+        ...query,
+      },
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any Stores City delete response
+   * @throws ApiError
+   */
+  public static delete(
+    data: StoreCityData['payloads']['Delete']
+  ): CancelablePromise<StoreCityData['responses']['Delete']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'DELETE',
+      url: '/plant/store-city/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+
+  /**
+   * @returns any Stores City list response
+   * @throws ApiError
+   */
+  public static detail(
+    data: StoreCityData['payloads']['Detail']
+  ): CancelablePromise<StoreCityData['responses']['Detail']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/store-city/detail',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+}
+
+export class StoreSectorService {
+  /**
+   * @returns any Store Sector list response
+   * @throws ApiError
+   */
+  public static list(
+    data: StoreSectorData['payloads']['List']
+  ): CancelablePromise<StoreSectorData['responses']['List']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/store-sector/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+
+  /**
+   * @returns any Store Sector create response
+   * @throws ApiError
+   */
+  public static create(
+    data: StoreSectorData['payloads']['Create']
+  ): CancelablePromise<StoreSectorData['responses']['Create']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'POST',
+      url: '/plant/store-sector/',
+      headers: {},
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any Store Sector update response
+   * @throws ApiError
+   */
+  public static update(
+    data: StoreSectorData['payloads']['Update']
+  ): CancelablePromise<StoreSectorData['responses']['Update']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'PUT',
+      url: '/plant/store-sector/',
+      headers: {},
+      query: {
+        ...query,
+      },
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any Store Sector delete response
+   * @throws ApiError
+   */
+  public static delete(
+    data: StoreSectorData['payloads']['Delete']
+  ): CancelablePromise<StoreSectorData['responses']['Delete']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'DELETE',
+      url: '/plant/store-sector/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+
+  /**
+   * @returns any Store Sector list response
+   * @throws ApiError
+   */
+  public static detail(
+    data: StoreSectorData['payloads']['Detail']
+  ): CancelablePromise<StoreSectorData['responses']['Detail']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/store-sector/detail',
       headers: {},
       query: {
         ...query,

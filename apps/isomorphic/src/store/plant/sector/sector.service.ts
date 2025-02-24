@@ -1,34 +1,32 @@
 import { create } from 'zustand'
 import { combine } from 'zustand/middleware'
 import toast from 'react-hot-toast'
-import { StoreData } from '@/api-client/plant/models'
-import { StoreService } from '@/api-client/PlantApi'
+import { StoreSectorData } from '@/api-client/plant/models'
+import { StoreSectorService } from '@/api-client/PlantApi'
 
 
 
-export type Store = StoreData['responses']['List']['data'][0]
+export type StoreSector = StoreSectorData['responses']['List']['data'][0]
 
 
 
 let timeOut: any
 
-const useStoreStore = create(
+const useSectorStore = create(
   combine(
     {
-      store: {
+      example: {
         id: null as any,
-        list: [] as Store[],
+        list: [] as StoreSector[],
         total: 0,
         page: 0,
         pages: 0,
         size: 10,
         search: null as string | null,
+        cities: "",
         paginate: true as boolean,
-        detail: undefined as Store | undefined,
-        isUser: false as boolean,
-        sectors: "",
-        source: "",
-        source_value: null as any,
+        detail: undefined as StoreSector | undefined,
+        isUser: false as boolean
         // timeOut: null as any
       }
     },
@@ -36,25 +34,23 @@ const useStoreStore = create(
       get: {
         list: async () => {
           const {
-            store: { page, size, search, sectors, source, source_value, }
+            example: { page, size, search, paginate, cities, }
           } = get()
 
-          toast.promise(StoreService.list({
+          toast.promise(StoreSectorService.list({
             query: {
               page: page as any,
               size: size as any,
               ...(search && { search: search }),
-              ...(sectors && { sectors: sectors }),
-              ...(source && { source: source, }),
-              ...(source_value && { sourceValue: source_value })
+              ...(cities && { cities: cities }),
             }
           }), {
             loading: 'fetching...',
             success: res => {
               console.log('res: ', res)
               set(prev => ({
-                store: {
-                  ...prev.store,
+                example: {
+                  ...prev.example,
                   list: res.data,
                   total: res?.meta?.total,
                   pages: res?.meta?.pages,
@@ -74,53 +70,47 @@ const useStoreStore = create(
           page,
           size,
           search,
-          paginate,
-          sectors,
-          source,
-          source_value
+          cities,
+          paginate
         }: {
           page?: number
           size?: number
           search?: string
+          cities?: string;
           paginate?: boolean
-          sectors?: string;
-          source?: string;
-          source_value?: any
         }) => {
-          set(prev => ({ store: { ...prev.store, search: search || '' } }))
+          set(prev => ({ example: { ...prev.example, search: search || '' } }))
 
           clearTimeout(timeOut)
 
           const init = () => {
             set(prev => ({
-              store: {
-                ...prev.store,
-                page: page ?? prev.store.page,
-                size: size || prev.store.size,
-                search: search ?? prev.store.search,
-                paginate: paginate ?? true,
-                sectors: sectors ?? prev.store.sectors,
-                source: source ?? prev.store.source,
-                source_value: source_value ?? prev.store.source_value,
+              example: {
+                ...prev.example,
+                page: page ?? prev.example.page,
+                size: size || prev.example.size,
+                search: search ?? prev.example.search,
+                cities: cities ?? prev.example.cities,
+                paginate: paginate ?? true
               }
             }))
-            useStoreStore.getState().get.list()
+            useSectorStore.getState().get.list()
           }
 
           if (search) {
             timeOut = setTimeout(() => {
               init()
             }, 1000)
-            set(prev => ({ store: { ...prev.store, search: search } }))
+            set(prev => ({ example: { ...prev.example, search: search } }))
             return
           }
           init()
         },
-        detail: async (id?: string, data?: Store, isUser?: boolean) => {
+        detail: async (id?: string, data?: StoreSector, isUser?: boolean) => {
           set(prev => ({
             ...prev,
-            store: {
-              ...prev.store,
+            example: {
+              ...prev.example,
               detail: data,
               id: data?._id,
               isUser: !!isUser
@@ -128,55 +118,56 @@ const useStoreStore = create(
           }))
         }
       },
-      select: (id: any) => set(prev => ({ store: { ...prev.store, id: id } })),
-      add: async (bodyData: StoreData['payloads']['Create']['requestBody']) => {
-        let id = get().store.id
-        let isUser = get().store.isUser
+      select: (id: any) => set(prev => ({ example: { ...prev.example, id: id } })),
+      add: async (bodyData: StoreSectorData['payloads']['Create']['requestBody']) => {
+        let id = get().example.id
+        let isUser = get().example.isUser
 
-        toast.promise(
+        return await toast.promise(
           id
-            ? StoreService.update({
+            ? StoreSectorService.update({
               query: {
                 id: id,
               },
               requestBody: bodyData as any,
-            }) : StoreService.create({
+            }) : StoreSectorService.create({
               requestBody: bodyData,
             }),
           {
             loading: id ? 'Updating' : 'Adding',
             success: res => {
-              useStoreStore.getState().get.paginate({})
-              useStoreStore.getState().select(null)
+              useSectorStore.getState().get.paginate({})
+              useSectorStore.getState().select(null)
               return res?.message
             },
             error: err => {
-              useStoreStore.getState().select(null)
+              useSectorStore.getState().select(null)
               return err
             }
           }
         )
       },
       delete: async () => {
-        let id = get().store.id
+        let id = get().example.id
 
         if (!id) return toast.error('No plan to delete')
 
-        toast.promise(StoreService.delete({ query: { id: id } }), {
+        toast.promise(StoreSectorService.delete({ query: { id: id } }), {
           loading: 'deleting',
           success: res => {
-            useStoreStore.getState().get.paginate({})
-            useStoreStore.getState().select(null)
+            useSectorStore.getState().get.paginate({})
+            useSectorStore.getState().select(null)
             return res?.message
           },
           error: err => {
-            useStoreStore.getState().select(null)
+            useSectorStore.getState().select(null)
             return err
           }
         })
-      }
+      },
+
     })
   )
 )
 
-export default useStoreStore
+export default useSectorStore
