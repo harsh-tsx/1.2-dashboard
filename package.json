@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "turbo dev --filter=iso",
 		"lint": "turbo lint",
-		"build": "turbo build",
+		"build": "__NEXT_TEST_MODE=1 turbo build --filter=iso",
 		"start": "turbo start",
 		"clean": "turbo clean && rm -rf node_modules .turbo",
 		"cache:clean": "turbo cache:clean && rm -rf .turbo",

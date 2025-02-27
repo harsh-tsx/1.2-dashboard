@@ -10,6 +10,7 @@ import { Form } from '@core/ui/form';
 import { routes } from '@/config/routes';
 import { loginSchema, LoginSchema } from '@/validators/login.schema';
 import { PlantAdminAuthService } from '@/api-client/PlantApi';
+import toast from 'react-hot-toast';
 
 const initialValues: LoginSchema = {
   phone: '',
@@ -23,13 +24,19 @@ export default function SignInForm() {
 
   const onSubmit: SubmitHandler<LoginSchema> = async (data, event) => {
     event?.preventDefault();
+    toast.loading("logging you in.....", { id: "auth-toast" })
     const request = await PlantAdminAuthService.login({ requestBody: { phone: data.phone, password: data.password } })
 
     if (request.status) {
+      toast.success("Logged in", { id: "auth-toast" })
+
       localStorage.setItem("accessToken", request?.data?.token || "")
       signIn('credentials', {
         data: JSON.stringify(request.data),
       });
+    } else {
+      toast.error(`${request?.message}`, { id: "auth-toast" })
+
     }
 
   };

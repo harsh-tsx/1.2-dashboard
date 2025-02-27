@@ -16,4 +16,4 @@ export const adminPlantRelationSchema = object().shape({
             return;
         }
     }).default(null),
-})
+}).label("Admin Plants").meta({ button: "Add" })

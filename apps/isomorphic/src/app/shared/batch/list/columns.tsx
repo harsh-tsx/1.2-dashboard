@@ -7,7 +7,7 @@ import AvatarCard from '@core/ui/avatar-card';
 import DateCell from '@core/ui/date-cell';
 import { createColumnHelper } from '@tanstack/react-table';
 import Link from 'next/link';
-import { Badge, Checkbox } from 'rizzui';
+import { Badge, Box, Checkbox } from 'rizzui';
 import { ListTableDataType } from './table';
 import { table } from 'console';
 import ModalIconButton from '../../modal-icon-button';
@@ -18,6 +18,9 @@ import { createExampleSchema } from '@/validators/create-example';
 import { injectDefaults } from '@core/utils/yup-helper'
 import useExampleStore from '@/store/plant/plant/plant.service';
 import { plantSchema } from '@/validators/plant.schema';
+import { PiPrinterFill } from 'react-icons/pi';
+import QRCodePDFViewer from '../pdf/pdf';
+import QRCodePDFMain from '../pdf/pdf-main';
 
 const columnHelper = createColumnHelper<ListTableDataType>();
 
@@ -117,6 +120,21 @@ export const ListColumns = [
           />
         }}
         deletePopoverDescription={`Are you sure you want to delete this #${row.original.id} shipment?`}
+        Additional={() => {
+          return <>
+            <ModalIconButton
+              icon={
+                <PiPrinterFill className="size-4" />
+              }
+              view={<QRCodePDFMain />}
+              customSize="90vw"
+              className="mt-0"
+              onClickCustom={() => {
+
+              }}
+            />
+          </>
+        }}
       />
     ),
   }),

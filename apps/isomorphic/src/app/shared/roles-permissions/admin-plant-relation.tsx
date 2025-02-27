@@ -26,6 +26,7 @@ import usePlantStore from '@/store/plant/plant/plant.service';
 import { useTanStackTable } from '@core/components/table/custom/use-TanStack-Table';
 import { ListColumns } from './admin-plant-relation-columns';
 import { adminPlantRelationSchema } from '@/validators/admin-plant-relation.schema copy';
+import TablePagination from '@core/components/table/pagination';
 
 export type ListTableDataType = AdminPlantRelationData;
 
@@ -90,7 +91,8 @@ export default function AdminPlantRelation({ admin }: { admin?: Admin }) {
 
   return (
     <>
-      <Box className='p-5' >
+      <Box  >
+        <GlobalSchemaForm schema={adminPlantRelationSchema} onSubmitCb={onSubmit} />
         <Table
           table={table}
           variant="modern"
@@ -99,7 +101,8 @@ export default function AdminPlantRelation({ admin }: { admin?: Admin }) {
             rowClassName: 'last:border-0',
           }}
         />
-        <GlobalSchemaForm schema={adminPlantRelationSchema} onSubmitCb={onSubmit} />
+        <TablePagination table={table} className="py-4" />
+
       </Box>
     </>
   );

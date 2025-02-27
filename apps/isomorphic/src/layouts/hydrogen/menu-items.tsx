@@ -131,23 +131,33 @@ export const menuItems = [
     ],
   },
   {
-    name: 'City',
-    href: '/city/list',
-    icon: <PiCityLight />,
-    ...can(3)
-  },
-  {
-    name: 'Sector',
-    href: '/sector/list',
-    icon: <CiMap />,
-    ...can(3)
-  },
-  {
     name: 'Store',
     href: '/store/list',
     icon: <PiStorefront />,
-    ...can(5)
+    ...can(4),
+    dropdownItems: [
+      {
+        name: 'City',
+        href: '/city/list',
+        icon: <PiCityLight />,
+        ...can(3)
+      },
+      {
+        name: 'Sector',
+        href: '/sector/list',
+        icon: <CiMap />,
+        ...can(3)
+      },
+      {
+        name: 'Store',
+        href: '/store/list',
+        icon: <PiStorefront />,
+        ...can(5)
+      },
+    ],
   },
+
+
 
   {
     name: 'Water Can',

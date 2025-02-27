@@ -2462,8 +2462,11 @@ export type WaterCanData = {
       authorization?: string;
 
       query: {
+        batches?: string;
         page: string;
+        select?: string;
         size: string;
+        watercans?: string;
       };
     };
     Create: {

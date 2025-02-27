@@ -9,6 +9,7 @@ import { rolesList } from '@/data/roles-permissions';
 import ModalButton from '@/app/shared/modal-button';
 import CreateUser from '../create-user';
 import useAdminStore from '@/store/plant/admins/admins.service';
+import RefreshIndicator from '../../common/refresh-indicator';
 
 const statusOptions = [
   {
@@ -119,6 +120,7 @@ export default function Filters<TData extends Record<string, any>>({
             }}
           />
         </Box>
+        <RefreshIndicator onClick={async () => useAdminStore.getState().get.paginate({})} />
       </Flex>
     </Box>
   );
