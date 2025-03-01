@@ -35,7 +35,8 @@
 		"prepare": "husky",
 		"api": "openapi-ts",
 		"store:api": "cd apps/storeapp && openapi-ts",
-		"push": "git add . && git commit -m 'bug fixes' && git push origin main"
+		"push": "git add . && git commit -m 'bug fixes' && git push origin test",
+		"deploy": "git checkout main && git merge test && git push origin main && git checkout test"
 	},
 	"devDependencies": {
 		"eslint": "8.57.0",
