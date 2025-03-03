@@ -70,16 +70,16 @@ export default function StoreTimeSlot({ store }: { store?: Store }) {
     },
   });
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: any, closeModal: any) => {
     // set timeout ony required to display loading state of the create category button
     const formattedData = {
       ...data,
-      admin: store?._id,
+      store: store?._id,
     };
     setLoading(true);
     const request = await relationStore.add({ ...formattedData })
     setLoading(false);
-    closeModal();
+    // closeModal();
   };
 
   useEffect(() => {
@@ -94,16 +94,19 @@ export default function StoreTimeSlot({ store }: { store?: Store }) {
   return (
     <>
       <Box>
-        <GlobalSchemaForm schema={storeTimeSchema} onSubmitCb={onSubmit} />
-        <Table
-          table={table}
-          variant="modern"
-          classNames={{
-            container: 'border border-muted rounded-md',
-            rowClassName: 'last:border-0',
-          }}
-        />
-        <TablePagination table={table} className="py-4" />
+        <GlobalSchemaForm schema={storeTimeSchema} onSubmitCb={onSubmit} closeOnSubmit={false} />
+        <Box className='p-5' >
+
+          <Table
+            table={table}
+            variant="modern"
+            classNames={{
+              container: 'border border-muted rounded-md',
+              rowClassName: 'last:border-0',
+            }}
+          />
+          <TablePagination table={table} className="py-4" />
+        </Box>
 
       </Box>
     </>

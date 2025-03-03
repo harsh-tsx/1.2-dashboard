@@ -19,6 +19,7 @@ import { ListTableDataType } from './store-time-sots';
 import ModalIconButton from '../modal-icon-button';
 import GlobalSchemaForm from '../common/GlobalSchemaForm';
 import { adminWarehouseRelationSchema } from '@/validators/admin-warehouse-relation.schema';
+import moment from 'moment';
 
 const columnHelper = createColumnHelper<ListTableDataType>();
 
@@ -58,20 +59,28 @@ export const ListColumns = [
   // }),
 
   columnHelper.accessor('from', {
-    id: 'name',
-    size: 250,
-    header: 'name',
+    id: 'From',
+    // size: 250,
+    header: 'From',
     enableSorting: false,
-    cell: ({ row }) => row.original.from,
+    cell: ({ row }) => moment().startOf('day').add(row.original.from, 'minutes').format("h:mm a"),
+  }),
+
+  columnHelper.accessor('to', {
+    id: 'To',
+    // size: 250,
+    header: 'To',
+    enableSorting: false,
+    cell: ({ row }) => moment().startOf('day').add(row.original.to, 'minutes').format("h:mm a"),
   }),
 
 
-  columnHelper.accessor('createdAt', {
-    id: 'date',
-    size: 150,
-    header: 'Created At',
-    cell: ({ row }) => <DateCell date={new Date(row.original.createdAt)} />,
-  }),
+  // columnHelper.accessor('createdAt', {
+  //   id: 'date',
+  //   size: 150,
+  //   header: 'Created At',
+  //   cell: ({ row }) => <DateCell date={new Date(row.original.createdAt)} />,
+  // }),
   columnHelper.display({
     id: 'actions',
     size: 120,

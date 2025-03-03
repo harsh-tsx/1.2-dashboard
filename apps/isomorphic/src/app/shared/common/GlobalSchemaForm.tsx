@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { PiXBold } from 'react-icons/pi';
 import { Controller, SubmitHandler } from 'react-hook-form';
 import { YupForm } from '@core/ui/form-yup';
-import { Input, Button, ActionIcon, Title, Select, FileInput } from 'rizzui';
+import { Input, Button, ActionIcon, Title, Select, FileInput, Text } from 'rizzui';
 import { useModal } from '@/app/shared/modal-views/use-modal';
 import { ObjectSchema, SchemaDescription, AnyObject } from 'yup';
 import { DatePicker } from '@core/ui/datepicker';
@@ -12,7 +12,7 @@ import moment from 'moment'
 
 export const SelectItem = (label: string, value: any) => ({ label, value })
 
-export default function GlobalSchemaForm<T>({ schema, onSubmitCb, children }: { schema: ObjectSchema<AnyObject>, onSubmitCb: (data: T) => Promise<void>, children?: React.ReactNode }) {
+export default function GlobalSchemaForm<T>({ schema, onSubmitCb, children, closeOnSubmit = true }: { schema: ObjectSchema<AnyObject>, onSubmitCb: (data: T, closeModal: () => void) => Promise<void>, children?: React.ReactNode, closeOnSubmit?: boolean }) {
     const describeSchema = schema.describe();
     const fields = Object.keys(describeSchema.fields);
     const defaultValues = schema.getDefault();
@@ -30,9 +30,11 @@ export default function GlobalSchemaForm<T>({ schema, onSubmitCb, children }: { 
             createdAt: new Date(),
         };
         setLoading(true);
-        await onSubmitCb(data);
+        await onSubmitCb(data, closeModal);
         setLoading(false);
-        closeModal();
+        if (closeOnSubmit) {
+            closeModal();
+        }
     };
 
     /** basic function to be called on init given by the schema */
@@ -204,12 +206,12 @@ export default function GlobalSchemaForm<T>({ schema, onSubmitCb, children }: { 
                                         control={control}
                                         render={({ field: { name, onChange, value } }) => {
                                             console.log("🚀 ~ fields.map ~ value:", value)
-                                            return <div className='col-span-full' >
+                                            return <div className='w-full' >
+                                                <Text className='font-bold' > {label}</Text>
                                                 <DatePicker
                                                     showTimeSelect
                                                     showTimeSelectOnly
                                                     title={label}
-
                                                     placeholderText={label}
                                                     selected={moment().startOf('day').add(value, 'minutes').toDate()}
                                                     onChange={(date) => {
@@ -219,8 +221,15 @@ export default function GlobalSchemaForm<T>({ schema, onSubmitCb, children }: { 
                                                         onChange(totalMinutes);
                                                     }}
                                                     dateFormat="h:mm aa"
+                                                    error={(errors as any)?.[fieldName]?.message}
 
                                                 />
+                                                {
+                                                    (errors as any)?.[fieldName]?.message ?
+                                                        <Text className='text-xs text-red-dark' > {(errors as any)?.[fieldName]?.message}</Text>
+                                                        : <></>
+                                                }
+
                                             </div>
                                         }}
                                     />
