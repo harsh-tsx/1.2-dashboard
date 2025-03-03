@@ -1,31 +1,34 @@
 import { create } from 'zustand'
 import { combine } from 'zustand/middleware'
 import toast from 'react-hot-toast'
-import { WaterCanBatchData } from '@/api-client/plant/models'
-import { WaterCanBatchService } from '@/api-client/PlantApi'
+import { StoreTimeData } from '@/api-client/plant/models'
+import { StoreTimeService } from '@/api-client/PlantApi'
 
 
 
-export type WaterCanBatch = WaterCanBatchData['responses']['List']['data'][0]
+export type StoreTime = StoreTimeData['responses']['List']['data'][0]
 
 
 
 let timeOut: any
 
-const useWaterCanBatchStore = create(
+const useStoreTimeStore = create(
   combine(
     {
-      watercanbatch: {
+      example: {
         id: null as any,
-        list: [] as WaterCanBatch[],
+        list: [] as StoreTime[],
         total: 0,
         page: 0,
         pages: 0,
         size: 10,
         search: null as string | null,
         paginate: true as boolean,
-        detail: undefined as WaterCanBatch | undefined,
-        isUser: false as boolean
+        detail: undefined as StoreTime | undefined,
+        isUser: false as boolean,
+        store: "",
+        source: "",
+        source_value: null as any,
         // timeOut: null as any
       }
     },
@@ -33,21 +36,22 @@ const useWaterCanBatchStore = create(
       get: {
         list: async () => {
           const {
-            watercanbatch: { page, size, search, paginate }
+            example: { page, size, search, store, source, source_value, }
           } = get()
 
-          toast.promise(WaterCanBatchService.list({
+          toast.promise(StoreTimeService.list({
             query: {
               page: page as any,
               size: size as any,
+              store: store,
             }
           }), {
             loading: 'fetching...',
             success: res => {
               console.log('res: ', res)
               set(prev => ({
-                watercanbatch: {
-                  ...prev.watercanbatch,
+                example: {
+                  ...prev.example,
                   list: res.data,
                   total: res?.meta?.total,
                   pages: res?.meta?.pages,
@@ -67,44 +71,47 @@ const useWaterCanBatchStore = create(
           page,
           size,
           search,
-          paginate
+          paginate,
+          store,
         }: {
           page?: number
           size?: number
           search?: string
           paginate?: boolean
+          store?: string;
         }) => {
-          set(prev => ({ watercanbatch: { ...prev.watercanbatch, search: search || '' } }))
+          set(prev => ({ example: { ...prev.example, search: search || '' } }))
 
           clearTimeout(timeOut)
 
           const init = () => {
             set(prev => ({
-              watercanbatch: {
-                ...prev.watercanbatch,
-                page: page ?? prev.watercanbatch.page,
-                size: size || prev.watercanbatch.size,
-                search: search || prev.watercanbatch.search,
-                paginate: paginate ?? true
+              example: {
+                ...prev.example,
+                page: page ?? prev.example.page,
+                size: size || prev.example.size,
+                search: search ?? prev.example.search,
+                paginate: paginate ?? true,
+                store: store ?? prev.example.store,
               }
             }))
-            useWaterCanBatchStore.getState().get.list()
+            useStoreTimeStore.getState().get.list()
           }
 
           if (search) {
             timeOut = setTimeout(() => {
               init()
             }, 1000)
-            set(prev => ({ watercanbatch: { ...prev.watercanbatch, search: search } }))
+            set(prev => ({ example: { ...prev.example, search: search } }))
             return
           }
           init()
         },
-        detail: async (id?: string, data?: WaterCanBatch, isUser?: boolean) => {
+        detail: async (id?: string, data?: StoreTime, isUser?: boolean) => {
           set(prev => ({
             ...prev,
-            watercanbatch: {
-              ...prev.watercanbatch,
+            example: {
+              ...prev.example,
               detail: data,
               id: data?._id,
               isUser: !!isUser
@@ -112,43 +119,49 @@ const useWaterCanBatchStore = create(
           }))
         }
       },
-      select: (id: any) => set(prev => ({ watercanbatch: { ...prev.watercanbatch, id: id, detail: prev.watercanbatch.list.find(f => f._id === id) } })),
-      add: async (bodyData: WaterCanBatchData['payloads']['Create']['requestBody']) => {
-        let id = get().watercanbatch.id
-        let isUser = get().watercanbatch.isUser
+      select: (id: any) => set(prev => ({ example: { ...prev.example, id: id } })),
+      add: async (bodyData: StoreTimeData['payloads']['Create']['requestBody']) => {
+        let id = get().example.id
+        let isUser = get().example.isUser
 
         toast.promise(
-          WaterCanBatchService.create({
-            requestBody: bodyData,
-          }),
+          id
+            ? StoreTimeService.update({
+              query: {
+                id: id,
+              },
+              requestBody: bodyData as any,
+            }) : StoreTimeService.create({
+              requestBody: bodyData,
+            }),
           {
             loading: id ? 'Updating' : 'Adding',
             success: res => {
-              useWaterCanBatchStore.getState().get.paginate({})
-              useWaterCanBatchStore.getState().select(null)
+              useStoreTimeStore.getState().get.paginate({})
+              useStoreTimeStore.getState().select(null)
               return res?.message
             },
             error: err => {
-              useWaterCanBatchStore.getState().select(null)
+              useStoreTimeStore.getState().select(null)
               return err
             }
           }
         )
       },
       delete: async () => {
-        let id = get().watercanbatch.id
+        let id = get().example.id
 
         if (!id) return toast.error('No plan to delete')
 
-        toast.promise(WaterCanBatchService.delete({ query: { id: id } }), {
+        toast.promise(StoreTimeService.delete({ query: { id: id } }), {
           loading: 'deleting',
           success: res => {
-            useWaterCanBatchStore.getState().get.paginate({})
-            useWaterCanBatchStore.getState().select(null)
+            useStoreTimeStore.getState().get.paginate({})
+            useStoreTimeStore.getState().select(null)
             return res?.message
           },
           error: err => {
-            useWaterCanBatchStore.getState().select(null)
+            useStoreTimeStore.getState().select(null)
             return err
           }
         })
@@ -157,4 +170,4 @@ const useWaterCanBatchStore = create(
   )
 )
 
-export default useWaterCanBatchStore
+export default useStoreTimeStore

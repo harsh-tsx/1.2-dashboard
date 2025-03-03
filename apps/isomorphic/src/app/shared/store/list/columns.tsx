@@ -7,7 +7,7 @@ import AvatarCard from '@core/ui/avatar-card';
 import DateCell from '@core/ui/date-cell';
 import { createColumnHelper } from '@tanstack/react-table';
 import Link from 'next/link';
-import { Badge, Checkbox } from 'rizzui';
+import { Badge, Checkbox, Flex, Text, Tooltip } from 'rizzui';
 import { ListTableDataType } from './table';
 import { table } from 'console';
 import ModalIconButton from '../../modal-icon-button';
@@ -19,6 +19,7 @@ import { injectDefaults, injectMeta } from '@core/utils/yup-helper'
 import useExampleStore from '@/store/plant/store/store.service';
 import { plantSchema } from '@/validators/plant.schema';
 import { storeSchema } from '@/validators/store.schema';
+import StoreTimeSlot from '../store-time-sots';
 
 const columnHelper = createColumnHelper<ListTableDataType>();
 
@@ -91,6 +92,46 @@ export const ListColumns = [
     cell: ({ row }) => <div>
       <p>{row.original.coordinate.lat}/{row.original.coordinate.long}</p>
     </div>,
+  }),
+
+  columnHelper.accessor('sector.city', {
+    id: 'plants',
+    size: 50,
+    header: 'Plants/Warehouse',
+    cell: ({ row }) => {
+      return (
+        <Flex
+          align="center"
+          justify="center"
+        // className={cn("pe-3")}
+        >
+          <Text>
+            Time
+          </Text>
+          <Tooltip
+            size="sm"
+            content="Time Slots"
+            placement="top"
+            color="invert"
+          >
+            <ModalIconButton
+              // label="Add New User"
+              icon={
+                <PencilIcon className="size-4" />
+              }
+              view={<StoreTimeSlot store={row.original} />}
+              customSize="600px"
+              className="mt-0"
+              onClickCustom={() => {
+                // useAdminStore.getState().select(row.original._id)
+              }}
+
+            />
+          </Tooltip>
+
+        </Flex>
+      )
+    },
   }),
 
   columnHelper.accessor('createdAt', {

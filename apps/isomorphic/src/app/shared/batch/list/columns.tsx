@@ -7,7 +7,7 @@ import AvatarCard from '@core/ui/avatar-card';
 import DateCell from '@core/ui/date-cell';
 import { createColumnHelper } from '@tanstack/react-table';
 import Link from 'next/link';
-import { Badge, Box, Checkbox } from 'rizzui';
+import { Badge, Box, Checkbox, Flex, Text } from 'rizzui';
 import { ListTableDataType } from './table';
 import { table } from 'console';
 import ModalIconButton from '../../modal-icon-button';
@@ -21,8 +21,19 @@ import { plantSchema } from '@/validators/plant.schema';
 import { PiPrinterFill } from 'react-icons/pi';
 import QRCodePDFViewer from '../pdf/pdf';
 import QRCodePDFMain from '../pdf/pdf-main';
+import useWaterCanBatchStore from '@/store/plant/batch/batch.service';
+import { batchSchema } from '@/validators/batch.schema';
+import cn from '@core/utils/class-names';
 
 const columnHelper = createColumnHelper<ListTableDataType>();
+
+const statusColors = {
+  COMPLETED: ['text-green-dark', 'bg-green-dark'],
+  PENDING: ['text-orange-dark', 'bg-orange-dark'],
+  FAILED: ['text-red-dark', 'bg-red-dark'],
+  "IN PROGRESS": ['text-gray-600', 'bg-gray-600'],
+  get: (status: string) => (statusColors as any)[status],
+};
 
 export const ListColumns = [
   // columnHelper.display({
@@ -80,9 +91,21 @@ export const ListColumns = [
     id: 'status',
     size: 200,
     header: 'status',
-    cell: ({ row }) => <div>
-      <p>{row.original.status}</p>
-    </div>,
+    cell: ({ row }) => {
+      const color = statusColors.get(row.original.status);
+
+      return <>
+        <Flex align="center" gap="2" className="w-auto">
+          <Badge renderAsDot className={color[1]} />
+          <Text
+            className={cn('font-medium capitalize', color[0])}
+          >
+            {row.original.status}
+          </Text>
+
+        </Flex>
+      </>
+    },
   }),
 
   columnHelper.accessor('plant', {
@@ -105,20 +128,22 @@ export const ListColumns = [
         onDelete={() => {
           meta?.handleDeleteRow?.(row.original);
         }}
-        Edit={() => {
-          return <ModalIconButton
-            icon={
-              <PencilIcon className="size-4" />
-            }
-            view={<GlobalSchemaForm onSubmitCb={useExampleStore.getState().add} schema={injectDefaults(plantSchema, row.original).label("Edit").meta({ button: "Update" })} />}
-            customSize="600px"
-            className="mt-0"
-            onClickCustom={() => {
-              useExampleStore
-                .getState().select(row.original._id)
-            }}
-          />
-        }}
+        // Edit={() => {
+        //   return <ModalIconButton
+        //     icon={
+        //       <PencilIcon className="size-4" />
+        //     }
+        //     view={<GlobalSchemaForm onSubmitCb={useWaterCanBatchStore.getState().add} schema={injectDefaults(batchSchema, row.original).label("Edit").meta({ button: "Update" })} />}
+        //     customSize="600px"
+        //     className="mt-0"
+        //     onClickCustom={() => {
+        //       useExampleStore
+        //         .getState().select(row.original._id)
+        //     }}
+        //   />
+        // }}
+        editUrl=''
+        hideDelete={true}
         deletePopoverDescription={`Are you sure you want to delete this #${row.original.id} shipment?`}
         Additional={() => {
           return <>
@@ -130,7 +155,7 @@ export const ListColumns = [
               customSize="90vw"
               className="mt-0"
               onClickCustom={() => {
-
+                useWaterCanBatchStore.getState().select(row.original._id)
               }}
             />
           </>

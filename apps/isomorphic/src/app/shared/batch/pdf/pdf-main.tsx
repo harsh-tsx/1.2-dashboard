@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Box, Text, Title } from 'rizzui'
 import QRCodePDFViewer from './pdf'
 import { PiMapPin } from 'react-icons/pi'
 import AvatarCard from '@core/ui/avatar-card'
+import useWaterCanBatchStore from '@/store/plant/batch/batch.service'
+import Breadcrumb from '@core/ui/breadcrumb'
+import Pagination from '@core/ui/pagination'
+import useWaterCanStore from '@/store/plant/can/can.service'
 
 type Props = {}
 
@@ -31,6 +35,13 @@ const qrData = [
 
 
 const QRCodePDFMain = (props: Props) => {
+    const { watercanbatch: { detail } } = useWaterCanBatchStore();
+    const canStore = useWaterCanStore();
+
+
+    useEffect(() => {
+        canStore.get.paginate({ batches: `${detail?._id}`, size: 100 })
+    }, [])
     return (
         <Box className='p-5 flex flex-row items-center justify-between' >
             <div className='w-1/2' >
@@ -40,58 +51,38 @@ const QRCodePDFMain = (props: Props) => {
                 >
                     <div className="relative flex items-start justify-between gap-4">
                         <div className="flex flex-col items-start gap-4 @xl:flex-row">
-                            <AvatarCard
-                                src={`1`}
-                                name={`1`}
-                            />
                             <div className="space-y-1">
                                 <Title as="h3" className="text-base font-medium @xl:text-lg">
-                                    {`title`}
+                                    {`Batch - ${detail?.id}`}
                                 </Title>
-                                {/* <Breadcrumb
+                                <Breadcrumb
                                     separator=""
                                     separatorVariant="circle"
                                     className="flex-wrap gap-y-1 [&>a]:text-xs [&>a]:!text-gray-500 @7xl:[&>a]:text-sm"
                                 >
                                     <Breadcrumb.Item key={"item.name"}>
-                                        {`${store.example.home?.stores?.[0]?.address}`}
+                                        {`Watercans - ${detail?.watercans}`}
                                     </Breadcrumb.Item>
-                                </Breadcrumb> */}
+                                </Breadcrumb>
                             </div>
                         </div>
-                        {/* <Button
-                            size="sm"
-                            variant="outline"
-                            className={cn('h-10', 'bg-primary/10 text-primary')}
-                            aria-label="Bookmark this job"
-                        >
-                            {!isBookMark ? (
-                                <PiBookmarkSimpleThin className="size-4 @7xl:size-5" />
-                            ) : (
-                                <PiBookmarkSimpleFill className="size-4 @7xl:size-5" />
-                            )}
-                        </Button> */}
+
                     </div>
 
                     {/* <Text className="text-sm font-normal leading-normal @xl:leading-relaxed">
                         {"data.jobDescription[0].desc"}
                     </Text> */}
 
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-2 @lg:gap-x-8">
-                        {/* <div className="flex gap-x-1.5">
-                            <PiSealCheckFill size={20} className="text-primary" />
-                            <Text className="text-sm font-medium">Payment Verified</Text>
-                        </div> */}
-                        <div className="flex gap-x-1.5">
-                            <PiMapPin size={20} />
-                            <Text className="text-sm font-medium">{`hii`}</Text>
-                        </div>
-                    </div>
+                    <Pagination showPrevNextJumpers showLessItems showQuickJumper showSizeChanger showTitle showTotal={() => { return <>{canStore.example.total}</> }} total={canStore.example.total} pageSize={canStore.example.size} pageSizeOptions={[10, 20, 50, 100]} onChange={(page, pageSize) => {
+                        console.log({ page, pageSize })
+                        canStore.get.paginate({ page: page - 1, size: pageSize, })
+                    }} />
+
+
                 </div>
             </div>
             <div className='w-1/2' >
-
-                <QRCodePDFViewer qrData={qrData} />
+                <QRCodePDFViewer qrData={canStore.example.list} />
             </div>
         </Box>
     )

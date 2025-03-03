@@ -42,8 +42,6 @@ export default function TableComponent({ list }: { list: ListTableDataType[] }) 
         },
       },
       enableColumnResizing: false,
-
-
     },
   });
 
@@ -83,7 +81,6 @@ export default function TableComponent({ list }: { list: ListTableDataType[] }) 
           rowClassName: 'last:border-0',
         }}
       />
-      <TableFooter table={table} onExport={handleExportData} />
       <TablePagination table={table} className="py-4" />
     </Box>
   );

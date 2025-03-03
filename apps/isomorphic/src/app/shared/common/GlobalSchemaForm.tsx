@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { PiXBold } from 'react-icons/pi';
 import { Controller, SubmitHandler } from 'react-hook-form';
 import { YupForm } from '@core/ui/form-yup';
-import { Input, Button, ActionIcon, Title, Select } from 'rizzui';
+import { Input, Button, ActionIcon, Title, Select, FileInput } from 'rizzui';
 import { useModal } from '@/app/shared/modal-views/use-modal';
 import { ObjectSchema, SchemaDescription, AnyObject } from 'yup';
 import { DatePicker } from '@core/ui/datepicker';
@@ -12,7 +12,7 @@ import moment from 'moment'
 
 export const SelectItem = (label: string, value: any) => ({ label, value })
 
-export default function GlobalSchemaForm<T>({ schema, onSubmitCb }: { schema: ObjectSchema<AnyObject>, onSubmitCb: (data: T) => Promise<void> }) {
+export default function GlobalSchemaForm<T>({ schema, onSubmitCb, children }: { schema: ObjectSchema<AnyObject>, onSubmitCb: (data: T) => Promise<void>, children?: React.ReactNode }) {
     const describeSchema = schema.describe();
     const fields = Object.keys(describeSchema.fields);
     const defaultValues = schema.getDefault();
@@ -35,9 +35,13 @@ export default function GlobalSchemaForm<T>({ schema, onSubmitCb }: { schema: Ob
         closeModal();
     };
 
-    useEffect(() => {
-        describeSchema.meta?.initState?.()
-    }, [])
+    /** basic function to be called on init given by the schema */
+
+    describeSchema.meta?.InitState?.()
+
+    /** basic function to be called on init given by the schema */
+
+
 
     return (
         <YupForm
@@ -66,6 +70,11 @@ export default function GlobalSchemaForm<T>({ schema, onSubmitCb }: { schema: Ob
                                 <PiXBold className="h-auto w-5" />
                             </ActionIcon>
                         </div>
+                        {
+
+                            children ? children : <></>
+
+                        }
                         {
                             fields.map((fieldName) => {
                                 const field = describeSchema.fields[fieldName] as SchemaDescription & { meta: any };
@@ -109,6 +118,9 @@ export default function GlobalSchemaForm<T>({ schema, onSubmitCb }: { schema: Ob
                                                 key={fieldName}
                                                 name={fieldName as any}
                                                 control={control}
+                                                disabled={!oneOf?.length}
+
+
                                                 render={({ field: { name, onChange, value } }) => {
                                                     console.log("select value: ", value)
                                                     return (<Select
@@ -118,6 +130,16 @@ export default function GlobalSchemaForm<T>({ schema, onSubmitCb }: { schema: Ob
 
                                                             onChange(e[0])
                                                         }}
+                                                        disabled={!oneOf?.length}
+
+
+                                                        {...(field?.meta?.selectProps?.disableDefaultFilter && {
+
+                                                            onSearchChange: (search) => field?.meta?.selectProps?.onSearchChange(search, field),
+
+                                                        })}
+
+
                                                         name={name}
                                                         label={label}
                                                         searchable
@@ -164,7 +186,8 @@ export default function GlobalSchemaForm<T>({ schema, onSubmitCb }: { schema: Ob
                                                     showTimeInput
                                                     title={label}
                                                     placeholderText={label}
-                                                    value={moment(value).format("DD-MM-YYYY hh:mm A")}
+                                                    value={moment(value).set({ hour: 0, minute: 0 }).format("DD-MM-YYYY")}
+                                                    // value={moment(value).format("DD-MM-YYYY hh:mm A")}
                                                     onChange={onChange}
                                                     dateFormat={moment(value).creationData().format?.toString() || ""}
                                                 />
@@ -173,6 +196,78 @@ export default function GlobalSchemaForm<T>({ schema, onSubmitCb }: { schema: Ob
                                     />
 
                                 }
+
+                                if (type == "time") {
+                                    return <Controller
+                                        key={fieldName}
+                                        name={fieldName as any}
+                                        control={control}
+                                        render={({ field: { name, onChange, value } }) => {
+                                            console.log("🚀 ~ fields.map ~ value:", value)
+                                            return <div className='col-span-full' >
+                                                <DatePicker
+                                                    showTimeSelect
+                                                    showTimeSelectOnly
+                                                    title={label}
+
+                                                    placeholderText={label}
+                                                    selected={moment().startOf('day').add(value, 'minutes').toDate()}
+                                                    onChange={(date) => {
+                                                        const hours = (date?.getHours() || 0) * 60;
+                                                        const minutes = date?.getMinutes() || 0;
+                                                        const totalMinutes = hours + minutes;
+                                                        onChange(totalMinutes);
+                                                    }}
+                                                    dateFormat="h:mm aa"
+
+                                                />
+                                            </div>
+                                        }}
+                                    />
+
+                                }
+
+                                if (type == "file") {
+
+                                    return <Controller
+
+                                        key={fieldName}
+
+                                        name={fieldName as any}
+
+                                        control={control}
+
+                                        render={({ field: { name, onChange, value } }) => {
+
+                                            console.log("date value: ", value)
+
+                                            return <div className='col-span-full' >
+
+                                                <FileInput error={(errors as any)?.[fieldName]?.message} label={label} accept={field?.meta?.file_type} onChange={(e) => {
+
+
+
+                                                    if (!e.target.files?.length) {
+
+                                                        return;
+
+                                                    }
+
+
+
+                                                    onChange(e.target.files[0])
+
+                                                }} />
+
+                                            </div>
+
+                                        }}
+
+                                    />
+
+                                }
+
+
 
 
                             })

@@ -25,7 +25,9 @@ const useWaterCanStore = create(
         search: null as string | null,
         paginate: true as boolean,
         detail: undefined as WaterCan | undefined,
-        isUser: false as boolean
+        isUser: false as boolean,
+        batches: "" as string,
+        selectedList: [] as WaterCan[]
         // timeOut: null as any
       }
     },
@@ -33,13 +35,14 @@ const useWaterCanStore = create(
       get: {
         list: async () => {
           const {
-            example: { page, size, search, paginate }
+            example: { page, size, search, paginate, batches }
           } = get()
 
           toast.promise(WaterCanService.list({
             query: {
               page: page as any,
               size: size as any,
+              ...(batches && { batches: batches })
             }
           }), {
             loading: 'fetching...',
@@ -67,12 +70,14 @@ const useWaterCanStore = create(
           page,
           size,
           search,
-          paginate
+          paginate,
+          batches
         }: {
           page?: number
           size?: number
           search?: string
           paginate?: boolean
+          batches?: string
         }) => {
           set(prev => ({ example: { ...prev.example, search: search || '' } }))
 
@@ -85,7 +90,8 @@ const useWaterCanStore = create(
                 page: page ?? prev.example.page,
                 size: size || prev.example.size,
                 search: search || prev.example.search,
-                paginate: paginate ?? true
+                paginate: paginate ?? true,
+                batches: batches ?? prev.example.batches,
               }
             }))
             useWaterCanStore.getState().get.list()
@@ -113,6 +119,14 @@ const useWaterCanStore = create(
         }
       },
       select: (id: any) => set(prev => ({ example: { ...prev.example, id: id } })),
+      rowSelect: (id: any) => set(prev => ({ example: { ...prev.example, selectedList: prev.example.selectedList.find(f => f._id == id) ? prev.example.selectedList.filter(f => f._id != id) : [...prev.example.selectedList, prev.example.list.find(f => f._id == id) as any] } })),
+      rowSelectAll: (checked: boolean) => {
+        const { example: { list } } = get();
+
+        for (let item of list) {
+          set(prev => ({ example: { ...prev.example, selectedList: checked ? prev.example.selectedList.find(f => f._id == item._id) ? prev.example.selectedList : [...prev.example.selectedList, prev.example.list.find(f => f._id == item._id) as any] : prev.example.selectedList.filter(f => f._id != item._id) } }))
+        }
+      },
       add: async (bodyData: WaterCanData['payloads']['Create']['requestBody']) => {
         let id = get().example.id
         let isUser = get().example.isUser
