@@ -15,6 +15,11 @@ const Modalbutton = (props: Props) => {
         <ModalButton
             label="Create Store"
             view={<GlobalSchemaForm<InferType<typeof storeSchema>> schema={storeSchema} onSubmitCb={async (data) => {
+                (data as any).coordinate = { lat: data.lat, long: data.long }
+
+                delete (data as any).lat;
+                delete (data as any).long;
+
                 await store.add(data as any);
             }} />}
             customSize="600px"

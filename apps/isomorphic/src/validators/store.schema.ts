@@ -5,24 +5,26 @@ import { array, number, object, SchemaDescription, string } from "yup";
 export const storeSchema = object().shape({
     name: string().label("Store Name").required(),
     address: string().label("Store Address").required(),
-    coordinate: object().shape({ lat: number(), long: number() }).label("Location").meta({
-        type: 'select', oneOf: [
-            {
-                label: "Delhi",
-                value: {
-                    lat: 1,
-                    long: 2
-                }
-            },
-            {
-                label: "Jaipur",
-                value: {
-                    lat: 1,
-                    long: 1
-                }
-            }
-        ] as any
-    }).default(null),
+    lat: number().label("Latitude").meta({ className: "w-full" }).required(),
+    long: number().label("Longitude").meta({ className: "w-full" }).required(),
+    // coordinate: object().shape({ lat: number(), long: number() }).label("Location").meta({
+    //     type: 'select', oneOf: [
+    //         {
+    //             label: "Delhi",
+    //             value: {
+    //                 lat: 1,
+    //                 long: 2
+    //             }
+    //         },
+    //         {
+    //             label: "Jaipur",
+    //             value: {
+    //                 lat: 1,
+    //                 long: 1
+    //             }
+    //         }
+    //     ] as any
+    // }).default(null),
     sector: string().label("Sector").meta({
         type: "select", selectProps: {
             disableDefaultFilter: true,

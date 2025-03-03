@@ -13,7 +13,7 @@ import { table } from 'console';
 import ModalIconButton from '../../modal-icon-button';
 import PencilIcon from '@core/components/icons/pencil';
 import GlobalSchemaForm from '../../common/GlobalSchemaForm';
-import { number, object, string } from 'yup';
+import { InferType, number, object, string } from 'yup';
 import { createExampleSchema } from '@/validators/create-example';
 import { injectDefaults, injectMeta } from '@core/utils/yup-helper'
 import useExampleStore from '@/store/plant/store/store.service';
@@ -97,7 +97,7 @@ export const ListColumns = [
   columnHelper.accessor('sector.city', {
     id: 'plants',
     size: 50,
-    header: 'Plants/Warehouse',
+    header: 'Time Slots',
     cell: ({ row }) => {
       return (
         <Flex
@@ -159,7 +159,14 @@ export const ListColumns = [
             icon={
               <PencilIcon className="size-4" />
             }
-            view={<GlobalSchemaForm onSubmitCb={useExampleStore.getState().add} schema={injectMeta(injectDefaults(storeSchema, row.original).label("Edit"), { button: "Update" })} />}
+            view={<GlobalSchemaForm<InferType<typeof storeSchema>> onSubmitCb={async (data) => {
+              (data as any).coordinate = { lat: data.lat, long: data.long }
+
+              delete (data as any).lat;
+              delete (data as any).long;
+
+              await useExampleStore.getState().add(data as any);
+            }} schema={injectMeta(injectDefaults(storeSchema, { ...row.original, lat: row.original.coordinate.lat, long: row.original.coordinate.long }).label("Edit"), { button: "Update" })} />}
             customSize="600px"
             className="mt-0"
             onClickCustom={() => {

@@ -9,6 +9,7 @@ import { useModal } from '@/app/shared/modal-views/use-modal';
 import { ObjectSchema, SchemaDescription, AnyObject } from 'yup';
 import { DatePicker } from '@core/ui/datepicker';
 import moment from 'moment'
+import cn from '@core/utils/class-names';
 
 export const SelectItem = (label: string, value: any) => ({ label, value })
 
@@ -92,7 +93,7 @@ export default function GlobalSchemaForm<T>({ schema, onSubmitCb, children, clos
                                             key={fieldName}
                                             label={label}
                                             {...register(fieldName as any)}
-                                            className="col-span-full"
+                                            className={field?.meta?.className || "col-span-full"}
                                             error={(errors as any)?.[fieldName]?.message}
                                         />
                                     )
@@ -106,7 +107,7 @@ export default function GlobalSchemaForm<T>({ schema, onSubmitCb, children, clos
                                             label={label}
                                             type='number'
                                             {...register(fieldName as any)}
-                                            className="col-span-full"
+                                            className={field?.meta?.className || "col-span-full"}
                                             error={(errors as any)?.[fieldName]?.message}
                                         />
                                     )
