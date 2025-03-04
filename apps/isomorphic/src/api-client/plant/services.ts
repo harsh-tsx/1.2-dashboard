@@ -10,6 +10,7 @@ import type {
   AdminPlantRelationData,
   ModuleData,
   PlantData,
+  DeliveryAgentData,
   WarehouseData,
   StoreData,
   StoreCityData,
@@ -500,6 +501,81 @@ export class PlantService {
     return __request(OpenAPI, {
       method: 'DELETE',
       url: '/plant/plants/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+}
+
+export class DeliveryAgentService {
+  /**
+   * @returns any DeliveryAgent list response
+   * @throws ApiError
+   */
+  public static list(
+    data: DeliveryAgentData['payloads']['List']
+  ): CancelablePromise<DeliveryAgentData['responses']['List']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/delivery-agent/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+
+  /**
+   * @returns any DeliveryAgent create response
+   * @throws ApiError
+   */
+  public static create(
+    data: DeliveryAgentData['payloads']['Create']
+  ): CancelablePromise<DeliveryAgentData['responses']['Create']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'POST',
+      url: '/plant/delivery-agent/',
+      headers: {},
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any DeliveryAgent update response
+   * @throws ApiError
+   */
+  public static update(
+    data: DeliveryAgentData['payloads']['Update']
+  ): CancelablePromise<DeliveryAgentData['responses']['Update']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'PUT',
+      url: '/plant/delivery-agent/',
+      headers: {},
+      query: {
+        ...query,
+      },
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any DeliveryAgent delete response
+   * @throws ApiError
+   */
+  public static delete(
+    data: DeliveryAgentData['payloads']['Delete']
+  ): CancelablePromise<DeliveryAgentData['responses']['Delete']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'DELETE',
+      url: '/plant/delivery-agent/',
       headers: {},
       query: {
         ...query,
@@ -1435,6 +1511,24 @@ export class WaterCanBatchService {
     return __request(OpenAPI, {
       method: 'DELETE',
       url: '/plant/water-can-batch/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+
+  /**
+   * @returns any WaterCansBatch list response
+   * @throws ApiError
+   */
+  public static list1(
+    data: WaterCanBatchData['payloads']['List1']
+  ): CancelablePromise<WaterCanBatchData['responses']['List1']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/water-can-batch/detail',
       headers: {},
       query: {
         ...query,

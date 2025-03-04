@@ -122,7 +122,7 @@ export const shipmentListColumns = [
         }}
         editUrl={routes.logistics.editShipment(row.original.id)}
         viewUrl={routes.logistics.shipmentDetails(row.original.id)}
-        deletePopoverDescription={`Are you sure you want to delete this #${row.original.id} shipment?`}
+        deletePopoverDescription={`Are you sure you want to delete this #${row.original.id} ?`}
       />
     ),
   }),

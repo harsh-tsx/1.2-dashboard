@@ -30,6 +30,10 @@ export const routes = {
     batch: "/batch/list",
     cans: '/cans/list',
   },
+  deliveries: {
+    batch: "/driver/list",
+    cans: '/vehicle/list',
+  },
   support: {
     dashboard: '/support',
     inbox: '/support/inbox',

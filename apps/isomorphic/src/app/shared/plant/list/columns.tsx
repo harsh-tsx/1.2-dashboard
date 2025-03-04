@@ -119,7 +119,7 @@ export const ListColumns = [
             }}
           />
         }}
-        deletePopoverDescription={`Are you sure you want to delete this ${row.original.name} shipment?`}
+        deletePopoverDescription={`Are you sure you want to delete this ${row.original.name} ?`}
       />
     ),
   }),

@@ -1200,6 +1200,163 @@ export type PlantData = {
   };
 };
 
+export type DeliveryAgentData = {
+  payloads: {
+    List: {
+      authorization?: string;
+
+      query: {
+        page: string;
+        size: string;
+      };
+    };
+    Create: {
+      authorization?: string;
+      requestBody: {
+        name: string;
+        phone: string;
+        employment_type: string;
+        status: string;
+      };
+
+      query?: {};
+    };
+    Update: {
+      authorization?: string;
+      requestBody: {
+        name: string;
+        phone: string;
+        employment_type: string;
+        status: string;
+      };
+
+      query: {
+        id: string;
+      };
+    };
+    Delete: {
+      authorization?: string;
+
+      query: {
+        id: string;
+      };
+    };
+  };
+
+  responses: {
+    List: {
+      status: boolean;
+      message: string;
+      data: Array<{
+        _id: string;
+        id: string;
+        name: string;
+        phone: string;
+        employment_type: string;
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
+        createdAt: string;
+        updatedAt: string;
+      }>;
+      meta: {
+        pages: number;
+        total: number;
+        page: number;
+        size: number;
+      };
+    };
+    Create: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id: string;
+        name: string;
+        phone: string;
+        employment_type: string;
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Update: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id: string;
+        name: string;
+        phone: string;
+        employment_type: string;
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Delete: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id: string;
+        name: string;
+        phone: string;
+        employment_type: string;
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+  };
+};
+
 export type WarehouseData = {
   payloads: {
     List: {
@@ -2472,7 +2629,6 @@ export type WaterCanData = {
     Create: {
       authorization?: string;
       requestBody: {
-        status: string;
         plant: string;
       };
 
@@ -3468,6 +3624,13 @@ export type WaterCanBatchData = {
         id: string;
       };
     };
+    List1: {
+      authorization?: string;
+
+      query: {
+        id: string;
+      };
+    };
     ReRun: {
       authorization?: string;
 
@@ -3554,6 +3717,36 @@ export type WaterCanBatchData = {
         };
         createdAt: string;
         updatedAt: string;
+      };
+    };
+    List1: {
+      status: boolean;
+      message: string;
+      data: Array<{
+        _id: string;
+        id: number;
+        watercans: number;
+        status: string;
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      }>;
+      meta: {
+        pages: number;
+        total: number;
+        page: number;
+        size: number;
       };
     };
     ReRun: {

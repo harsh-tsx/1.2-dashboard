@@ -63,6 +63,7 @@ import { GiWaterGallon } from "react-icons/gi";
 import { SiFuturelearn } from "react-icons/si";
 import { CiMap, CiReceipt } from "react-icons/ci";
 import { GrUserWorker } from "react-icons/gr";
+import { TbTruckDelivery } from "react-icons/tb";
 
 const can = (moduleId: number) => ({ moduleId });
 
@@ -173,6 +174,24 @@ export const menuItems = [
       {
         name: 'Cans',
         href: routes.waterCan.cans,
+        ...can(7)
+      },
+    ],
+  },
+  {
+    name: 'Deliveries',
+    href: '#',
+    icon: <TbTruckDelivery />,
+    ...can(6),
+    dropdownItems: [
+      {
+        name: 'Drivers',
+        href: routes.deliveries.batch,
+        ...can(6)
+      },
+      {
+        name: 'Cans',
+        href: routes.deliveries.cans,
         ...can(7)
       },
     ],

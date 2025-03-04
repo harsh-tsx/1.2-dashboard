@@ -121,7 +121,7 @@ export const ListColumns = [
         //   />
         // }}
         editUrl=''
-        deletePopoverDescription={`Are you sure you want to delete this ${row.original._id} shipment?`}
+        deletePopoverDescription={`Are you sure you want to delete this ${row.original._id} ?`}
         hideDelete={true}
         Additional={() => {
           return <Tooltip

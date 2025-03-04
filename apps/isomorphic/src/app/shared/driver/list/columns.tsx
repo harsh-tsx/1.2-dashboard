@@ -7,7 +7,7 @@ import AvatarCard from '@core/ui/avatar-card';
 import DateCell from '@core/ui/date-cell';
 import { createColumnHelper } from '@tanstack/react-table';
 import Link from 'next/link';
-import { Badge, Box, Checkbox, Flex, Text } from 'rizzui';
+import { Badge, Checkbox, Flex, Text } from 'rizzui';
 import { ListTableDataType } from './table';
 import { table } from 'console';
 import ModalIconButton from '../../modal-icon-button';
@@ -16,23 +16,18 @@ import GlobalSchemaForm from '../../common/GlobalSchemaForm';
 import { number, object, string } from 'yup';
 import { createExampleSchema } from '@/validators/create-example';
 import { injectDefaults } from '@core/utils/yup-helper'
-import useExampleStore from '@/store/plant/plant/plant.service';
-import { plantSchema } from '@/validators/plant.schema';
-import { PiPrinterFill } from 'react-icons/pi';
-import QRCodePDFViewer from '../pdf/pdf';
-import QRCodePDFMain from '../pdf/pdf-main';
-import useWaterCanBatchStore from '@/store/plant/batch/batch.service';
-import { batchSchema } from '@/validators/batch.schema';
+import useExampleStore from '@/store/plant/employee/employee.service';
+import { employeeSchema } from '@/validators/employee.schema';
 import cn from '@core/utils/class-names';
+import useDriverStore from '@/store/plant/driver/driver.service';
+import { driverSchema } from '@/validators/driver.schema';
 
 const columnHelper = createColumnHelper<ListTableDataType>();
 
 const statusColors = {
-  COMPLETED: ['text-green-dark', 'bg-green-dark'],
-  PENDING: ['text-orange-dark', 'bg-orange-dark'],
-  FAILED: ['text-red-dark', 'bg-red-dark'],
-  "IN PROGRESS": ['text-gray-600', 'bg-gray-600'],
-  get: (status: string) => (statusColors as any)[status],
+  "ACTIVE": ['text-green-700', 'bg-green-700'], // #228B22 (Forest Green - Available at Store)
+  "INACTIVE": ['text-red-700', 'bg-red-700'], // #B22222 (Firebrick - Permanently Removed)
+  get: (status: string) => (statusColors as any)[status] || ['text-gray-400', 'bg-gray-400'],
 };
 
 export const ListColumns = [
@@ -70,35 +65,45 @@ export const ListColumns = [
   //   ),
   // }),
 
-  columnHelper.accessor('id', {
-    id: 'id',
+  columnHelper.accessor('name', {
+    id: 'name',
     size: 250,
-    header: 'id',
+    header: 'name',
     enableSorting: false,
     cell: ({ row }) => (
-      row.original.id
+      <AvatarCard
+        src={row.original.name}
+        name={row.original.name}
+      />
     ),
   }),
-  columnHelper.accessor('watercans', {
-    id: 'can count',
+  columnHelper.accessor('phone', {
+    id: 'phone',
     size: 200,
-    header: 'Can Count',
+    header: 'phone',
     cell: ({ row }) => <div>
-      <p>{row.original.watercans}</p>
+      <p>{row.original.phone}</p>
     </div>,
   }),
+
+
+  columnHelper.accessor('employment_type', {
+    id: 'employment_type',
+    header: 'employment type',
+    cell: ({ row }) => row.original.employment_type,
+  }),
+
   columnHelper.accessor('status', {
     id: 'status',
-    size: 200,
     header: 'status',
     cell: ({ row }) => {
       const color = statusColors.get(row.original.status);
 
       return <>
         <Flex align="center" gap="2" className="w-auto">
-          <Badge renderAsDot className={color[1]} />
+          <Badge renderAsDot className={color?.[1]} />
           <Text
-            className={cn('font-medium capitalize', color[0])}
+            className={cn('font-medium capitalize', color?.[0])}
           >
             {row.original.status}
           </Text>
@@ -108,11 +113,16 @@ export const ListColumns = [
     },
   }),
 
-  columnHelper.accessor('plant', {
+  columnHelper.accessor('createdAt', {
     id: 'date',
     size: 150,
     header: 'Created At',
     cell: ({ row }) => <DateCell date={new Date(row.original.createdAt)} />,
+  }),
+  columnHelper.accessor('plant.name', {
+    id: 'lat',
+    header: 'Plant',
+    cell: ({ row }) => row.original.plant?.name,
   }),
   columnHelper.display({
     id: 'actions',
@@ -128,38 +138,21 @@ export const ListColumns = [
         onDelete={() => {
           meta?.handleDeleteRow?.(row.original);
         }}
-        // Edit={() => {
-        //   return <ModalIconButton
-        //     icon={
-        //       <PencilIcon className="size-4" />
-        //     }
-        //     view={<GlobalSchemaForm onSubmitCb={useWaterCanBatchStore.getState().add} schema={injectDefaults(batchSchema, row.original).label("Edit").meta({ button: "Update" })} />}
-        //     customSize="600px"
-        //     className="mt-0"
-        //     onClickCustom={() => {
-        //       useExampleStore
-        //         .getState().select(row.original._id)
-        //     }}
-        //   />
-        // }}
-        editUrl=''
-        hideDelete={true}
-        deletePopoverDescription={`Are you sure you want to delete this #${row.original.id} ?`}
-        Additional={() => {
-          return <>
-            <ModalIconButton
-              icon={
-                <PiPrinterFill className="size-4" />
-              }
-              view={<QRCodePDFMain />}
-              customSize="90vw"
-              className="mt-0"
-              onClickCustom={() => {
-                useWaterCanBatchStore.getState().select(row.original._id)
-              }}
-            />
-          </>
+        Edit={() => {
+          return <ModalIconButton
+            icon={
+              <PencilIcon className="size-4" />
+            }
+            view={<GlobalSchemaForm onSubmitCb={useDriverStore.getState().add} schema={injectDefaults(driverSchema, row.original).label("Edit").meta({ button: "Update" })} />}
+            customSize="600px"
+            className="mt-0"
+            onClickCustom={() => {
+              useExampleStore
+                .getState().select(row.original._id)
+            }}
+          />
         }}
+        deletePopoverDescription={`Are you sure you want to delete this ${row.original.name} ?`}
       />
     ),
   }),
