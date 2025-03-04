@@ -25,7 +25,8 @@ export const sectorSchema = object().shape({
     }).default(null),
     name: string().label("Name").required(),
 }).label("Add").meta({
-    button: "Create", InitState: () => {
+    button: "Create",
+    InitState: () => {
         const cityStore = useCityStore();
         useEffect(() => {
             cityStore.get.paginate({})

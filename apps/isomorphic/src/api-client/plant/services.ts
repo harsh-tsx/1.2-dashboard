@@ -11,6 +11,7 @@ import type {
   ModuleData,
   PlantData,
   DriverData,
+  DeliveryVehicleData,
   WarehouseData,
   StoreData,
   StoreCityData,
@@ -576,6 +577,81 @@ export class DriverService {
     return __request(OpenAPI, {
       method: 'DELETE',
       url: '/plant/driver/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+}
+
+export class DeliveryVehicleService {
+  /**
+   * @returns any DeliverySchema list response
+   * @throws ApiError
+   */
+  public static list(
+    data: DeliveryVehicleData['payloads']['List']
+  ): CancelablePromise<DeliveryVehicleData['responses']['List']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/delivery-vehicle/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+
+  /**
+   * @returns any DeliverySchema create response
+   * @throws ApiError
+   */
+  public static create(
+    data: DeliveryVehicleData['payloads']['Create']
+  ): CancelablePromise<DeliveryVehicleData['responses']['Create']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'POST',
+      url: '/plant/delivery-vehicle/',
+      headers: {},
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any DeliverySchema update response
+   * @throws ApiError
+   */
+  public static update(
+    data: DeliveryVehicleData['payloads']['Update']
+  ): CancelablePromise<DeliveryVehicleData['responses']['Update']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'PUT',
+      url: '/plant/delivery-vehicle/',
+      headers: {},
+      query: {
+        ...query,
+      },
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any DeliverySchema delete response
+   * @throws ApiError
+   */
+  public static delete(
+    data: DeliveryVehicleData['payloads']['Delete']
+  ): CancelablePromise<DeliveryVehicleData['responses']['Delete']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'DELETE',
+      url: '/plant/delivery-vehicle/',
       headers: {},
       query: {
         ...query,

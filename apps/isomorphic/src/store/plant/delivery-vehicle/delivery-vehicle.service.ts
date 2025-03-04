@@ -1,30 +1,30 @@
 import { create } from 'zustand'
 import { combine } from 'zustand/middleware'
 import toast from 'react-hot-toast'
-import { DriverData } from '@/api-client/plant/models'
-import { DriverService } from '@/api-client/PlantApi'
+import { DeliveryVehicleData } from '@/api-client/plant/models'
+import { DeliveryVehicleService } from '@/api-client/PlantApi'
 
 
 
-export type Driver = DriverData['responses']['List']['data'][0]
+export type DeliveryVehicle = DeliveryVehicleData['responses']['List']['data'][0]
 
 
 
 let timeOut: any
 
-const useDriverStore = create(
+const useDeliveryVehicle = create(
   combine(
     {
       example: {
         id: null as any,
-        list: [] as Driver[],
+        list: [] as DeliveryVehicle[],
         total: 0,
         page: 0,
         pages: 0,
         size: 10,
         search: null as string | null,
         paginate: true as boolean,
-        detail: undefined as Driver | undefined,
+        detail: undefined as DeliveryVehicle | undefined,
         isUser: false as boolean
         // timeOut: null as any
       }
@@ -36,7 +36,7 @@ const useDriverStore = create(
             example: { page, size, search, paginate }
           } = get()
 
-          toast.promise(DriverService.list({
+          toast.promise(DeliveryVehicleService.list({
             query: {
               page: page as any,
               size: size as any,
@@ -89,7 +89,7 @@ const useDriverStore = create(
                 paginate: paginate ?? true
               }
             }))
-            useDriverStore.getState().get.list()
+            useDeliveryVehicle.getState().get.list()
           }
 
           if (search) {
@@ -101,7 +101,7 @@ const useDriverStore = create(
           }
           init()
         },
-        detail: async (id?: string, data?: Driver, isUser?: boolean) => {
+        detail: async (id?: string, data?: DeliveryVehicle, isUser?: boolean) => {
           set(prev => ({
             ...prev,
             example: {
@@ -114,29 +114,29 @@ const useDriverStore = create(
         }
       },
       select: (id: any) => set(prev => ({ example: { ...prev.example, id: id } })),
-      add: async (bodyData: DriverData['payloads']['Create']['requestBody']) => {
+      add: async (bodyData: DeliveryVehicleData['payloads']['Create']['requestBody']) => {
         let id = get().example.id
         let isUser = get().example.isUser
 
         toast.promise(
           id
-            ? DriverService.update({
+            ? DeliveryVehicleService.update({
               query: {
                 id: id,
               },
               requestBody: bodyData as any,
-            }) : DriverService.create({
+            }) : DeliveryVehicleService.create({
               requestBody: bodyData,
             }),
           {
             loading: id ? 'Updating' : 'Adding',
             success: res => {
-              useDriverStore.getState().get.paginate({})
-              useDriverStore.getState().select(null)
+              useDeliveryVehicle.getState().get.paginate({})
+              useDeliveryVehicle.getState().select(null)
               return res?.message
             },
             error: err => {
-              useDriverStore.getState().select(null)
+              useDeliveryVehicle.getState().select(null)
               return err
             }
           }
@@ -147,15 +147,15 @@ const useDriverStore = create(
 
         if (!id) return toast.error('No plan to delete')
 
-        toast.promise(DriverService.delete({ query: { id: id } }), {
+        toast.promise(DeliveryVehicleService.delete({ query: { id: id } }), {
           loading: 'deleting',
           success: res => {
-            useDriverStore.getState().get.paginate({})
-            useDriverStore.getState().select(null)
+            useDeliveryVehicle.getState().get.paginate({})
+            useDeliveryVehicle.getState().select(null)
             return res?.message
           },
           error: err => {
-            useDriverStore.getState().select(null)
+            useDeliveryVehicle.getState().select(null)
             return err
           }
         })
@@ -164,4 +164,4 @@ const useDriverStore = create(
   )
 )
 
-export default useDriverStore
+export default useDeliveryVehicle

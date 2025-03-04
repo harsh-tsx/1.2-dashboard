@@ -31,8 +31,8 @@ export const routes = {
     cans: '/cans/list',
   },
   deliveries: {
-    batch: "/driver/list",
-    cans: '/vehicle/list',
+    driver: "/driver/list",
+    vehicle: '/delivery-vehicle/list',
   },
   support: {
     dashboard: '/support',

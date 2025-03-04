@@ -1207,6 +1207,7 @@ export type DriverData = {
 
       query: {
         page: string;
+        search?: string;
         size: string;
       };
     };
@@ -1350,6 +1351,361 @@ export type DriverData = {
           updatedAt: string;
         };
         status: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+  };
+};
+
+export type DeliveryVehicleData = {
+  payloads: {
+    List: {
+      authorization?: string;
+
+      query: {
+        page: string;
+        size: string;
+      };
+    };
+    Create: {
+      authorization?: string;
+      requestBody: {
+        name: string;
+        type: string;
+        capacity_ltr: number;
+        capacity_cans: number;
+        driver: string;
+      };
+
+      query?: {};
+    };
+    Update: {
+      authorization?: string;
+      requestBody: {
+        name: string;
+        type: string;
+        capacity_ltr: number;
+        capacity_cans: number;
+        driver: string;
+      };
+
+      query: {
+        id: string;
+      };
+    };
+    Delete: {
+      authorization?: string;
+
+      query: {
+        id: string;
+      };
+    };
+  };
+
+  responses: {
+    List: {
+      status: boolean;
+      message: string;
+      data: Array<{
+        _id: string;
+        id: string;
+        name: string;
+        type: string;
+        capacity_ltr: number;
+        capacity_cans: number;
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        store: {
+          _id: string;
+          id?: number;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            createdAt: string;
+            updatedAt: string;
+          };
+        };
+        driver: {
+          _id: string;
+          id: string;
+          name: string;
+          phone: string;
+          employment_type: string;
+          plant: {
+            _id: string;
+            name: string;
+            address: string;
+            coordinate: {
+              lat: number;
+              long: number;
+            };
+            type: number;
+            createdAt: string;
+            updatedAt: string;
+          };
+          status: string;
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
+        current_location: string;
+        createdAt: string;
+        updatedAt: string;
+      }>;
+      meta: {
+        pages: number;
+        total: number;
+        page: number;
+        size: number;
+      };
+    };
+    Create: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id: string;
+        name: string;
+        type: string;
+        capacity_ltr: number;
+        capacity_cans: number;
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        store: {
+          _id: string;
+          id?: number;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            createdAt: string;
+            updatedAt: string;
+          };
+        };
+        driver: {
+          _id: string;
+          id: string;
+          name: string;
+          phone: string;
+          employment_type: string;
+          plant: {
+            _id: string;
+            name: string;
+            address: string;
+            coordinate: {
+              lat: number;
+              long: number;
+            };
+            type: number;
+            createdAt: string;
+            updatedAt: string;
+          };
+          status: string;
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
+        current_location: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Update: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id: string;
+        name: string;
+        type: string;
+        capacity_ltr: number;
+        capacity_cans: number;
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        store: {
+          _id: string;
+          id?: number;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            createdAt: string;
+            updatedAt: string;
+          };
+        };
+        driver: {
+          _id: string;
+          id: string;
+          name: string;
+          phone: string;
+          employment_type: string;
+          plant: {
+            _id: string;
+            name: string;
+            address: string;
+            coordinate: {
+              lat: number;
+              long: number;
+            };
+            type: number;
+            createdAt: string;
+            updatedAt: string;
+          };
+          status: string;
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
+        current_location: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Delete: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id: string;
+        name: string;
+        type: string;
+        capacity_ltr: number;
+        capacity_cans: number;
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        store: {
+          _id: string;
+          id?: number;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            createdAt: string;
+            updatedAt: string;
+          };
+        };
+        driver: {
+          _id: string;
+          id: string;
+          name: string;
+          phone: string;
+          employment_type: string;
+          plant: {
+            _id: string;
+            name: string;
+            address: string;
+            coordinate: {
+              lat: number;
+              long: number;
+            };
+            type: number;
+            createdAt: string;
+            updatedAt: string;
+          };
+          status: string;
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
+        current_location: string;
         createdAt: string;
         updatedAt: string;
       };

@@ -186,12 +186,12 @@ export const menuItems = [
     dropdownItems: [
       {
         name: 'Drivers',
-        href: routes.deliveries.batch,
+        href: routes.deliveries.driver,
         ...can(6)
       },
       {
-        name: 'Cans',
-        href: routes.deliveries.cans,
+        name: 'Vehicles',
+        href: routes.deliveries.vehicle,
         ...can(7)
       },
     ],
