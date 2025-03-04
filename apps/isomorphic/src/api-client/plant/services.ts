@@ -10,7 +10,7 @@ import type {
   AdminPlantRelationData,
   ModuleData,
   PlantData,
-  DeliveryAgentData,
+  DriverData,
   WarehouseData,
   StoreData,
   StoreCityData,
@@ -509,18 +509,18 @@ export class PlantService {
   }
 }
 
-export class DeliveryAgentService {
+export class DriverService {
   /**
-   * @returns any DeliveryAgent list response
+   * @returns any Driver list response
    * @throws ApiError
    */
   public static list(
-    data: DeliveryAgentData['payloads']['List']
-  ): CancelablePromise<DeliveryAgentData['responses']['List']> {
+    data: DriverData['payloads']['List']
+  ): CancelablePromise<DriverData['responses']['List']> {
     const { query, authorization } = data;
     return __request(OpenAPI, {
       method: 'GET',
-      url: '/plant/delivery-agent/',
+      url: '/plant/driver/',
       headers: {},
       query: {
         ...query,
@@ -529,16 +529,16 @@ export class DeliveryAgentService {
   }
 
   /**
-   * @returns any DeliveryAgent create response
+   * @returns any Driver create response
    * @throws ApiError
    */
   public static create(
-    data: DeliveryAgentData['payloads']['Create']
-  ): CancelablePromise<DeliveryAgentData['responses']['Create']> {
+    data: DriverData['payloads']['Create']
+  ): CancelablePromise<DriverData['responses']['Create']> {
     const { query, requestBody, authorization } = data;
     return __request(OpenAPI, {
       method: 'POST',
-      url: '/plant/delivery-agent/',
+      url: '/plant/driver/',
       headers: {},
       body: requestBody,
       mediaType: 'application/json',
@@ -546,16 +546,16 @@ export class DeliveryAgentService {
   }
 
   /**
-   * @returns any DeliveryAgent update response
+   * @returns any Driver update response
    * @throws ApiError
    */
   public static update(
-    data: DeliveryAgentData['payloads']['Update']
-  ): CancelablePromise<DeliveryAgentData['responses']['Update']> {
+    data: DriverData['payloads']['Update']
+  ): CancelablePromise<DriverData['responses']['Update']> {
     const { query, requestBody, authorization } = data;
     return __request(OpenAPI, {
       method: 'PUT',
-      url: '/plant/delivery-agent/',
+      url: '/plant/driver/',
       headers: {},
       query: {
         ...query,
@@ -566,16 +566,16 @@ export class DeliveryAgentService {
   }
 
   /**
-   * @returns any DeliveryAgent delete response
+   * @returns any Driver delete response
    * @throws ApiError
    */
   public static delete(
-    data: DeliveryAgentData['payloads']['Delete']
-  ): CancelablePromise<DeliveryAgentData['responses']['Delete']> {
+    data: DriverData['payloads']['Delete']
+  ): CancelablePromise<DriverData['responses']['Delete']> {
     const { query, authorization } = data;
     return __request(OpenAPI, {
       method: 'DELETE',
-      url: '/plant/delivery-agent/',
+      url: '/plant/driver/',
       headers: {},
       query: {
         ...query,

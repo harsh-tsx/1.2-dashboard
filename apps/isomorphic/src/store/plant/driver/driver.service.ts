@@ -1,12 +1,12 @@
 import { create } from 'zustand'
 import { combine } from 'zustand/middleware'
 import toast from 'react-hot-toast'
-import { DeliveryAgentData } from '@/api-client/plant/models'
-import { DeliveryAgentService } from '@/api-client/PlantApi'
+import { DriverData } from '@/api-client/plant/models'
+import { DriverService } from '@/api-client/PlantApi'
 
 
 
-export type Driver = DeliveryAgentData['responses']['List']['data'][0]
+export type Driver = DriverData['responses']['List']['data'][0]
 
 
 
@@ -36,7 +36,7 @@ const useDriverStore = create(
             example: { page, size, search, paginate }
           } = get()
 
-          toast.promise(DeliveryAgentService.list({
+          toast.promise(DriverService.list({
             query: {
               page: page as any,
               size: size as any,
@@ -113,18 +113,18 @@ const useDriverStore = create(
         }
       },
       select: (id: any) => set(prev => ({ example: { ...prev.example, id: id } })),
-      add: async (bodyData: DeliveryAgentData['payloads']['Create']['requestBody']) => {
+      add: async (bodyData: DriverData['payloads']['Create']['requestBody']) => {
         let id = get().example.id
         let isUser = get().example.isUser
 
         toast.promise(
           id
-            ? DeliveryAgentService.update({
+            ? DriverService.update({
               query: {
                 id: id,
               },
               requestBody: bodyData as any,
-            }) : DeliveryAgentService.create({
+            }) : DriverService.create({
               requestBody: bodyData,
             }),
           {
@@ -146,7 +146,7 @@ const useDriverStore = create(
 
         if (!id) return toast.error('No plan to delete')
 
-        toast.promise(DeliveryAgentService.delete({ query: { id: id } }), {
+        toast.promise(DriverService.delete({ query: { id: id } }), {
           loading: 'deleting',
           success: res => {
             useDriverStore.getState().get.paginate({})

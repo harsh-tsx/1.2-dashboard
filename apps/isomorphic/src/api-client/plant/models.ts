@@ -1200,7 +1200,7 @@ export type PlantData = {
   };
 };
 
-export type DeliveryAgentData = {
+export type DriverData = {
   payloads: {
     List: {
       authorization?: string;
