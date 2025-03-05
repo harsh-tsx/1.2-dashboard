@@ -22,7 +22,13 @@ import { PiSealCheckFill } from "react-icons/pi";
 import { PiSealCheckLight } from "react-icons/pi";
 
 const columnHelper = createColumnHelper<ListTableDataType>();
-//
+const OrderStatus = {
+  PENDING: "warning",
+  "OUT FOR DELIVERY": "secondary",
+  "DELIVERED": "success",
+  "COMPLETED": "success",
+  get: (status: string) => (OrderStatus as any)[status],
+};
 export const ListColumns = [
   // columnHelper.display({
   //   id: 'select',
@@ -84,7 +90,18 @@ export const ListColumns = [
     cell: ({ row }) => row.original.watercans,
   }),
 
-
+  columnHelper.accessor('status', {
+    id: 'status',
+    // size: 150,
+    header: 'Status',
+    cell: ({ row }) => <Badge
+      variant="outline"
+      className="w-32 font-medium"
+      color={OrderStatus.get(row.original.status)}
+    >
+      {row.original.status}
+    </Badge>,
+  }),
 
   columnHelper.accessor('createdAt', {
     id: 'date',

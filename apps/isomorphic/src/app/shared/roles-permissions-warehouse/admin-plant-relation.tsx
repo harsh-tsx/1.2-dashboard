@@ -89,7 +89,8 @@ export default function AdminPlantRelation({ admin }: { admin?: Admin }) {
 
   return (
     <>
-      <Box className='p-5' >
+      <Box  >
+        <GlobalSchemaForm schema={adminWarehouseRelationSchema} onSubmitCb={onSubmit} />
         <Table
           table={table}
           variant="modern"
@@ -98,7 +99,6 @@ export default function AdminPlantRelation({ admin }: { admin?: Admin }) {
             rowClassName: 'last:border-0',
           }}
         />
-        <GlobalSchemaForm schema={adminWarehouseRelationSchema} onSubmitCb={onSubmit} />
       </Box>
     </>
   );
