@@ -79,9 +79,27 @@ export const ListColumns = [
   columnHelper.accessor('date', {
     id: 'date',
     size: 150,
-    header: 'Date',
-    cell: ({ row }) => <DateCell date={new Date(row.original.date)} />,
+    header: 'Scheduled on',
+    cell: ({ row }) => <DateCell date={new Date(row.original.date)} timeClassName='hidden' />,
   }),
+
+  columnHelper.accessor('out_at', {
+    id: 'out_at',
+    size: 150,
+    header: 'Out at',
+    cell: ({ row }) => row.original?.out_at ? <DateCell date={new Date(row.original?.out_at)} /> : <></>,
+
+  }),
+
+  columnHelper.accessor('delivered_at', {
+    id: 'date',
+    size: 150,
+    header: 'Delivered at',
+    cell: ({ row }) => row.original?.delivered_at ? <DateCell date={new Date(row.original?.delivered_at)} /> : <></>,
+
+  }),
+
+
 
   columnHelper.accessor('watercans', {
     id: 'watercans',

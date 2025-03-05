@@ -2420,6 +2420,32 @@ export type StoreComplaintData = {
             createdAt: string;
             updatedAt: string;
           };
+          employee: {
+            _id: string;
+            id: string;
+            name: string;
+            password: string;
+            plant: {
+              _id: string;
+              name: string;
+              address: string;
+              coordinate: {
+                lat: number;
+                long: number;
+              };
+              type: number;
+              createdAt: string;
+              updatedAt: string;
+            };
+            status: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          delivered_at: string;
+          out_at: string;
+          scanned_outside: boolean;
+          remark: string;
+          images: Array<string>;
           createdAt: string;
           updatedAt: string;
         };
@@ -2603,6 +2629,32 @@ export type StoreComplaintData = {
             createdAt: string;
             updatedAt: string;
           };
+          employee: {
+            _id: string;
+            id: string;
+            name: string;
+            password: string;
+            plant: {
+              _id: string;
+              name: string;
+              address: string;
+              coordinate: {
+                lat: number;
+                long: number;
+              };
+              type: number;
+              createdAt: string;
+              updatedAt: string;
+            };
+            status: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          delivered_at: string;
+          out_at: string;
+          scanned_outside: boolean;
+          remark: string;
+          images: Array<string>;
           createdAt: string;
           updatedAt: string;
         };
@@ -2780,6 +2832,32 @@ export type StoreComplaintData = {
             createdAt: string;
             updatedAt: string;
           };
+          employee: {
+            _id: string;
+            id: string;
+            name: string;
+            password: string;
+            plant: {
+              _id: string;
+              name: string;
+              address: string;
+              coordinate: {
+                lat: number;
+                long: number;
+              };
+              type: number;
+              createdAt: string;
+              updatedAt: string;
+            };
+            status: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          delivered_at: string;
+          out_at: string;
+          scanned_outside: boolean;
+          remark: string;
+          images: Array<string>;
           createdAt: string;
           updatedAt: string;
         };
@@ -3481,6 +3559,32 @@ export type OrderData = {
           createdAt: string;
           updatedAt: string;
         };
+        employee: {
+          _id: string;
+          id: string;
+          name: string;
+          password: string;
+          plant: {
+            _id: string;
+            name: string;
+            address: string;
+            coordinate: {
+              lat: number;
+              long: number;
+            };
+            type: number;
+            createdAt: string;
+            updatedAt: string;
+          };
+          status: string;
+          createdAt: string;
+          updatedAt: string;
+        };
+        delivered_at: string;
+        out_at: string;
+        scanned_outside: boolean;
+        remark: string;
+        images: Array<string>;
         createdAt: string;
         updatedAt: string;
       }>;
@@ -3558,6 +3662,32 @@ export type OrderData = {
           createdAt: string;
           updatedAt: string;
         };
+        employee: {
+          _id: string;
+          id: string;
+          name: string;
+          password: string;
+          plant: {
+            _id: string;
+            name: string;
+            address: string;
+            coordinate: {
+              lat: number;
+              long: number;
+            };
+            type: number;
+            createdAt: string;
+            updatedAt: string;
+          };
+          status: string;
+          createdAt: string;
+          updatedAt: string;
+        };
+        delivered_at: string;
+        out_at: string;
+        scanned_outside: boolean;
+        remark: string;
+        images: Array<string>;
         createdAt: string;
         updatedAt: string;
       };
@@ -3629,6 +3759,32 @@ export type OrderData = {
           createdAt: string;
           updatedAt: string;
         };
+        employee: {
+          _id: string;
+          id: string;
+          name: string;
+          password: string;
+          plant: {
+            _id: string;
+            name: string;
+            address: string;
+            coordinate: {
+              lat: number;
+              long: number;
+            };
+            type: number;
+            createdAt: string;
+            updatedAt: string;
+          };
+          status: string;
+          createdAt: string;
+          updatedAt: string;
+        };
+        delivered_at: string;
+        out_at: string;
+        scanned_outside: boolean;
+        remark: string;
+        images: Array<string>;
         createdAt: string;
         updatedAt: string;
       };
@@ -3700,6 +3856,32 @@ export type OrderData = {
           createdAt: string;
           updatedAt: string;
         };
+        employee: {
+          _id: string;
+          id: string;
+          name: string;
+          password: string;
+          plant: {
+            _id: string;
+            name: string;
+            address: string;
+            coordinate: {
+              lat: number;
+              long: number;
+            };
+            type: number;
+            createdAt: string;
+            updatedAt: string;
+          };
+          status: string;
+          createdAt: string;
+          updatedAt: string;
+        };
+        delivered_at: string;
+        out_at: string;
+        scanned_outside: boolean;
+        remark: string;
+        images: Array<string>;
         createdAt: string;
         updatedAt: string;
       };
