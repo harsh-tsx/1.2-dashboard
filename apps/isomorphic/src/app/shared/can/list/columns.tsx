@@ -97,9 +97,10 @@ export const ListColumns = [
     id: 'plant.name',
     size: 200,
     header: 'Plant',
-    cell: ({ row }) => <div>
-      <p>{row.original.plant?.name}</p>
-    </div>,
+    cell: ({ row }) => <AvatarCard
+      src={row.original.plant?.name}
+      name={row.original.plant?.name}
+    />,
   }),
   columnHelper.accessor('status', {
     id: 'status',
@@ -120,6 +121,16 @@ export const ListColumns = [
         </Flex>
       </>
     },
+  }),
+
+  columnHelper.accessor('store.name', {
+    id: 'store.name',
+    size: 200,
+    header: 'Store',
+    cell: ({ row }) => <AvatarCard
+      src={row.original.store?.name}
+      name={row.original.store?.name}
+    />,
   }),
 
   columnHelper.accessor('rotations', {

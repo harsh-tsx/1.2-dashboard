@@ -3109,6 +3109,31 @@ export type WaterCanData = {
           createdAt: string;
           updatedAt: string;
         };
+        store: {
+          _id: string;
+          id?: number;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            createdAt: string;
+            updatedAt: string;
+          };
+        };
         rotations: number;
         createdAt: string;
         updatedAt: string;
@@ -3140,6 +3165,31 @@ export type WaterCanData = {
           createdAt: string;
           updatedAt: string;
         };
+        store: {
+          _id: string;
+          id?: number;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            createdAt: string;
+            updatedAt: string;
+          };
+        };
         rotations: number;
         createdAt: string;
         updatedAt: string;
@@ -3165,6 +3215,31 @@ export type WaterCanData = {
           createdAt: string;
           updatedAt: string;
         };
+        store: {
+          _id: string;
+          id?: number;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            createdAt: string;
+            updatedAt: string;
+          };
+        };
         rotations: number;
         createdAt: string;
         updatedAt: string;
@@ -3189,6 +3264,31 @@ export type WaterCanData = {
           type: number;
           createdAt: string;
           updatedAt: string;
+        };
+        store: {
+          _id: string;
+          id?: number;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            createdAt: string;
+            updatedAt: string;
+          };
         };
         rotations: number;
         createdAt: string;
