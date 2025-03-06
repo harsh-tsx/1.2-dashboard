@@ -66,7 +66,6 @@ export const ListColumns = [
 
   columnHelper.accessor('store._id', {
     id: 'store',
-    size: 250,
     header: 'Store',
     enableSorting: false,
     cell: ({ row }) => (
@@ -78,14 +77,12 @@ export const ListColumns = [
   }),
   columnHelper.accessor('date', {
     id: 'date',
-    size: 150,
     header: 'Scheduled on',
     cell: ({ row }) => <DateCell date={new Date(row.original.date)} timeClassName='hidden' />,
   }),
 
   columnHelper.accessor('out_at', {
     id: 'out_at',
-    size: 150,
     header: 'Out at',
     cell: ({ row }) => row.original?.out_at ? <DateCell date={new Date(row.original?.out_at)} /> : <></>,
 
@@ -93,7 +90,6 @@ export const ListColumns = [
 
   columnHelper.accessor('delivered_at', {
     id: 'date',
-    size: 150,
     header: 'Delivered at',
     cell: ({ row }) => row.original?.delivered_at ? <DateCell date={new Date(row.original?.delivered_at)} /> : <></>,
 
@@ -103,7 +99,6 @@ export const ListColumns = [
 
   columnHelper.accessor('watercans', {
     id: 'watercans',
-    size: 150,
     header: 'Can Count',
     cell: ({ row }) => row.original.watercans,
   }),
@@ -114,7 +109,7 @@ export const ListColumns = [
     header: 'Status',
     cell: ({ row }) => <Badge
       variant="outline"
-      className="w-32 font-medium"
+      className="min-w-32 font-medium"
       color={OrderStatus.get(row.original.status)}
     >
       {row.original.status}
@@ -123,7 +118,6 @@ export const ListColumns = [
 
   columnHelper.accessor('createdAt', {
     id: 'date',
-    size: 150,
     header: 'Created At',
     cell: ({ row }) => <DateCell date={new Date(row.original.createdAt)} />,
   }),
