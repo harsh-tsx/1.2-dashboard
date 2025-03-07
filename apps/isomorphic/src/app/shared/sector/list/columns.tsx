@@ -48,7 +48,7 @@ export const ListColumns = [
     id: 'city',
     size: 150,
     header: 'City',
-    cell: ({ row }) => row.original.city.name,
+    cell: ({ row }) => row.original.city?.name,
   }),
 
 
