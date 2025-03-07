@@ -175,6 +175,7 @@ export const ListColumns = [
           />
         }}
         deletePopoverDescription={`Are you sure you want to delete this #${row.original.id} ?`}
+        hideDelete={true}
       />
     ),
   }),
