@@ -160,18 +160,7 @@ const useWaterCanStore = create(
 
         if (!id) return toast.error('No plan to delete')
 
-        toast.promise(WaterCanService.delete({ query: { id: id } }), {
-          loading: 'deleting',
-          success: res => {
-            useWaterCanStore.getState().get.paginate({})
-            useWaterCanStore.getState().select(null)
-            return res?.message
-          },
-          error: err => {
-            useWaterCanStore.getState().select(null)
-            return err
-          }
-        })
+
       }
     })
   )
