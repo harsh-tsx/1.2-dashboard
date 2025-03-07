@@ -203,6 +203,8 @@ export const ListColumns = [
                               {formatDate(new Date(row.original?.createdAt), "MMMM D, YYYY h:mm A")}
                             </Breadcrumb.Item>
                           </Breadcrumb>
+                          <Text><b>complaint id:</b> {row.original?._id}</Text>
+                          <Text><b>order id:</b> {row.original?.order._id}</Text>
                           <Text><b>type:</b> {row.original?.type}</Text>
                           <Text><b>description:</b> {row.original?.description}</Text>
                           <Text><b>remark:</b> {row.original?.remark}</Text>
