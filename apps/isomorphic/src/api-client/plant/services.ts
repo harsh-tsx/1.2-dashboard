@@ -12,6 +12,7 @@ import type {
   PlantData,
   DriverData,
   DeliveryVehicleData,
+  StatsData,
   WarehouseData,
   StoreData,
   StoreCityData,
@@ -660,6 +661,23 @@ export class DeliveryVehicleService {
   }
 }
 
+export class StatsService {
+  /**
+   * @returns any Stats response
+   * @throws ApiError
+   */
+  public static stats(
+    data: StatsData['payloads']['Stats'] = {}
+  ): CancelablePromise<StatsData['responses']['Stats']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/stats/',
+      headers: {},
+    });
+  }
+}
+
 export class WarehouseService {
   /**
    * @returns any Plants list response
@@ -1200,24 +1218,6 @@ export class WaterCanService {
       },
       body: requestBody,
       mediaType: 'application/json',
-    });
-  }
-
-  /**
-   * @returns any WaterCans delete response
-   * @throws ApiError
-   */
-  public static delete(
-    data: WaterCanData['payloads']['Delete']
-  ): CancelablePromise<WaterCanData['responses']['Delete']> {
-    const { query, authorization } = data;
-    return __request(OpenAPI, {
-      method: 'DELETE',
-      url: '/plant/water-can/',
-      headers: {},
-      query: {
-        ...query,
-      },
     });
   }
 }

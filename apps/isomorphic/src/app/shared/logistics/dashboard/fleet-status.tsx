@@ -5,22 +5,25 @@ import { Title, Text } from 'rizzui';
 import cn from '@core/utils/class-names';
 import HourGlassIcon from '@core/components/icons/hour-glass';
 import WeighingScale from '@core/components/icons/weighing-scale';
+import useStatsStore from '@/store/plant/stats/stats.service';
 
-const data = [
-  { name: 'Available:', value: 20, color: '#3872FA' },
-  { name: 'In Maintenance:', value: 18, color: '#eab308' },
-  { name: 'On the Move:', value: 35, color: '#10b981' },
-];
+
 
 export default function FleetStatus({ className }: { className?: string }) {
+  const { stats: { detail } } = useStatsStore();
+  const data = [
+    { name: 'Available:', value: detail?.can_stats.atPlant, color: '#3872FA' },
+    { name: 'At Store:', value: detail?.can_stats.atPlant, color: '#eab308' },
+    { name: 'On the Move:', value: detail?.can_stats.onWayStore, color: '#10b981' },
+  ];
   return (
     <div className={cn('flex flex-col gap-5 border-0 p-0 lg:p-0', className)}>
-      <div className="grid items-start rounded-lg border border-muted p-5 @xl:grid-cols-2 lg:p-7">
+      <div className="grid items-start rounded-lg border  p-5 @xl:grid-cols-2 lg:p-7 border-green-600" /** border-muted */>
         <Title
           as="h3"
           className="col-span-full mb-8 text-base font-semibold sm:text-lg"
         >
-          Fleet Status
+          WaterCan Status
         </Title>
         <div className="mb-6 w-full @3xl:w-40 @4xl:mb-0">
           <div className="mx-auto h-44 w-44">
@@ -46,7 +49,7 @@ export default function FleetStatus({ className }: { className?: string }) {
             </ResponsiveContainer>
           </div>
           <p className="mt-4 text-center font-semibold text-gray-800">
-            Fleet Efficacy
+            WaterCan Efficacy
           </p>
         </div>
         <div className="">
@@ -74,10 +77,10 @@ export default function FleetStatus({ className }: { className?: string }) {
                 style={{ backgroundColor: 'red' }}
               />
               <Title as="h5" className="text-sm font-medium">
-                Total Fleet:
+                Total Cans:
               </Title>
             </div>
-            <Text as="span">73</Text>
+            <Text as="span">{detail?.can_stats.totalCans}</Text>
           </div>
         </div>
       </div>

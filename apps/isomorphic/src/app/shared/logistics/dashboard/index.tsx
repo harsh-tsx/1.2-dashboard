@@ -21,11 +21,11 @@ export default function LogisticsDashboard() {
       <div className="grid grid-cols-12 gap-6 3xl:gap-8">
         <StatCards className="col-span-full" />
 
+        <FleetStatus className="col-span-full @3xl:col-span-6 @[1429px]:col-span-4" />
         <OpenSalesOrder className="col-span-full @3xl:col-span-6 @[1429px]:col-span-4" />
         <DispatchPlanning className="col-span-full @3xl:col-span-6 @[1429px]:col-span-4" />
         <LoadingWorkflow className="col-span-full @3xl:col-span-6 @[1429px]:col-span-4" />
 
-        <FleetStatus className="col-span-full @3xl:col-span-6 @[1429px]:col-span-4" />
         <ProfitChart className="col-span-full @3xl:col-span-full @[1429px]:col-span-8" />
 
         <ShipmentTableWidget

@@ -34,9 +34,9 @@ export const ListColumns = [
 
 
   columnHelper.accessor('name', {
-    id: 'watercans',
+    id: 'name',
     size: 150,
-    header: 'Can Count',
+    header: 'name',
     cell: ({ row }) => row.original.name,
   }),
 

@@ -13,11 +13,14 @@ import SimpleBar from '@core/ui/simplebar';
 import DropdownAction from '@core/components/charts/dropdown-action';
 import TrendingUpIcon from '@core/components/icons/trending-up';
 import TrendingDownIcon from '@core/components/icons/trending-down';
+import useStatsStore from '@/store/plant/stats/stats.service';
+import { useEffect } from 'react';
 
 const statData = [
   {
     id: '1',
-    title: 'Costs',
+    key: 'totalCans',
+    title: 'Total Cans',
     icon: <ExpenseIcon className="h-7 w-7" />,
     graphIcon: <TrendingUpIcon className="me-1 h-4 w-4" />,
     graphColor: 'text-red',
@@ -79,9 +82,14 @@ const viewOptions = [
 ];
 
 export default function StatCards({ className }: { className?: string }) {
+  const statsStore = useStatsStore();
   function handleChange(viewType: string) {
     console.log('viewType', viewType);
   }
+
+  useEffect(() => {
+    statsStore.get.stats();
+  }, [])
 
   return (
     <WidgetCard

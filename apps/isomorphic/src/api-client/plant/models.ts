@@ -1713,6 +1713,42 @@ export type DeliveryVehicleData = {
   };
 };
 
+export type StatsData = {
+  payloads: {
+    Stats: {
+      authorization?: string;
+
+      query?: {};
+    };
+  };
+
+  responses: {
+    Stats: {
+      status: boolean;
+      message: string;
+      data: {
+        can_stats: {
+          totalCans: number;
+          atPlant: number;
+          atWarehouse: number;
+          atStore: number;
+          inTransit: number;
+          onWayStore: number;
+          outForReturn: number;
+          damaged: number;
+          decommissioned: number;
+        };
+      };
+      meta: {
+        pages: number;
+        total: number;
+        page: number;
+        size: number;
+      };
+    };
+  };
+};
+
 export type WarehouseData = {
   payloads: {
     List: {
@@ -3079,13 +3115,6 @@ export type WaterCanData = {
         id: string;
       };
     };
-    Delete: {
-      authorization?: string;
-
-      query: {
-        id: string;
-      };
-    };
   };
 
   responses: {
@@ -3196,56 +3225,6 @@ export type WaterCanData = {
       };
     };
     Update: {
-      status: boolean;
-      message: string;
-      data: {
-        _id: string;
-        id: number;
-        qr_url: string;
-        status: string;
-        plant: {
-          _id: string;
-          name: string;
-          address: string;
-          coordinate: {
-            lat: number;
-            long: number;
-          };
-          type: number;
-          createdAt: string;
-          updatedAt: string;
-        };
-        store: {
-          _id: string;
-          id?: number;
-          name: string;
-          address: string;
-          coordinate: {
-            lat: number;
-            long: number;
-          };
-          code?: string;
-          createdAt: string;
-          updatedAt: string;
-          sector: {
-            _id: string;
-            name: string;
-            city: {
-              _id: string;
-              name: string;
-              createdAt: string;
-              updatedAt: string;
-            };
-            createdAt: string;
-            updatedAt: string;
-          };
-        };
-        rotations: number;
-        createdAt: string;
-        updatedAt: string;
-      };
-    };
-    Delete: {
       status: boolean;
       message: string;
       data: {
