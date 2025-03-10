@@ -40,7 +40,7 @@ const QRCodePDFMain = (props: Props) => {
 
 
     useEffect(() => {
-        canStore.get.paginate({ batches: `${detail?._id}`, size: 100 })
+        canStore.get.paginate({ batches: `${detail?._id}`, size: 500 })
     }, [])
     return (
         <Box className='p-5 flex flex-row items-center justify-between' >

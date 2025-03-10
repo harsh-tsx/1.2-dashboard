@@ -63,7 +63,7 @@ const QRCodePDF = ({ qrData }: { qrData: WaterCan[] }) => {
                         {qrData.slice(pageIndex * 15, (pageIndex + 1) * 15).map((data, index) => (
                             <View style={styles.qrContainer} key={index}>
                                 <Image src={data.qr_url} style={{ width: "100%", height: "100%" }} />
-                                <Text style={styles.qrText}>{data.id}</Text>
+                                <Text style={styles.qrText}>{data.plant?.name?.substring(0, 2).toUpperCase()}-{data.id}</Text>
                             </View>
                         ))}
 
