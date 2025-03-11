@@ -72,7 +72,7 @@ export const usersColumns = [
   columnHelper.accessor('plants', {
     id: 'plants',
     size: 50,
-    header: 'Plants/Warehouse',
+    header: 'Plants',
     cell: ({ row }) => {
       return (
         <Flex

@@ -1,32 +1,32 @@
 import { create } from 'zustand'
 import { combine } from 'zustand/middleware'
 import toast from 'react-hot-toast'
-import { AdminWarehouseRelationData } from '@/api-client/plant/models'
-import { AdminWarehouseRelationService } from '@/api-client/PlantApi'
+import { AdminPlantRelationData } from '@/api-client/plant/models'
+import { AdminPlantRelationService } from '@/api-client/PlantApi'
 import useAdminStore from '../admins/admins.service'
 
 
 
-export type AdminWarehouseRelation = AdminWarehouseRelationData['responses']['List']['data'][0]
+export type AdminPlantRelation = AdminPlantRelationData['responses']['List']['data'][0]
 
 
 
 let timeOut: any
 
-const useWarehouseRelationStore = create(
+const useAdminPlantRelationStore = create(
   combine(
     {
       example: {
         admin: null as any,
         id: null as any,
-        list: [] as AdminWarehouseRelation[],
+        list: [] as AdminPlantRelation[],
         total: 0,
         page: 0,
         pages: 0,
         size: 10,
         search: null as string | null,
         paginate: true as boolean,
-        detail: undefined as AdminWarehouseRelation | undefined,
+        detail: undefined as AdminPlantRelation | undefined,
         isUser: false as boolean
         // timeOut: null as any
       }
@@ -38,7 +38,7 @@ const useWarehouseRelationStore = create(
             example: { page, size, search, paginate, admin }
           } = get()
 
-          toast.promise(AdminWarehouseRelationService.list({
+          toast.promise(AdminPlantRelationService.list({
             query: {
               page: page as any,
               size: size as any,
@@ -94,7 +94,7 @@ const useWarehouseRelationStore = create(
                 admin: admin,
               }
             }))
-            useWarehouseRelationStore.getState().get.list()
+            useAdminPlantRelationStore.getState().get.list()
           }
 
           if (search) {
@@ -106,7 +106,7 @@ const useWarehouseRelationStore = create(
           }
           init()
         },
-        detail: async (id?: string, data?: AdminWarehouseRelation, isUser?: boolean) => {
+        detail: async (id?: string, data?: AdminPlantRelation, isUser?: boolean) => {
           set(prev => ({
             ...prev,
             example: {
@@ -119,25 +119,25 @@ const useWarehouseRelationStore = create(
         }
       },
       select: (id: any) => set(prev => ({ example: { ...prev.example, id: id } })),
-      add: async (bodyData: AdminWarehouseRelationData['payloads']['Create']['requestBody']) => {
+      add: async (bodyData: AdminPlantRelationData['payloads']['Create']['requestBody']) => {
         let id = get().example.id
         let admin = get().example.admin
         let isUser = get().example.isUser
 
         toast.promise(
-          AdminWarehouseRelationService.create({
+          AdminPlantRelationService.create({
             requestBody: bodyData,
           }),
           {
             loading: id ? 'Updating' : 'Adding',
             success: res => {
               useAdminStore.getState().get.paginate({})
-              useWarehouseRelationStore.getState().get.paginate({ admin: admin })
-              useWarehouseRelationStore.getState().select(null)
+              useAdminPlantRelationStore.getState().get.paginate({ admin: admin })
+              useAdminPlantRelationStore.getState().select(null)
               return res?.message
             },
             error: err => {
-              useWarehouseRelationStore.getState().select(null)
+              useAdminPlantRelationStore.getState().select(null)
               return err
             }
           }
@@ -149,15 +149,15 @@ const useWarehouseRelationStore = create(
 
         if (!id) return toast.error('No plan to delete')
 
-        toast.promise(AdminWarehouseRelationService.delete({ query: { id: id } }), {
+        toast.promise(AdminPlantRelationService.delete({ query: { id: id } }), {
           loading: 'deleting',
           success: res => {
-            useWarehouseRelationStore.getState().get.paginate({ admin: admin })
-            useWarehouseRelationStore.getState().select(null)
+            useAdminPlantRelationStore.getState().get.paginate({ admin: admin })
+            useAdminPlantRelationStore.getState().select(null)
             return res?.message
           },
           error: err => {
-            useWarehouseRelationStore.getState().select(null)
+            useAdminPlantRelationStore.getState().select(null)
             return err
           }
         })
@@ -166,4 +166,4 @@ const useWarehouseRelationStore = create(
   )
 )
 
-export default useWarehouseRelationStore
+export default useAdminPlantRelationStore

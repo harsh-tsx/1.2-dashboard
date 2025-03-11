@@ -69,10 +69,10 @@ export const usersColumns = [
     header: 'Role',
     cell: ({ row }) => row.original.role?.name,
   }),
-  columnHelper.accessor('plants', {
-    id: 'plants',
+  columnHelper.accessor('warehouses', {
+    id: 'warehouses',
     size: 50,
-    header: 'Plants/Warehouse',
+    header: 'Warehouse',
     cell: ({ row }) => {
       return (
         <Flex
@@ -81,7 +81,7 @@ export const usersColumns = [
         // className={cn("pe-3")}
         >
           <Text>
-            {row.original.plants || 0}
+            {row.original.warehouses || 0}
           </Text>
           <Tooltip
             size="sm"

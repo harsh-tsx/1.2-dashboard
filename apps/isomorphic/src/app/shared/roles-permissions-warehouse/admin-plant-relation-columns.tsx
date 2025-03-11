@@ -57,15 +57,15 @@ export const ListColumns = [
   //   ),
   // }),
 
-  columnHelper.accessor('plant.name', {
+  columnHelper.accessor('warehouse.name', {
     id: 'name',
     size: 250,
     header: 'name',
     enableSorting: false,
     cell: ({ row }) => (
       <AvatarCard
-        src={row.original.plant?.name}
-        name={row.original?.plant?.name}
+        src={row.original.warehouse?.name}
+        name={row.original?.warehouse?.name}
 
       />
     ),

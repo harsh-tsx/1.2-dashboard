@@ -20,8 +20,8 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
     },
     qrContainer: {
-        width: "2.2in", // Adjust for 5 per row
-        height: "2.2in",
+        width: "1.54in", // Adjust for 5 per row
+        height: "1.54in",
         margin: 0,
         alignItems: "center",
         justifyContent: "center",
@@ -57,10 +57,10 @@ const styles = StyleSheet.create({
 const QRCodePDF = ({ qrData }: { qrData: WaterCan[] }) => {
     return (
         <Document>
-            {Array.from({ length: Math.ceil(qrData.length / 15) }, (_, pageIndex) => (
+            {Array.from({ length: Math.ceil(qrData.length / 35) }, (_, pageIndex) => (
                 <Page size="A4" style={styles.page} key={pageIndex}>
                     <View style={styles.qrGrid}>
-                        {qrData.slice(pageIndex * 15, (pageIndex + 1) * 15).map((data, index) => (
+                        {qrData.slice(pageIndex * 35, (pageIndex + 1) * 35).map((data, index) => (
                             <View style={styles.qrContainer} key={index}>
                                 <Image src={data.qr_url} style={{ width: "100%", height: "100%" }} />
                                 <Text style={styles.qrText}>{data.plant?.name?.substring(0, 2).toUpperCase()}-{data.id}</Text>

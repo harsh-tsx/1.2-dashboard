@@ -3,7 +3,7 @@ import { object, SchemaDescription, string } from 'yup'
 
 
 export const adminWarehouseRelationSchema = object().shape({
-    plant: string().label("Warehouse").meta({
+    warehouse: string().label("Warehouse").meta({
         type: "select", selectProps: {
             disableDefaultFilter: true
         },

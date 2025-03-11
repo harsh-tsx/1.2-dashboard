@@ -403,6 +403,7 @@ export type PlantAdminData = {
           type: number;
         };
         plants: number;
+        warehouses: number;
         type: number;
       }>;
       meta: {
@@ -465,6 +466,7 @@ export type PlantAdminData = {
           type: number;
         };
         plants: number;
+        warehouses: number;
         type: number;
       };
     };
@@ -521,6 +523,7 @@ export type PlantAdminData = {
           type: number;
         };
         plants: number;
+        warehouses: number;
         type: number;
       };
     };
@@ -577,6 +580,7 @@ export type PlantAdminData = {
           type: number;
         };
         plants: number;
+        warehouses: number;
         type: number;
       };
     };
@@ -694,6 +698,7 @@ export type WareHouseAdminData = {
           type: number;
         };
         plants: number;
+        warehouses: number;
         type: number;
       }>;
       meta: {
@@ -756,6 +761,7 @@ export type WareHouseAdminData = {
           type: number;
         };
         plants: number;
+        warehouses: number;
         type: number;
       };
     };
@@ -812,6 +818,7 @@ export type WareHouseAdminData = {
           type: number;
         };
         plants: number;
+        warehouses: number;
         type: number;
       };
     };
@@ -868,6 +875,7 @@ export type WareHouseAdminData = {
           type: number;
         };
         plants: number;
+        warehouses: number;
         type: number;
       };
     };
@@ -1030,6 +1038,267 @@ export type AdminPlantRelationData = {
           ip?: string;
         };
         plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+  };
+};
+
+export type AdminWarehouseRelationData = {
+  payloads: {
+    List: {
+      authorization?: string;
+
+      query: {
+        admin: string;
+        page: string;
+        size: string;
+      };
+    };
+    Create: {
+      authorization?: string;
+      requestBody: {
+        admin: string;
+        warehouse: string;
+      };
+
+      query?: {};
+    };
+    Delete: {
+      authorization?: string;
+
+      query: {
+        id: string;
+      };
+    };
+  };
+
+  responses: {
+    List: {
+      status: boolean;
+      message: string;
+      data: Array<{
+        _id: string;
+        admin: {
+          _id: string;
+          name: string;
+          permissions: unknown;
+          super_admin: boolean;
+          phone?: string;
+          email?: string;
+          password?: string;
+          password_unhashed?: string;
+          token?: string;
+          parent: unknown;
+          createdAt: string;
+          updatedAt: string;
+          expire_at: string;
+          children_count: number;
+          children: unknown;
+          admins: Array<{
+            _id: string;
+            name: string;
+            permissions: unknown;
+            super_admin: boolean;
+            phone?: string;
+            password?: string;
+            token?: string;
+            parent: unknown;
+            createdAt: string;
+            updatedAt: string;
+            expire_at: string;
+            children_count: number;
+            children: unknown;
+            role: {
+              _id: string;
+              name: string;
+              permissions: Record<string, unknown>;
+              order: string | number;
+              super_admin: boolean;
+              color: string;
+              type: number;
+            };
+          }>;
+          role: {
+            _id: string;
+            name: string;
+            permissions: Record<string, unknown>;
+            order: string | number;
+            super_admin: boolean;
+            color: string;
+            type: number;
+          };
+          plants: number;
+          warehouses: number;
+          type: number;
+        };
+        warehouse: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      }>;
+      meta: {
+        pages: number;
+        total: number;
+        page: number;
+        size: number;
+      };
+    };
+    Create: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        admin: {
+          _id: string;
+          name: string;
+          permissions: unknown;
+          super_admin: boolean;
+          phone?: string;
+          email?: string;
+          password?: string;
+          password_unhashed?: string;
+          token?: string;
+          parent: unknown;
+          createdAt: string;
+          updatedAt: string;
+          expire_at: string;
+          children_count: number;
+          children: unknown;
+          admins: Array<{
+            _id: string;
+            name: string;
+            permissions: unknown;
+            super_admin: boolean;
+            phone?: string;
+            password?: string;
+            token?: string;
+            parent: unknown;
+            createdAt: string;
+            updatedAt: string;
+            expire_at: string;
+            children_count: number;
+            children: unknown;
+            role: {
+              _id: string;
+              name: string;
+              permissions: Record<string, unknown>;
+              order: string | number;
+              super_admin: boolean;
+              color: string;
+              type: number;
+            };
+          }>;
+          role: {
+            _id: string;
+            name: string;
+            permissions: Record<string, unknown>;
+            order: string | number;
+            super_admin: boolean;
+            color: string;
+            type: number;
+          };
+          plants: number;
+          warehouses: number;
+          type: number;
+        };
+        warehouse: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Delete: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        admin: {
+          _id: string;
+          name: string;
+          permissions: unknown;
+          super_admin: boolean;
+          phone?: string;
+          email?: string;
+          password?: string;
+          password_unhashed?: string;
+          token?: string;
+          parent: unknown;
+          createdAt: string;
+          updatedAt: string;
+          expire_at: string;
+          children_count: number;
+          children: unknown;
+          admins: Array<{
+            _id: string;
+            name: string;
+            permissions: unknown;
+            super_admin: boolean;
+            phone?: string;
+            password?: string;
+            token?: string;
+            parent: unknown;
+            createdAt: string;
+            updatedAt: string;
+            expire_at: string;
+            children_count: number;
+            children: unknown;
+            role: {
+              _id: string;
+              name: string;
+              permissions: Record<string, unknown>;
+              order: string | number;
+              super_admin: boolean;
+              color: string;
+              type: number;
+            };
+          }>;
+          role: {
+            _id: string;
+            name: string;
+            permissions: Record<string, unknown>;
+            order: string | number;
+            super_admin: boolean;
+            color: string;
+            type: number;
+          };
+          plants: number;
+          warehouses: number;
+          type: number;
+        };
+        warehouse: {
           _id: string;
           name: string;
           address: string;
@@ -1738,6 +2007,17 @@ export type StatsData = {
           damaged: number;
           decommissioned: number;
         };
+        order_stats: Array<{
+          date: string;
+          total: number;
+          pending: number;
+          outForDelivery: number;
+          delivered: number;
+          completed: number;
+          requestedForecast: number;
+          ackForecast: number;
+          rejectedForecast: number;
+        }>;
       };
       meta: {
         pages: number;
@@ -1768,7 +2048,6 @@ export type WarehouseData = {
           lat: number;
           long: number;
         };
-        type?: number;
       };
 
       query?: {};
@@ -3026,13 +3305,13 @@ export type StoreTimeData = {
       status: boolean;
       message: string;
       data: Array<{
-        _id: string;
-        id: number;
-        store: string;
-        from: number;
-        to: number;
-        createdAt: string;
-        updatedAt: string;
+        _id?: string;
+        id?: number;
+        store?: string;
+        from?: number;
+        to?: number;
+        createdAt?: string;
+        updatedAt?: string;
       }>;
       meta: {
         pages: number;
@@ -3045,39 +3324,39 @@ export type StoreTimeData = {
       status: boolean;
       message: string;
       data: {
-        _id: string;
-        id: number;
-        store: string;
-        from: number;
-        to: number;
-        createdAt: string;
-        updatedAt: string;
+        _id?: string;
+        id?: number;
+        store?: string;
+        from?: number;
+        to?: number;
+        createdAt?: string;
+        updatedAt?: string;
       };
     };
     Update: {
       status: boolean;
       message: string;
       data: {
-        _id: string;
-        id: number;
-        store: string;
-        from: number;
-        to: number;
-        createdAt: string;
-        updatedAt: string;
+        _id?: string;
+        id?: number;
+        store?: string;
+        from?: number;
+        to?: number;
+        createdAt?: string;
+        updatedAt?: string;
       };
     };
     Delete: {
       status: boolean;
       message: string;
       data: {
-        _id: string;
-        id: number;
-        store: string;
-        from: number;
-        to: number;
-        createdAt: string;
-        updatedAt: string;
+        _id?: string;
+        id?: number;
+        store?: string;
+        from?: number;
+        to?: number;
+        createdAt?: string;
+        updatedAt?: string;
       };
     };
   };
@@ -3126,6 +3405,7 @@ export type WaterCanData = {
         id: number;
         qr_url: string;
         status: string;
+        prev_status: string;
         plant: {
           _id: string;
           name: string;
@@ -3182,6 +3462,7 @@ export type WaterCanData = {
         id: number;
         qr_url: string;
         status: string;
+        prev_status: string;
         plant: {
           _id: string;
           name: string;
@@ -3232,6 +3513,7 @@ export type WaterCanData = {
         id: number;
         qr_url: string;
         status: string;
+        prev_status: string;
         plant: {
           _id: string;
           name: string;

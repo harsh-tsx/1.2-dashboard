@@ -8,6 +8,7 @@ import type {
   PlantAdminData,
   WareHouseAdminData,
   AdminPlantRelationData,
+  AdminWarehouseRelationData,
   ModuleData,
   PlantData,
   DriverData,
@@ -408,6 +409,61 @@ export class AdminPlantRelationService {
     return __request(OpenAPI, {
       method: 'DELETE',
       url: '/plant/admin-plant-relation/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+}
+
+export class AdminWarehouseRelationService {
+  /**
+   * @returns any AdminWarehouseRelation list response
+   * @throws ApiError
+   */
+  public static list(
+    data: AdminWarehouseRelationData['payloads']['List']
+  ): CancelablePromise<AdminWarehouseRelationData['responses']['List']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/admin-warehouse-relation/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+
+  /**
+   * @returns any AdminWarehouseRelation create response
+   * @throws ApiError
+   */
+  public static create(
+    data: AdminWarehouseRelationData['payloads']['Create']
+  ): CancelablePromise<AdminWarehouseRelationData['responses']['Create']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'POST',
+      url: '/plant/admin-warehouse-relation/',
+      headers: {},
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any AdminWarehouseRelation delete response
+   * @throws ApiError
+   */
+  public static delete(
+    data: AdminWarehouseRelationData['payloads']['Delete']
+  ): CancelablePromise<AdminWarehouseRelationData['responses']['Delete']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'DELETE',
+      url: '/plant/admin-warehouse-relation/',
       headers: {},
       query: {
         ...query,

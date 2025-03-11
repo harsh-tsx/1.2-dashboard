@@ -13,11 +13,11 @@ import { table } from 'console';
 import ModalIconButton from '../../modal-icon-button';
 import PencilIcon from '@core/components/icons/pencil';
 import GlobalSchemaForm from '../../common/GlobalSchemaForm';
-import { number, object, string } from 'yup';
+import { InferType, number, object, string } from 'yup';
 import { createExampleSchema } from '@/validators/create-example';
 import { injectDefaults } from '@core/utils/yup-helper'
 import useExampleStore from '@/store/plant/warehouse/warehouse.service';
-import { plantSchema } from '@/validators/plant.schema';
+import { warehouseSchema } from '@/validators/warehouse.schema';
 
 const columnHelper = createColumnHelper<ListTableDataType>();
 
@@ -110,7 +110,14 @@ export const ListColumns = [
             icon={
               <PencilIcon className="size-4" />
             }
-            view={<GlobalSchemaForm onSubmitCb={useExampleStore.getState().add} schema={injectDefaults(plantSchema, row.original).label("Edit").meta({ button: "Update" })} />}
+            view={<GlobalSchemaForm<InferType<typeof warehouseSchema>> onSubmitCb={async (data) => {
+              (data as any).coordinate = { lat: data.lat, long: data.long }
+
+              delete (data as any).lat;
+              delete (data as any).long;
+
+              await useExampleStore.getState().add(data as any);
+            }} schema={injectDefaults(warehouseSchema, { ...row.original, lat: row.original.coordinate.lat, long: row.original.coordinate.long }).label("Edit").meta({ button: "Update" })} />}
             customSize="600px"
             className="mt-0"
             onClickCustom={() => {

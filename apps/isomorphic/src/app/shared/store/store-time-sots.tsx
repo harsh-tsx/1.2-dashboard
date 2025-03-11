@@ -17,11 +17,11 @@ import {
   statuses,
 } from '@/app/shared/roles-permissions/utils';
 import useRoleStore from '@/store/plant/roles/role.service';
-import useAdminStore, { AdminPlantRelation as AdminPlantRelationData } from '@/store/plant/admin-plant-relation/admin-plant-relation.service';
+import useAdminStore, { AdminWarehouseRelation as AdminPlantRelationData } from '@/store/plant/admin-plant-relation/admin-plant-relation.service';
 import GlobalSchemaForm from '../common/GlobalSchemaForm';
 import { adminWarehouseRelationSchema } from '@/validators/admin-warehouse-relation.schema';
 import { Admin } from '@/store/plant/admins/admins.service';
-import useAdminPlantRelationStore from '@/store/plant/admin-plant-relation/admin-plant-relation.service';
+import useWarehouseRelationStore from '@/store/plant/admin-plant-relation/admin-plant-relation.service';
 import usePlantStore from '@/store/plant/plant/plant.service';
 import { useTanStackTable } from '@core/components/table/custom/use-TanStack-Table';
 import { ListColumns } from './store-time-slots-columns';
