@@ -22,7 +22,7 @@ export default function GlobalSchemaForm<T>({ schema, onSubmitCb, children, clos
     const { closeModal } = useModal();
     const [isLoading, setLoading] = useState(false);
 
-
+    console.log("closeOnSubmit: ", closeOnSubmit)
     const onSubmit: SubmitHandler<any> = async (data, event) => {
         // set timeout ony required to display loading state of the create category button
         console.log(data)

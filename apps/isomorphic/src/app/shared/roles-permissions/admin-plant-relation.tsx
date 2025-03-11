@@ -77,7 +77,6 @@ export default function AdminPlantRelation({ admin }: { admin?: Admin }) {
     setLoading(true);
     const request = await store.add({ ...formattedData })
     setLoading(false);
-    closeModal();
   };
 
   useEffect(() => {
