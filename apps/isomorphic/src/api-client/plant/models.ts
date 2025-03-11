@@ -4496,6 +4496,159 @@ export type EmployeeData = {
   };
 };
 
+export type WarehouseEmployeeData = {
+  payloads: {
+    List: {
+      authorization?: string;
+
+      query: {
+        page: string;
+        size: string;
+      };
+    };
+    Create: {
+      authorization?: string;
+      requestBody: {
+        name: string;
+        password: string;
+        plant: string;
+        status: string;
+      };
+
+      query?: {};
+    };
+    Update: {
+      authorization?: string;
+      requestBody: {
+        name: string;
+        password: string;
+        plant: string;
+        status: string;
+      };
+
+      query: {
+        id: string;
+      };
+    };
+    Delete: {
+      authorization?: string;
+
+      query: {
+        id: string;
+      };
+    };
+  };
+
+  responses: {
+    List: {
+      status: boolean;
+      message: string;
+      data: Array<{
+        _id: string;
+        id: string;
+        name: string;
+        password: string;
+        warehouse: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
+        createdAt: string;
+        updatedAt: string;
+      }>;
+      meta: {
+        pages: number;
+        total: number;
+        page: number;
+        size: number;
+      };
+    };
+    Create: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id: string;
+        name: string;
+        password: string;
+        warehouse: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Update: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id: string;
+        name: string;
+        password: string;
+        warehouse: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Delete: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id: string;
+        name: string;
+        password: string;
+        warehouse: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+  };
+};
+
 export type WaterCanBatchData = {
   payloads: {
     List: {

@@ -107,6 +107,12 @@ export const menuItems = [
         icon: <PiFolderLockDuotone />,
         ...can(2)
       },
+      {
+        name: 'Employee',
+        href: '/employee/list',
+        icon: <GrUserWorker />,
+        ...can(10)
+      },
 
     ],
   },
@@ -127,6 +133,12 @@ export const menuItems = [
         href: routes.rolesPermissionsWarehouse,
         icon: <PiFolderLockDuotone />,
         ...can(2)
+      },
+      {
+        name: 'Employee',
+        href: '/warehouse-employee/list',
+        icon: <GrUserWorker />,
+        ...can(10)
       },
 
     ],
@@ -216,12 +228,7 @@ export const menuItems = [
     ...can(5)
   },
 
-  {
-    name: 'Employee',
-    href: '/employee/list',
-    icon: <GrUserWorker />,
-    ...can(10)
-  },
+
 
   // // label start
   // {

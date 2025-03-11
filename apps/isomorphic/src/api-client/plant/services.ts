@@ -25,6 +25,7 @@ import type {
   OrderData,
   ExampleData,
   EmployeeData,
+  WarehouseEmployeeData,
   WaterCanBatchData,
 } from './models';
 
@@ -1588,6 +1589,81 @@ export class EmployeeService {
     return __request(OpenAPI, {
       method: 'DELETE',
       url: '/plant/employees/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+}
+
+export class WarehouseEmployeeService {
+  /**
+   * @returns any WarehouseEmployee list response
+   * @throws ApiError
+   */
+  public static list(
+    data: WarehouseEmployeeData['payloads']['List']
+  ): CancelablePromise<WarehouseEmployeeData['responses']['List']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/warehouse-employees/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+
+  /**
+   * @returns any WarehouseEmployee create response
+   * @throws ApiError
+   */
+  public static create(
+    data: WarehouseEmployeeData['payloads']['Create']
+  ): CancelablePromise<WarehouseEmployeeData['responses']['Create']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'POST',
+      url: '/plant/warehouse-employees/',
+      headers: {},
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any WarehouseEmployee update response
+   * @throws ApiError
+   */
+  public static update(
+    data: WarehouseEmployeeData['payloads']['Update']
+  ): CancelablePromise<WarehouseEmployeeData['responses']['Update']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'PUT',
+      url: '/plant/warehouse-employees/',
+      headers: {},
+      query: {
+        ...query,
+      },
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any WarehouseEmployee delete response
+   * @throws ApiError
+   */
+  public static delete(
+    data: WarehouseEmployeeData['payloads']['Delete']
+  ): CancelablePromise<WarehouseEmployeeData['responses']['Delete']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'DELETE',
+      url: '/plant/warehouse-employees/',
       headers: {},
       query: {
         ...query,
