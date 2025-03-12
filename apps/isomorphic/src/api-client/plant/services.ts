@@ -26,6 +26,7 @@ import type {
   ExampleData,
   EmployeeData,
   WarehouseEmployeeData,
+  WarehouseInventoryData,
   WaterCanBatchData,
 } from './models';
 
@@ -1664,6 +1665,99 @@ export class WarehouseEmployeeService {
     return __request(OpenAPI, {
       method: 'DELETE',
       url: '/plant/warehouse-employees/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+}
+
+export class WarehouseInventoryService {
+  /**
+   * @returns any Forecast list response
+   * @throws ApiError
+   */
+  public static list(
+    data: WarehouseInventoryData['payloads']['List']
+  ): CancelablePromise<WarehouseInventoryData['responses']['List']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/warehouse-inventory/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+
+  /**
+   * @returns any Forecast create response
+   * @throws ApiError
+   */
+  public static create(
+    data: WarehouseInventoryData['payloads']['Create']
+  ): CancelablePromise<WarehouseInventoryData['responses']['Create']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'POST',
+      url: '/plant/warehouse-inventory/',
+      headers: {},
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any Forecast update response
+   * @throws ApiError
+   */
+  public static update(
+    data: WarehouseInventoryData['payloads']['Update']
+  ): CancelablePromise<WarehouseInventoryData['responses']['Update']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'PUT',
+      url: '/plant/warehouse-inventory/',
+      headers: {},
+      query: {
+        ...query,
+      },
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any Forecast delete response
+   * @throws ApiError
+   */
+  public static delete(
+    data: WarehouseInventoryData['payloads']['Delete']
+  ): CancelablePromise<WarehouseInventoryData['responses']['Delete']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'DELETE',
+      url: '/plant/warehouse-inventory/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+
+  /**
+   * @returns any Forecast update response
+   * @throws ApiError
+   */
+  public static createOrder(
+    data: WarehouseInventoryData['payloads']['CreateOrder']
+  ): CancelablePromise<WarehouseInventoryData['responses']['CreateOrder']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'PUT',
+      url: '/plant/warehouse-inventory/order',
       headers: {},
       query: {
         ...query,

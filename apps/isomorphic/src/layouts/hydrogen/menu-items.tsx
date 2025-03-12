@@ -209,6 +209,13 @@ export const menuItems = [
     ],
   },
   {
+    name: 'Inventory Request',
+    href: '/warehouse-inventory-request/list',
+    icon: <SiFuturelearn />,
+    ...can(8)
+  },
+
+  {
     name: 'Forecast',
     href: '/forecast/list',
     icon: <SiFuturelearn />,

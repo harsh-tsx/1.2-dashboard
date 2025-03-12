@@ -949,7 +949,7 @@ export type AdminPlantRelationData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1000,7 +1000,7 @@ export type AdminPlantRelationData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1045,7 +1045,7 @@ export type AdminPlantRelationData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1152,7 +1152,7 @@ export type AdminWarehouseRelationData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1232,7 +1232,7 @@ export type AdminWarehouseRelationData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1306,7 +1306,7 @@ export type AdminWarehouseRelationData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1408,7 +1408,7 @@ export type PlantData = {
           lat: number;
           long: number;
         };
-        type: number;
+        type?: number;
         createdAt: string;
         updatedAt: string;
       }>;
@@ -1430,7 +1430,7 @@ export type PlantData = {
           lat: number;
           long: number;
         };
-        type: number;
+        type?: number;
         createdAt: string;
         updatedAt: string;
       };
@@ -1446,7 +1446,7 @@ export type PlantData = {
           lat: number;
           long: number;
         };
-        type: number;
+        type?: number;
         createdAt: string;
         updatedAt: string;
       };
@@ -1462,7 +1462,7 @@ export type PlantData = {
           lat: number;
           long: number;
         };
-        type: number;
+        type?: number;
         createdAt: string;
         updatedAt: string;
       };
@@ -1532,7 +1532,7 @@ export type DriverData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1564,7 +1564,7 @@ export type DriverData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1590,7 +1590,7 @@ export type DriverData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1616,7 +1616,7 @@ export type DriverData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1692,7 +1692,7 @@ export type DeliveryVehicleData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1735,7 +1735,7 @@ export type DeliveryVehicleData = {
               lat: number;
               long: number;
             };
-            type: number;
+            type?: number;
             createdAt: string;
             updatedAt: string;
           };
@@ -1773,7 +1773,7 @@ export type DeliveryVehicleData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1816,7 +1816,7 @@ export type DeliveryVehicleData = {
               lat: number;
               long: number;
             };
-            type: number;
+            type?: number;
             createdAt: string;
             updatedAt: string;
           };
@@ -1848,7 +1848,7 @@ export type DeliveryVehicleData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1891,7 +1891,7 @@ export type DeliveryVehicleData = {
               lat: number;
               long: number;
             };
-            type: number;
+            type?: number;
             createdAt: string;
             updatedAt: string;
           };
@@ -1923,7 +1923,7 @@ export type DeliveryVehicleData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -1966,7 +1966,7 @@ export type DeliveryVehicleData = {
               lat: number;
               long: number;
             };
-            type: number;
+            type?: number;
             createdAt: string;
             updatedAt: string;
           };
@@ -2090,7 +2090,7 @@ export type WarehouseData = {
           lat: number;
           long: number;
         };
-        type: number;
+        type?: number;
         createdAt: string;
         updatedAt: string;
       }>;
@@ -2112,7 +2112,7 @@ export type WarehouseData = {
           lat: number;
           long: number;
         };
-        type: number;
+        type?: number;
         createdAt: string;
         updatedAt: string;
       };
@@ -2128,7 +2128,7 @@ export type WarehouseData = {
           lat: number;
           long: number;
         };
-        type: number;
+        type?: number;
         createdAt: string;
         updatedAt: string;
       };
@@ -2144,7 +2144,7 @@ export type WarehouseData = {
           lat: number;
           long: number;
         };
-        type: number;
+        type?: number;
         createdAt: string;
         updatedAt: string;
       };
@@ -2750,7 +2750,7 @@ export type StoreComplaintData = {
                 lat: number;
                 long: number;
               };
-              type: number;
+              type?: number;
               createdAt: string;
               updatedAt: string;
             };
@@ -2779,7 +2779,7 @@ export type StoreComplaintData = {
               lat: number;
               long: number;
             };
-            type: number;
+            type?: number;
             createdAt: string;
             updatedAt: string;
           };
@@ -2959,7 +2959,7 @@ export type StoreComplaintData = {
                 lat: number;
                 long: number;
               };
-              type: number;
+              type?: number;
               createdAt: string;
               updatedAt: string;
             };
@@ -2988,7 +2988,7 @@ export type StoreComplaintData = {
               lat: number;
               long: number;
             };
-            type: number;
+            type?: number;
             createdAt: string;
             updatedAt: string;
           };
@@ -3162,7 +3162,7 @@ export type StoreComplaintData = {
                 lat: number;
                 long: number;
               };
-              type: number;
+              type?: number;
               createdAt: string;
               updatedAt: string;
             };
@@ -3191,7 +3191,7 @@ export type StoreComplaintData = {
               lat: number;
               long: number;
             };
-            type: number;
+            type?: number;
             createdAt: string;
             updatedAt: string;
           };
@@ -3416,7 +3416,7 @@ export type WaterCanData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -3473,7 +3473,7 @@ export type WaterCanData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -3524,7 +3524,7 @@ export type WaterCanData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -3935,7 +3935,7 @@ export type OrderData = {
               lat: number;
               long: number;
             };
-            type: number;
+            type?: number;
             createdAt: string;
             updatedAt: string;
           };
@@ -4038,7 +4038,7 @@ export type OrderData = {
               lat: number;
               long: number;
             };
-            type: number;
+            type?: number;
             createdAt: string;
             updatedAt: string;
           };
@@ -4135,7 +4135,7 @@ export type OrderData = {
               lat: number;
               long: number;
             };
-            type: number;
+            type?: number;
             createdAt: string;
             updatedAt: string;
           };
@@ -4232,7 +4232,7 @@ export type OrderData = {
               lat: number;
               long: number;
             };
-            type: number;
+            type?: number;
             createdAt: string;
             updatedAt: string;
           };
@@ -4405,7 +4405,7 @@ export type EmployeeData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -4436,7 +4436,7 @@ export type EmployeeData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -4461,7 +4461,7 @@ export type EmployeeData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -4486,7 +4486,7 @@ export type EmployeeData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -4558,7 +4558,7 @@ export type WarehouseEmployeeData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -4589,7 +4589,7 @@ export type WarehouseEmployeeData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -4614,7 +4614,7 @@ export type WarehouseEmployeeData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -4639,11 +4639,259 @@ export type WarehouseEmployeeData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
         status: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+  };
+};
+
+export type WarehouseInventoryData = {
+  payloads: {
+    List: {
+      authorization?: string;
+
+      query: {
+        page: string;
+        size: string;
+      };
+    };
+    Create: {
+      authorization?: string;
+      requestBody: {
+        watercans: number;
+        date: string;
+        warehouse: string;
+      };
+
+      query?: {};
+    };
+    Update: {
+      authorization?: string;
+      requestBody: {
+        watercans: number;
+        date: string;
+        warehouse: string;
+      };
+
+      query: {
+        id: string;
+      };
+    };
+    Delete: {
+      authorization?: string;
+
+      query: {
+        id: string;
+      };
+    };
+    CreateOrder: {
+      authorization?: string;
+
+      query: {
+        id: string;
+      };
+    };
+  };
+
+  responses: {
+    List: {
+      status: boolean;
+      message: string;
+      data: Array<{
+        _id: string;
+        watercans: number;
+        date: string;
+        employee: unknown;
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type?: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        warehouse: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type?: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
+        remark: string;
+        createdAt: string;
+        updatedAt: string;
+      }>;
+      meta: {
+        pages: number;
+        total: number;
+        page: number;
+        size: number;
+      };
+    };
+    Create: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        watercans: number;
+        date: string;
+        employee: unknown;
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type?: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        warehouse: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type?: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
+        remark: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Update: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        watercans: number;
+        date: string;
+        employee: unknown;
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type?: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        warehouse: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type?: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
+        remark: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Delete: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        watercans: number;
+        date: string;
+        employee: unknown;
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type?: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        warehouse: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type?: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
+        remark: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    CreateOrder: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        watercans: number;
+        date: string;
+        employee: unknown;
+        plant: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type?: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        warehouse: {
+          _id: string;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          type?: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        status: string;
+        remark: string;
         createdAt: string;
         updatedAt: string;
       };
@@ -4711,7 +4959,7 @@ export type WaterCanBatchData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -4741,7 +4989,7 @@ export type WaterCanBatchData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -4765,7 +5013,7 @@ export type WaterCanBatchData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -4789,7 +5037,7 @@ export type WaterCanBatchData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
@@ -4819,7 +5067,7 @@ export type WaterCanBatchData = {
             lat: number;
             long: number;
           };
-          type: number;
+          type?: number;
           createdAt: string;
           updatedAt: string;
         };
