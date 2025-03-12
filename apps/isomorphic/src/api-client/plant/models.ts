@@ -1354,6 +1354,7 @@ export type PlantData = {
 
       query: {
         page: string;
+        search?: string;
         size: string;
       };
     };
@@ -2036,6 +2037,7 @@ export type WarehouseData = {
 
       query: {
         page: string;
+        search?: string;
         size: string;
       };
     };
@@ -4511,7 +4513,7 @@ export type WarehouseEmployeeData = {
       requestBody: {
         name: string;
         password: string;
-        plant: string;
+        warehouse: string;
         status: string;
       };
 
@@ -4522,7 +4524,7 @@ export type WarehouseEmployeeData = {
       requestBody: {
         name: string;
         password: string;
-        plant: string;
+        warehouse: string;
         status: string;
       };
 

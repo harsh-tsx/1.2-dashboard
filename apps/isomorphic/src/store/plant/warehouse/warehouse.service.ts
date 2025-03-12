@@ -40,6 +40,7 @@ const useWarehouseStore = create(
             query: {
               page: page as any,
               size: size as any,
+              ...(search && { search: search })
             }
           }), {
             loading: 'fetching...',
@@ -84,7 +85,7 @@ const useWarehouseStore = create(
                 ...prev.example,
                 page: page ?? prev.example.page,
                 size: size || prev.example.size,
-                search: search || prev.example.search,
+                search: search ?? prev.example.search,
                 paginate: paginate ?? true
               }
             }))
