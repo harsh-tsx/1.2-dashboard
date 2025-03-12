@@ -77,10 +77,10 @@ export const ListColumns = [
       <p>{row.original.password}</p>
     </div>,
   }),
-  columnHelper.accessor('plant.name', {
+  columnHelper.accessor('warehouse.name', {
     id: 'lat',
     size: 200,
-    header: 'Plant',
+    header: 'warehouse',
     cell: ({ row }) => row.original.name,
   }),
 
