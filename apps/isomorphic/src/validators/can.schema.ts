@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { array, number, object, SchemaDescription, string } from "yup";
 
 export const waterCanSchema = object().shape({
-    plant: string().label("Plant").meta({
+    plant: string().trim().label("Plant").meta({
         type: "select", selectProps: {
             disableDefaultFilter: true
         },
@@ -19,7 +19,7 @@ export const waterCanSchema = object().shape({
 }).label("Add").meta({ button: "Create" })
 
 export const waterCanUpdateSchema = object().shape({
-    plant: string().label("Plant").meta({
+    plant: string().trim().label("Plant").meta({
         type: "select", selectProps: {
             disableDefaultFilter: true,
             onSearchChange: (search: string, field: SchemaDescription & {
@@ -37,7 +37,7 @@ export const waterCanUpdateSchema = object().shape({
             return;
         }
     }).default(null),
-    status: string().label("Status").meta({
+    status: string().trim().label("Status").meta({
         type: "select", selectProps: {
             disableDefaultFilter: false
         },

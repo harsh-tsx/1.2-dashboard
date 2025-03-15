@@ -5,7 +5,7 @@ import useCityStore from "@/store/plant/city/city.service";
 import { useEffect } from "react";
 
 export const sectorSchema = object().shape({
-    city: string().label("City").meta({
+    city: string().trim().label("City").meta({
         type: "select", selectProps: {
             disableDefaultFilter: true,
             onSearchChange: (search: string, field: SchemaDescription & {
@@ -23,7 +23,7 @@ export const sectorSchema = object().shape({
             return;
         }
     }).default(null),
-    name: string().label("Name").required(),
+    name: string().trim().label("Name").required(),
 }).label("Add").meta({
     button: "Create",
     InitState: () => {

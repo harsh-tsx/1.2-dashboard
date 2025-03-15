@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import { array, number, object, SchemaDescription, string } from "yup";
 
 export const deliveryVehicleSchema = object().shape({
-    name: string().label("Name").required(),
-    type: string().label("Vehicle Type").meta({
+    name: string().trim().label("Name").required(),
+    type: string().trim().label("Vehicle Type").meta({
         type: "select", selectProps: {
             // disableDefaultFilter: true
         },
@@ -32,7 +32,7 @@ export const deliveryVehicleSchema = object().shape({
     }).default(null),
     capacity_ltr: number().label("Capacity in ltr").required(),
     capacity_cans: number().label("Can Capacity").required(),
-    driver: string().label("Driver").meta({
+    driver: string().trim().label("Driver").meta({
         type: "select", selectProps: {
             disableDefaultFilter: true,
             onSearchChange: (search: string, field: SchemaDescription & {

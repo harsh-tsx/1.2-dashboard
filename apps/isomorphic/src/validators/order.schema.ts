@@ -5,7 +5,7 @@ import moment from 'moment'
 export const orderSchema = object().shape({
     watercans: number().label("Can Count").required(),
     date: date().label("Date").default(moment().format('DD-MM-YYYY hh:mm A') as any).required(),
-    store: string().label("Store").meta({
+    store: string().trim().label("Store").meta({
         type: "select", selectProps: {
             disableDefaultFilter: true
         },

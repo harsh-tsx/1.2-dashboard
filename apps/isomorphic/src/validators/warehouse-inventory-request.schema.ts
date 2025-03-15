@@ -7,7 +7,7 @@ import { useEffect } from "react";
 export const warhouseInventoryRequestSchema = object().shape({
     watercans: number().label("Can Count").required(),
     date: date().label("Date").default(moment().format('DD-MM-YYYY hh:mm A') as any).required(),
-    warehouse: string().label("Warehouse").meta({
+    warehouse: string().trim().label("Warehouse").meta({
         type: "select",
         selectProps: {
             disableDefaultFilter: true,

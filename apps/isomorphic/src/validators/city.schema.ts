@@ -3,5 +3,5 @@ import { array, date, number, object, SchemaDescription, string } from "yup";
 import moment from 'moment'
 
 export const citySchema = object().shape({
-    name: string().label("Name").required(),
+    name: string().trim().label("Name").required(),
 }).label("Add").meta({ button: "Create" })

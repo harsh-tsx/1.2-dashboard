@@ -3,7 +3,7 @@ import { array, date, number, object, SchemaDescription, string } from "yup";
 import moment from 'moment'
 
 export const complaintSchema = object().shape({
-    status: string().label("Status").meta({
+    status: string().trim().label("Status").meta({
         type: "select", selectProps: {
             disableDefaultFilter: true
         },
@@ -18,5 +18,5 @@ export const complaintSchema = object().shape({
             return;
         }
     }).default(null).required(),
-    remark: string().label("Remark").required(),
+    remark: string().trim().label("Remark").required(),
 }).label("Add").meta({ button: "Update" })

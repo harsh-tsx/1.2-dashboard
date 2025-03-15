@@ -10,7 +10,7 @@ export const fileSchema = z.object({
 export type FileSchema = z.infer<typeof fileSchema>;
 
 export const validateEmail = z
-  .string()
+  .string().trim()
   .min(1, { message: messages.emailIsRequired })
   .email({ message: messages.invalidEmail });
 

@@ -4,7 +4,7 @@ import { array, number, object, SchemaDescription, string } from "yup";
 export const batchSchema = object().shape({
     watercans: number().label("Can Count"),
     // status: string().label("").optional(),
-    plant: string().label("Plant").meta({
+    plant: string().trim().label("Plant").meta({
         type: "select", selectProps: {
             disableDefaultFilter: true
         },

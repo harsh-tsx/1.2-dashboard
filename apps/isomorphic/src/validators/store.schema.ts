@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { array, number, object, SchemaDescription, string } from "yup";
 
 export const storeSchema = object().shape({
-    name: string().label("Store Name").required(),
-    address: string().label("Store Address").required(),
+    name: string().trim().label("Store Name").required(),
+    address: string().trim().label("Store Address").required(),
     lat: number().label("Latitude").meta({ className: "w-full" }).required(),
     long: number().label("Longitude").meta({ className: "w-full" }).required(),
     // coordinate: object().shape({ lat: number(), long: number() }).label("Location").meta({
@@ -25,7 +25,7 @@ export const storeSchema = object().shape({
     //         }
     //     ] as any
     // }).default(null),
-    sector: string().label("Sector").meta({
+    sector: string().trim().label("Sector").meta({
         type: "select", selectProps: {
             disableDefaultFilter: true,
             onSearchChange: (search: string, field: SchemaDescription & {

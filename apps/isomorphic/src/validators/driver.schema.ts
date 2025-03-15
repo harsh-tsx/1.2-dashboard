@@ -3,9 +3,9 @@ import usePlantStore from "@/store/plant/plant/plant.service";
 import { array, number, object, SchemaDescription, string } from "yup";
 
 export const driverSchema = object().shape({
-    name: string().label("Name").required(),
-    phone: string().label("Phone").required(),
-    employment_type: string().label("Employment Type").meta({
+    name: string().trim().label("Name").required(),
+    phone: string().trim().label("Phone").required(),
+    employment_type: string().trim().label("Employment Type").meta({
         type: "select", selectProps: {
             // disableDefaultFilter: true
         },
@@ -25,7 +25,7 @@ export const driverSchema = object().shape({
             return;
         }
     }).default(null),
-    status: string().label("Status").required().meta({
+    status: string().trim().trim().label("Status").required().meta({
         type: "select",
         oneOf: [
             SelectItem("ACTIVE", "ACTIVE"),
