@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import { array, number, object, SchemaDescription, string } from "yup";
 
 export const warehouseEmployeeSchema = object().shape({
-    name: string().label("Name").required(),
-    password: string().label("Password").required(),
-    warehouse: string().label("Warehouse").meta({
+    name: string().trim().label("Name").required(),
+    password: string().trim().label("Password").required(),
+    warehouse: string().trim().label("Warehouse").meta({
         type: "select",
         selectProps: {
             disableDefaultFilter: true,
@@ -25,7 +25,7 @@ export const warehouseEmployeeSchema = object().shape({
             return;
         }
     }).default(null),
-    status: string().label("Status").required().meta({
+    status: string().trim().label("Status").required().meta({
         type: "select",
         oneOf: [
             SelectItem("ACTIVE", "ACTIVE"),
