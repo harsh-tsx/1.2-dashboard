@@ -22,32 +22,32 @@ export default function LogisticsDashboard() {
         <StatCards className="col-span-full" />
 
         <FleetStatus className="col-span-full @3xl:col-span-6 @[1429px]:col-span-4" />
-        <OpenSalesOrder className="col-span-full @3xl:col-span-6 @[1429px]:col-span-4" />
-        <DispatchPlanning className="col-span-full @3xl:col-span-6 @[1429px]:col-span-4" />
-        <LoadingWorkflow className="col-span-full @3xl:col-span-6 @[1429px]:col-span-4" />
+        {/* <OpenSalesOrder className="col-span-full @3xl:col-span-6 @[1429px]:col-span-4" /> */}
+        {/* <DispatchPlanning className="col-span-full @3xl:col-span-6 @[1429px]:col-span-4" /> */}
+        {/* <LoadingWorkflow className="col-span-full @3xl:col-span-6 @[1429px]:col-span-4" /> */}
 
-        <ProfitChart className="col-span-full @3xl:col-span-full @[1429px]:col-span-8" />
+        {/* <ProfitChart className="col-span-full @3xl:col-span-full @[1429px]:col-span-8" /> */}
 
-        <ShipmentTableWidget
+        {/* <ShipmentTableWidget
           title="Pending Shipments"
           description={`Summary of pending shipments of ${thisMonth}`}
           className="col-span-full"
-        />
+        /> */}
 
-        <DeliveryStatus className="col-span-full" />
+        {/* <DeliveryStatus className="col-span-full" /> */}
 
-        <AvgDeliveryTime className="col-span-full @4xl:col-span-6 @7xl:col-span-4" />
-        <ComplaintRate className="col-span-full @4xl:col-span-6 @7xl:col-span-4" />
-        <ComplaintReason className="col-span-full @4xl:col-span-6 @7xl:col-span-4 @7xl:[&_.recharts-responsive-container]:!w-11/12 @[88rem]:[&_.recharts-responsive-container]:!w-full" />
-        <TopShipmentCountries className="col-span-full @4xl:col-span-6 @7xl:col-span-4 @7xl:[&_.recharts-responsive-container]:!w-11/12 @[88rem]:[&_.recharts-responsive-container]:!w-full" />
+        {/* <AvgDeliveryTime className="col-span-full @4xl:col-span-6 @7xl:col-span-4" /> */}
+        {/* <ComplaintRate className="col-span-full @4xl:col-span-6 @7xl:col-span-4" /> */}
+        {/* <ComplaintReason className="col-span-full @4xl:col-span-6 @7xl:col-span-4 @7xl:[&_.recharts-responsive-container]:!w-11/12 @[88rem]:[&_.recharts-responsive-container]:!w-full" /> */}
+        {/* <TopShipmentCountries className="col-span-full @4xl:col-span-6 @7xl:col-span-4 @7xl:[&_.recharts-responsive-container]:!w-11/12 @[88rem]:[&_.recharts-responsive-container]:!w-full" /> */}
 
-        <TopCustomer className="col-span-full @3xl:col-span-full @5xl:col-span-full @7xl:col-span-8" />
+        {/* <TopCustomer className="col-span-full @3xl:col-span-full @5xl:col-span-full @7xl:col-span-8" /> */}
 
-        <ShipmentTableWidget
+        {/* <ShipmentTableWidget
           title="Recent Shipments"
           description={`Summary of recent shipments of ${thisMonth}`}
           className="col-span-full"
-        />
+        /> */}
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ export default function FleetStatus({ className }: { className?: string }) {
   const { stats: { detail } } = useStatsStore();
   const data = [
     { name: 'Available:', value: detail?.can_stats.atPlant, color: '#3872FA' },
-    { name: 'At Store:', value: detail?.can_stats.atPlant, color: '#eab308' },
+    { name: 'At Store:', value: detail?.can_stats.atStore, color: '#eab308' },
     { name: 'On the Move:', value: detail?.can_stats.onWayStore, color: '#10b981' },
   ];
   return (
