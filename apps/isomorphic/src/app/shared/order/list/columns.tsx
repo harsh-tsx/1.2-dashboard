@@ -7,7 +7,7 @@ import AvatarCard from '@core/ui/avatar-card';
 import DateCell from '@core/ui/date-cell';
 import { createColumnHelper } from '@tanstack/react-table';
 import Link from 'next/link';
-import { ActionIcon, Badge, Checkbox, Tooltip } from 'rizzui';
+import { ActionIcon, Badge, Checkbox, Flex, Text, Tooltip } from 'rizzui';
 import { ListTableDataType } from './table';
 import { table } from 'console';
 import ModalIconButton from '../../modal-icon-button';
@@ -18,8 +18,12 @@ import { createExampleSchema } from '@/validators/create-example';
 import { injectDefaults } from '@core/utils/yup-helper'
 import useExampleStore from '@/store/plant/order/order.service';
 import { plantSchema } from '@/validators/plant.schema';
-import { PiSealCheckFill } from "react-icons/pi";
+import { PiEyeLight, PiSealCheckFill } from "react-icons/pi";
 import { PiSealCheckLight } from "react-icons/pi";
+import { editOrderSchema } from '@/validators/order.schema';
+import Main from '../detail/main';
+import useOrderStoreScansStore from '@/store/plant/order/order-store-scans.service';
+import useOrderStoreScansOutStore from '@/store/plant/order/order-store-scans-out.service';
 
 const columnHelper = createColumnHelper<ListTableDataType>();
 const OrderStatus = {
@@ -50,19 +54,34 @@ export const ListColumns = [
   //     />
   //   ),
   // }),
-  // columnHelper.accessor('trackingId', {
-  //   id: 'trackingId',
-  //   size: 150,
-  //   header: 'Tracking ID',
-  //   cell: ({ row }) => (
-  //     <Link
-  //       href={routes.logistics.shipmentDetails(row.original.id)}
-  //       className="duration-200 hover:text-gray-900 hover:underline"
-  //     >
-  //       {row.original.trackingId}
-  //     </Link>
-  //   ),
-  // }),
+  columnHelper.accessor('_id', {
+    id: 'OrderId',
+    header: 'Order Id',
+    cell: ({ row }) => {
+      return (
+        <ModalIconButton
+          icon={
+            <PiEyeLight className="size-4" />
+          }
+          view={<Main />}
+          customSize="90vw"
+          className="mt-0"
+          onClickCustom={() => {
+            useExampleStore.getState().get.detail(row.original._id, row.original)
+            useOrderStoreScansStore.getState().setOrderId(row.original._id)
+            useOrderStoreScansOutStore.getState().setOrderId(row.original._id)
+          }}
+        />
+      );
+      <Link
+        href={routes.order.details(row.original._id)}
+        className="duration-200 hover:text-gray-900 hover:underline"
+        target='_blank'
+      >
+        {row.original._id}
+      </Link>
+    },
+  }),
 
   columnHelper.accessor('store._id', {
     id: 'store',
@@ -100,7 +119,27 @@ export const ListColumns = [
   columnHelper.accessor('watercans', {
     id: 'watercans',
     header: 'Can Count',
-    cell: ({ row }) => row.original.watercans,
+    cell: ({ row }) => {
+      return (
+        <Flex className='items-center' >
+          <Text>
+            {row.original.watercans}
+          </Text>
+          <ModalIconButton
+            icon={
+              <PencilIcon className="size-4" />
+            }
+            view={<GlobalSchemaForm onSubmitCb={useExampleStore.getState().add} schema={injectDefaults(editOrderSchema, row.original)} />}
+            customSize="600px"
+            className="mt-0"
+            onClickCustom={() => {
+              useExampleStore
+                .getState().select(row.original._id)
+            }}
+          />
+        </Flex>
+      )
+    },
   }),
 
   columnHelper.accessor('status', {
@@ -121,36 +160,25 @@ export const ListColumns = [
     header: 'Created At',
     cell: ({ row }) => <DateCell date={new Date(row.original.createdAt)} />,
   }),
-  // columnHelper.display({
-  //   id: 'actions',
-  //   size: 120,
-  //   cell: ({
-  //     row,
-  //     table: {
-  //       options: { meta },
-  //     },
-  //   }) => (
-  //     <TableRowActionGroup
-  //       deletePopoverTitle="Delete the shipment"
-  //       onDelete={() => {
-  //         meta?.handleDeleteRow?.(row.original);
-  //       }}
-  //       Edit={() => {
-  //         return <ModalIconButton
-  //           icon={
-  //             <PencilIcon className="size-4" />
-  //           }
-  //           view={<GlobalSchemaForm onSubmitCb={useExampleStore.getState().add} schema={injectDefaults(plantSchema, row.original).label("Edit").meta({ button: "Update" })} />}
-  //           customSize="600px"
-  //           className="mt-0"
-  //           onClickCustom={() => {
-  //             useExampleStore
-  //               .getState().select(row.original._id)
-  //           }}
-  //         />
-  //       }}
-  //       deletePopoverDescription={`Are you sure you want to delete this ${row.original._id} ?`}
-  //     />
-  //   ),
-  // }),
+  columnHelper.display({
+    id: 'actions',
+    size: 120,
+    cell: ({
+      row,
+      table: {
+        options: { meta },
+      },
+    }) => row.original.status == "PENDING" ? (
+      <TableRowActionGroup
+        deletePopoverTitle="Delete the shipment"
+        onDelete={() => {
+          meta?.handleDeleteRow?.(row.original);
+        }}
+        Edit={() => {
+          return <></>
+        }}
+        deletePopoverDescription={`Are you sure you want to delete this ${row.original._id} ?`}
+      />
+    ) : <></>,
+  }),
 ];

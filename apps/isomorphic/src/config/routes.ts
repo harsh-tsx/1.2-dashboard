@@ -21,6 +21,9 @@ export const routes = {
     checkout: '/ecommerce/checkout',
     trackingId: (id: string) => `/ecommerce/tracking/${id}`,
   },
+  order: {
+    details: (_id: string) => `/order/${_id}/details`
+  },
   searchAndFilter: {
     realEstate: '/search/real-estate',
     nft: '/search/nft',

@@ -23,6 +23,7 @@ import type {
   WaterCanData,
   ForecastData,
   OrderData,
+  OrderStoreCansData,
   ExampleData,
   EmployeeData,
   WarehouseEmployeeData,
@@ -1448,6 +1449,26 @@ export class OrderService {
   }
 }
 
+export class OrderStoreCansService {
+  /**
+   * @returns any OrderStoreScans list response
+   * @throws ApiError
+   */
+  public static list(
+    data: OrderStoreCansData['payloads']['List']
+  ): CancelablePromise<OrderStoreCansData['responses']['List']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/order-store-scans/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+}
+
 export class ExampleService {
   /**
    * @returns any Example list response
@@ -1675,7 +1696,7 @@ export class WarehouseEmployeeService {
 
 export class WarehouseInventoryService {
   /**
-   * @returns any Forecast list response
+   * @returns any WarehouseInventory list response
    * @throws ApiError
    */
   public static list(
@@ -1693,7 +1714,7 @@ export class WarehouseInventoryService {
   }
 
   /**
-   * @returns any Forecast create response
+   * @returns any WarehouseInventory create response
    * @throws ApiError
    */
   public static create(
@@ -1710,7 +1731,7 @@ export class WarehouseInventoryService {
   }
 
   /**
-   * @returns any Forecast update response
+   * @returns any WarehouseInventory update response
    * @throws ApiError
    */
   public static update(
@@ -1730,7 +1751,7 @@ export class WarehouseInventoryService {
   }
 
   /**
-   * @returns any Forecast delete response
+   * @returns any WarehouseInventory delete response
    * @throws ApiError
    */
   public static delete(
@@ -1748,7 +1769,7 @@ export class WarehouseInventoryService {
   }
 
   /**
-   * @returns any Forecast update response
+   * @returns any WarehouseInventory update response
    * @throws ApiError
    */
   public static createOrder(

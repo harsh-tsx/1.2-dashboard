@@ -13,15 +13,12 @@ import { useState } from 'react';
 import {
   PiFunnel,
   PiMagnifyingGlassBold,
-  PiPrinterFill,
   PiTrashDuotone,
 } from 'react-icons/pi';
 import { useMedia } from 'react-use';
 import { Badge, Button, Flex, Input, Text } from 'rizzui';
-import RefreshIndicator from '../../common/refresh-indicator';
-import useWaterCanStore from '@/store/plant/can/can.service';
-import ModalButton from '../../modal-button';
-import QRCodePDFMain from '../pdf/pdf-main';
+import RefreshIndicator from '../../../common/refresh-indicator';
+import useOrderStoreScansStore from '@/store/plant/order/order-store-scans.service';
 
 const paymentStatusOptions = Object.entries(shippingStatuses).map(
   ([value, label]) => ({
@@ -44,16 +41,15 @@ export default function Filters<TData extends Record<string, any>>({
   const [openDrawer, setOpenDrawer] = useState(false);
   const isLarge = useMedia('(min-width: 1860px)', false);
   const [showFilters, setShowFilters] = useState(false);
-  const store = useWaterCanStore();
   return (
     <Flex align="center" justify="between" className="mb-4">
       <Flex align="center" gap="3">
         <Input
           type="search"
           placeholder="Search by anything..."
-          // value={table.getState().globalFilter ?? ''}
-          onClear={() => store.get.paginate({ watercans: "" })}
-          onChange={(e) => store.get.paginate({ watercans: e.target.value })}
+          value={table.getState().globalFilter ?? ''}
+          onClear={() => table.setGlobalFilter('')}
+          onChange={(e) => table.setGlobalFilter(e.target.value)}
           inputClassName="h-9"
           clearable={true}
           prefix={<PiMagnifyingGlassBold className="size-4" />}
@@ -89,28 +85,7 @@ export default function Filters<TData extends Record<string, any>>({
           <PiFunnel className="me-1.5 h-[18px] w-[18px]" strokeWidth={1.7} />
           {isLarge && showFilters ? 'Hide Filters' : 'Filters'}
         </Button>
-        {
-          store.example.selectedList.length ?
-            <ModalButton
-              label={`Print (${store.example.selectedList.length})`}
-              icon={<PiPrinterFill className="me-1.5 h-[18px] w-[18px]" strokeWidth={1.7} />}
-              customSize="90vw"
-              className="mt-0"
-              variant={'outline'}
-
-              view={<QRCodePDFMain />}
-            >
-
-            </ModalButton>
-            : <></>
-        }
-
-        <RefreshIndicator
-          onClick={async () => {
-            useWaterCanStore.getState().get.paginate({});
-          }}
-        />
-
+        <RefreshIndicator onClick={async () => useOrderStoreScansStore.getState().get.paginate({})} />
         <ToggleColumns table={table} />
       </Flex>
     </Flex>

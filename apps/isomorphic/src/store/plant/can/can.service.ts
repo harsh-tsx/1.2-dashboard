@@ -27,22 +27,24 @@ const useWaterCanStore = create(
         detail: undefined as WaterCan | undefined,
         isUser: false as boolean,
         batches: "" as string,
-        selectedList: [] as WaterCan[]
-        // timeOut: null as any
+        watercans: "" as string,
+        selectedList: [] as WaterCan[],
+        timeOut: null as any
       }
     },
     (set, get) => ({
       get: {
         list: async () => {
           const {
-            example: { page, size, search, paginate, batches }
+            example: { page, size, search, paginate, batches, watercans }
           } = get()
 
           toast.promise(WaterCanService.list({
             query: {
               page: page as any,
               size: size as any,
-              ...(batches && { batches: batches })
+              ...(batches && { batches: batches }),
+              ...(watercans && { watercans: watercans })
             }
           }), {
             loading: 'fetching...',
@@ -71,13 +73,15 @@ const useWaterCanStore = create(
           size,
           search,
           paginate,
-          batches
+          batches,
+          watercans
         }: {
           page?: number
           size?: number
           search?: string
           paginate?: boolean
           batches?: string
+          watercans?: string
         }) => {
           set(prev => ({ example: { ...prev.example, search: search || '' } }))
 
@@ -92,16 +96,17 @@ const useWaterCanStore = create(
                 search: search || prev.example.search,
                 paginate: paginate ?? true,
                 batches: batches ?? prev.example.batches,
+                watercans: watercans ?? prev.example.watercans,
               }
             }))
             useWaterCanStore.getState().get.list()
           }
 
-          if (search) {
+          if (search || watercans) {
             timeOut = setTimeout(() => {
               init()
             }, 1000)
-            set(prev => ({ example: { ...prev.example, search: search } }))
+            set(prev => ({ example: { ...prev.example, ...(search && { search: search }), ...(watercans && { watercans: watercans }) } }))
             return
           }
           init()

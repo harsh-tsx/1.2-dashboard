@@ -19,3 +19,7 @@ export const orderSchema = object().shape({
         }
     }).default(null),
 }).label("Add").meta({ button: "Create" })
+
+export const editOrderSchema = object().shape({
+    watercans: number().label("Can Count").required(),
+}).label("Update").meta({ button: "Update" })

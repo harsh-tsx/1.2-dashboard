@@ -4252,6 +4252,117 @@ export type OrderData = {
   };
 };
 
+export type OrderStoreCansData = {
+  payloads: {
+    List: {
+      authorization?: string;
+
+      query: {
+        order?: string;
+        page: string;
+        size: string;
+        type: string;
+      };
+    };
+  };
+
+  responses: {
+    List: {
+      status: boolean;
+      message: string;
+      data: Array<{
+        _id: string;
+        order: string;
+        type: string;
+        return_order: string;
+        employee: string;
+        watercan: {
+          _id: string;
+          id: number;
+          qr_url: string;
+          status: string;
+          prev_status: string;
+          plant: {
+            _id: string;
+            name: string;
+            address: string;
+            coordinate: {
+              lat: number;
+              long: number;
+            };
+            type?: number;
+            createdAt: string;
+            updatedAt: string;
+          };
+          store: {
+            _id: string;
+            id?: number;
+            name: string;
+            address: string;
+            coordinate: {
+              lat: number;
+              long: number;
+            };
+            code?: string;
+            createdAt: string;
+            updatedAt: string;
+            sector: {
+              _id: string;
+              name: string;
+              city: {
+                _id: string;
+                name: string;
+                createdAt: string;
+                updatedAt: string;
+              };
+              createdAt: string;
+              updatedAt: string;
+            };
+          };
+          rotations: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        store: {
+          _id: string;
+          id?: number;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            createdAt: string;
+            updatedAt: string;
+          };
+        };
+        forecast: string;
+        status: string;
+        createdAt: string;
+        updatedAt: string;
+      }>;
+      meta: {
+        pages: number;
+        total: number;
+        page: number;
+        size: number;
+      };
+    };
+  };
+};
+
 export type ExampleData = {
   payloads: {
     List: {
