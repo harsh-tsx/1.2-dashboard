@@ -9,7 +9,7 @@ import MoneyInHand from '@core/components/icons/money-in-hand';
 import Containers from '@core/components/icons/containers';
 import SimpleBar from '@core/ui/simplebar';
 import InTableComponent from './in/table';
-import OutTableComponent from './out/table';
+import OutTableComponent from './scan-out/table';
 import useExampleStore from '@/store/plant/order/order.service';
 import { useEffect } from 'react';
 import useOrderStoreScansStore from '@/store/plant/order/order-store-scans.service';
