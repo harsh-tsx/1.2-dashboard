@@ -55,7 +55,7 @@ const Main = (props: Props) => {
     }, [])
 
     return (
-        <Box className='p-2 h-[90vh]' >
+        <Box className='p-2' >
             <SimpleBar>
                 {/* <div className="grid grid-flow-col gap-5 mb-1">
                     <DetailTableComponent />
