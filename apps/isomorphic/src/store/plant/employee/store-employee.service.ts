@@ -1,33 +1,32 @@
 import { create } from 'zustand'
 import { combine } from 'zustand/middleware'
 import toast from 'react-hot-toast'
-import { OrderStoreCansData } from '@/api-client/plant/models'
-import { OrderStoreCansService } from '@/api-client/PlantApi'
+import { StoreEmployeeData } from '@/api-client/plant/models'
+import { StoreEmployeeService } from '@/api-client/PlantApi'
 
 
 
-export type Order = OrderStoreCansData['responses']['List']['data'][0]
+export type StoreEmployee = StoreEmployeeData['responses']['List']['data'][0]
 
 
 
 let timeOut: any
 
-const useOrderStoreScansStore = create(
+const useStoreEmployeeStore = create(
   combine(
     {
       example: {
         id: null as any,
-        list: [] as Order[],
+        list: [] as StoreEmployee[],
         total: 0,
         page: 0,
         pages: 0,
         size: 10,
         search: null as string | null,
         paginate: true as boolean,
-        detail: undefined as Order | undefined,
+        detail: undefined as StoreEmployee | undefined,
         isUser: false as boolean,
-        type: "IN" as string,
-        ordreId: null as string | null,
+        stores: null as string | null
         // timeOut: null as any
       }
     },
@@ -35,15 +34,14 @@ const useOrderStoreScansStore = create(
       get: {
         list: async () => {
           const {
-            example: { page, size, search, paginate, type, ordreId }
+            example: { page, size, search, paginate, stores }
           } = get()
 
-          toast.promise(OrderStoreCansService.list({
+          toast.promise(StoreEmployeeService.list({
             query: {
               page: page as any,
               size: size as any,
-              type: type,
-              ...(ordreId && { order: ordreId })
+              ...(stores && { store: stores })
             }
           }), {
             loading: 'fetching...',
@@ -72,15 +70,13 @@ const useOrderStoreScansStore = create(
           size,
           search,
           paginate,
-          type,
-          orderId,
+          stores
         }: {
           page?: number
           size?: number
           search?: string
           paginate?: boolean
-          type?: string,
-          orderId?: string,
+          stores?: string
         }) => {
           set(prev => ({ example: { ...prev.example, search: search || '' } }))
 
@@ -94,11 +90,10 @@ const useOrderStoreScansStore = create(
                 size: size || prev.example.size,
                 search: search || prev.example.search,
                 paginate: paginate ?? true,
-                type: type ?? prev.example.type,
-                ordreId: orderId ?? prev.example.ordreId,
+                stores: stores ?? prev.example.stores,
               }
             }))
-            useOrderStoreScansStore.getState().get.list()
+            useStoreEmployeeStore.getState().get.list()
           }
 
           if (search) {
@@ -110,7 +105,7 @@ const useOrderStoreScansStore = create(
           }
           init()
         },
-        detail: async (id?: string, data?: Order, isUser?: boolean) => {
+        detail: async (id?: string, data?: StoreEmployee, isUser?: boolean) => {
           set(prev => ({
             ...prev,
             example: {
@@ -120,31 +115,57 @@ const useOrderStoreScansStore = create(
               isUser: !!isUser
             }
           }))
-        },
-        add: async (bodyData: OrderStoreCansData['payloads']['ScanIn']['requestBody']) => {
-          let id = get().example.id
-
-          toast.promise(
-            OrderStoreCansService.scanIn({
-              requestBody: bodyData as any,
-            }),
-            {
-              loading: id ? 'Updating' : 'Adding',
-              success: res => {
-                useOrderStoreScansStore.getState().get.paginate({})
-                return res?.message
-              },
-              error: err => {
-                return err
-              }
-            }
-          )
-        },
+        }
       },
       select: (id: any) => set(prev => ({ example: { ...prev.example, id: id } })),
-      setOrderId: (orderId: string) => set(prev => ({ example: { ...prev.example, ordreId: orderId } })),
+      add: async (bodyData: StoreEmployeeData['payloads']['Create']['requestBody']) => {
+        let id = get().example.id
+        let isUser = get().example.isUser
+
+        toast.promise(
+          id
+            ? StoreEmployeeService.update({
+              query: {
+                id: id,
+              },
+              requestBody: bodyData as any,
+            }) : StoreEmployeeService.create({
+              requestBody: bodyData,
+            }),
+          {
+            loading: id ? 'Updating' : 'Adding',
+            success: res => {
+              useStoreEmployeeStore.getState().get.paginate({})
+              useStoreEmployeeStore.getState().select(null)
+              return res?.message
+            },
+            error: err => {
+              useStoreEmployeeStore.getState().select(null)
+              return err
+            }
+          }
+        )
+      },
+      delete: async () => {
+        let id = get().example.id
+
+        if (!id) return toast.error('No plan to delete')
+
+        toast.promise(StoreEmployeeService.delete({ query: { id: id } }), {
+          loading: 'deleting',
+          success: res => {
+            useStoreEmployeeStore.getState().get.paginate({})
+            useStoreEmployeeStore.getState().select(null)
+            return res?.message
+          },
+          error: err => {
+            useStoreEmployeeStore.getState().select(null)
+            return err
+          }
+        })
+      }
     })
   )
 )
 
-export default useOrderStoreScansStore
+export default useStoreEmployeeStore

@@ -2367,6 +2367,212 @@ export type StoreData = {
   };
 };
 
+export type StoreEmployeeData = {
+  payloads: {
+    List: {
+      authorization?: string;
+
+      query: {
+        page: string;
+        size: string;
+        store?: string;
+      };
+    };
+    Create: {
+      authorization?: string;
+      requestBody: {
+        name: string;
+        password: string;
+        store: string;
+        status: string;
+      };
+
+      query?: {};
+    };
+    Update: {
+      authorization?: string;
+      requestBody: {
+        name: string;
+        password: string;
+        store: string;
+        status: string;
+      };
+
+      query: {
+        id: string;
+      };
+    };
+    Delete: {
+      authorization?: string;
+
+      query: {
+        id: string;
+      };
+    };
+  };
+
+  responses: {
+    List: {
+      status: boolean;
+      message: string;
+      data: Array<{
+        _id: string;
+        id: string;
+        name: string;
+        password: string;
+        store: {
+          _id: string;
+          id?: number;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            createdAt: string;
+            updatedAt: string;
+          };
+        };
+        status: string;
+        createdAt: string;
+        updatedAt: string;
+      }>;
+      meta: {
+        pages: number;
+        total: number;
+        page: number;
+        size: number;
+      };
+    };
+    Create: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id: string;
+        name: string;
+        password: string;
+        store: {
+          _id: string;
+          id?: number;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            createdAt: string;
+            updatedAt: string;
+          };
+        };
+        status: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Update: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id: string;
+        name: string;
+        password: string;
+        store: {
+          _id: string;
+          id?: number;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            createdAt: string;
+            updatedAt: string;
+          };
+        };
+        status: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+    Delete: {
+      status: boolean;
+      message: string;
+      data: {
+        _id: string;
+        id: string;
+        name: string;
+        password: string;
+        store: {
+          _id: string;
+          id?: number;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            createdAt: string;
+            updatedAt: string;
+          };
+        };
+        status: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+  };
+};
+
 export type StoreCityData = {
   payloads: {
     List: {
@@ -3374,6 +3580,8 @@ export type WaterCanData = {
         page: string;
         select?: string;
         size: string;
+        statuses?: string;
+        stores?: string;
         watercans?: string;
       };
     };
@@ -3837,8 +4045,6 @@ export type OrderData = {
       authorization?: string;
       requestBody: {
         watercans: number;
-        date: string;
-        status: string;
       };
 
       query: {
@@ -4264,10 +4470,114 @@ export type OrderStoreCansData = {
         type: string;
       };
     };
+    ScanIn: {
+      authorization?: string;
+      requestBody: {
+        employee: string;
+        order: string;
+        watercans: string;
+        delivered_at?: string;
+      };
+
+      query?: {};
+    };
   };
 
   responses: {
     List: {
+      status: boolean;
+      message: string;
+      data: Array<{
+        _id: string;
+        order: string;
+        type: string;
+        return_order: string;
+        employee: string;
+        watercan: {
+          _id: string;
+          id: number;
+          qr_url: string;
+          status: string;
+          prev_status: string;
+          plant: {
+            _id: string;
+            name: string;
+            address: string;
+            coordinate: {
+              lat: number;
+              long: number;
+            };
+            type?: number;
+            createdAt: string;
+            updatedAt: string;
+          };
+          store: {
+            _id: string;
+            id?: number;
+            name: string;
+            address: string;
+            coordinate: {
+              lat: number;
+              long: number;
+            };
+            code?: string;
+            createdAt: string;
+            updatedAt: string;
+            sector: {
+              _id: string;
+              name: string;
+              city: {
+                _id: string;
+                name: string;
+                createdAt: string;
+                updatedAt: string;
+              };
+              createdAt: string;
+              updatedAt: string;
+            };
+          };
+          rotations: number;
+          createdAt: string;
+          updatedAt: string;
+        };
+        store: {
+          _id: string;
+          id?: number;
+          name: string;
+          address: string;
+          coordinate: {
+            lat: number;
+            long: number;
+          };
+          code?: string;
+          createdAt: string;
+          updatedAt: string;
+          sector: {
+            _id: string;
+            name: string;
+            city: {
+              _id: string;
+              name: string;
+              createdAt: string;
+              updatedAt: string;
+            };
+            createdAt: string;
+            updatedAt: string;
+          };
+        };
+        forecast: string;
+        status: string;
+        createdAt: string;
+        updatedAt: string;
+      }>;
+      meta: {
+        pages: number;
+        total: number;
+        page: number;
+        size: number;
+      };
+    };
+    ScanIn: {
       status: boolean;
       message: string;
       data: Array<{

@@ -16,6 +16,7 @@ import type {
   StatsData,
   WarehouseData,
   StoreData,
+  StoreEmployeeData,
   StoreCityData,
   StoreSectorData,
   StoreComplaintData,
@@ -905,6 +906,81 @@ export class StoreService {
   }
 }
 
+export class StoreEmployeeService {
+  /**
+   * @returns any Employee list response
+   * @throws ApiError
+   */
+  public static list(
+    data: StoreEmployeeData['payloads']['List']
+  ): CancelablePromise<StoreEmployeeData['responses']['List']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/plant/store-employees/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+
+  /**
+   * @returns any Employee create response
+   * @throws ApiError
+   */
+  public static create(
+    data: StoreEmployeeData['payloads']['Create']
+  ): CancelablePromise<StoreEmployeeData['responses']['Create']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'POST',
+      url: '/plant/store-employees/',
+      headers: {},
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any Employee update response
+   * @throws ApiError
+   */
+  public static update(
+    data: StoreEmployeeData['payloads']['Update']
+  ): CancelablePromise<StoreEmployeeData['responses']['Update']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'PUT',
+      url: '/plant/store-employees/',
+      headers: {},
+      query: {
+        ...query,
+      },
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns any Employee delete response
+   * @throws ApiError
+   */
+  public static delete(
+    data: StoreEmployeeData['payloads']['Delete']
+  ): CancelablePromise<StoreEmployeeData['responses']['Delete']> {
+    const { query, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'DELETE',
+      url: '/plant/store-employees/',
+      headers: {},
+      query: {
+        ...query,
+      },
+    });
+  }
+}
+
 export class StoreCityService {
   /**
    * @returns any Stores City list response
@@ -1465,6 +1541,23 @@ export class OrderStoreCansService {
       query: {
         ...query,
       },
+    });
+  }
+
+  /**
+   * @returns any OrderStoreScans list response
+   * @throws ApiError
+   */
+  public static scanIn(
+    data: OrderStoreCansData['payloads']['ScanIn']
+  ): CancelablePromise<OrderStoreCansData['responses']['ScanIn']> {
+    const { query, requestBody, authorization } = data;
+    return __request(OpenAPI, {
+      method: 'POST',
+      url: '/plant/order-store-scans/',
+      headers: {},
+      body: requestBody,
+      mediaType: 'application/json',
     });
   }
 }

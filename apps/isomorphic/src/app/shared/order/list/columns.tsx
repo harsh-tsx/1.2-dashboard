@@ -65,7 +65,7 @@ export const ListColumns = [
           }
           view={<Main />}
           customSize="90vw"
-          className="mt-0"
+          className="mt-0 h-full"
           onClickCustom={() => {
             useExampleStore.getState().get.detail(row.original._id, row.original)
             useOrderStoreScansStore.getState().setOrderId(row.original._id)

@@ -9,6 +9,10 @@ import { WaterCanService } from '@/api-client/PlantApi'
 export type WaterCan = WaterCanData['responses']['List']['data'][0]
 
 
+export const watercanStatuses = [
+  "EMPTY", "AT PLANT", "SCANNED OUT FOR WAREHOUSE", "ON THE WAY TO WAREHOUSE", "SCANNED IN TO WAREHOUSE", "AT WAREHOUSE", "SCANNED OUT FOR STORE", "ON THE WAY TO STORE", "SCANNED IN TO STORE", "SCANNED OUT FOR PLANT", "ON THE WAY TO PLANT", "SCANNED OUT FOR RETURN", "OUT FOR RETURN", "AT STORE", "DELIVERED", "INACTIVE", "DAMAGED", "DECOMMISSIONED",
+];
+
 
 let timeOut: any
 
@@ -29,14 +33,15 @@ const useWaterCanStore = create(
         batches: "" as string,
         watercans: "" as string,
         selectedList: [] as WaterCan[],
-        timeOut: null as any
+        timeOut: null as any,
+        statuses: null as string | null,
       }
     },
     (set, get) => ({
       get: {
         list: async () => {
           const {
-            example: { page, size, search, paginate, batches, watercans }
+            example: { page, size, search, paginate, batches, watercans, statuses }
           } = get()
 
           toast.promise(WaterCanService.list({
@@ -44,7 +49,8 @@ const useWaterCanStore = create(
               page: page as any,
               size: size as any,
               ...(batches && { batches: batches }),
-              ...(watercans && { watercans: watercans })
+              ...(watercans && { watercans: watercans }),
+              ...(statuses && { statuses: statuses }),
             }
           }), {
             loading: 'fetching...',
@@ -74,7 +80,8 @@ const useWaterCanStore = create(
           search,
           paginate,
           batches,
-          watercans
+          watercans,
+          statuses
         }: {
           page?: number
           size?: number
@@ -82,6 +89,7 @@ const useWaterCanStore = create(
           paginate?: boolean
           batches?: string
           watercans?: string
+          statuses?: string
         }) => {
           set(prev => ({ example: { ...prev.example, search: search || '' } }))
 
@@ -97,6 +105,7 @@ const useWaterCanStore = create(
                 paginate: paginate ?? true,
                 batches: batches ?? prev.example.batches,
                 watercans: watercans ?? prev.example.watercans,
+                statuses: statuses ?? ""
               }
             }))
             useWaterCanStore.getState().get.list()

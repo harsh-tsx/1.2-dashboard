@@ -44,7 +44,7 @@ export default async function RootLayout({
             <NextProgress />
             <JotaiProvider>
               {children}
-              <Toaster />
+              <Toaster containerStyle={{ zIndex: 10467 }} />
               <GlobalDrawer />
               <GlobalModal />
             </JotaiProvider>

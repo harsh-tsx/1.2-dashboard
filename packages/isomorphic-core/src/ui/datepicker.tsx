@@ -48,7 +48,6 @@ export const DatePicker = ({
   showPopperArrow = false,
   ...props
 }: DatePickerProps) => {
-  console.log("🚀 ~ dateFormat:", dateFormat)
   const [isCalenderOpen, setIsCalenderOpen] = useState(false);
   const handleCalenderOpen = () => setIsCalenderOpen(true);
   const handleCalenderClose = () => setIsCalenderOpen(false);
