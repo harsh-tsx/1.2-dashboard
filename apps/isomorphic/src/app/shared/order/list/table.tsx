@@ -13,11 +13,11 @@ import useStore, { Order } from '@/store/plant/order/order.service';
 import { useEffect } from 'react';
 export type ListTableDataType = Order;
 
-export default function TableComponent({ list }: { list: ListTableDataType[] }) {
+export default function TableComponent() {
   const store = useStore();
 
   const { table, setData } = useTanStackTable<ListTableDataType>({
-    tableData: list,
+    tableData: store.example.list,
     columnConfig: ListColumns,
     options: {
       initialState: {
@@ -51,8 +51,8 @@ export default function TableComponent({ list }: { list: ListTableDataType[] }) 
   }, [state.pagination]);
 
   useEffect(() => {
-    setData(list);
-  }, [list])
+    setData(store.example.list);
+  }, [store.example.list])
 
   const selectedData = table
     .getSelectedRowModel()

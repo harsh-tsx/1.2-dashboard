@@ -3,6 +3,7 @@ import { combine } from 'zustand/middleware'
 import toast from 'react-hot-toast'
 import { ForecastData } from '@/api-client/plant/models'
 import { ForecastService } from '@/api-client/PlantApi'
+import moment from 'moment'
 
 
 
@@ -25,7 +26,9 @@ const useForecastStore = create(
         search: null as string | null,
         paginate: true as boolean,
         detail: undefined as Forecast | undefined,
-        isUser: false as boolean
+        isUser: false as boolean,
+        date_from: moment().subtract(2, 'days').toDate() as Date,
+        date_to: moment().add(7, "days").toDate() as Date,
         // timeOut: null as any
       }
     },
@@ -33,13 +36,14 @@ const useForecastStore = create(
       get: {
         list: async () => {
           const {
-            example: { page, size, search, paginate }
+            example: { page, size, search, paginate, date_from, date_to }
           } = get()
 
           toast.promise(ForecastService.list({
             query: {
               page: page as any,
               size: size as any,
+              ...((date_from && date_to) && { dateFrom: date_from.toDateString(), dateTo: date_to.toDateString() })
             }
           }), {
             loading: 'fetching...',
@@ -67,12 +71,16 @@ const useForecastStore = create(
           page,
           size,
           search,
-          paginate
+          paginate,
+          date_from,
+          date_to,
         }: {
           page?: number
           size?: number
           search?: string
           paginate?: boolean
+          date_from?: Date
+          date_to?: Date
         }) => {
           set(prev => ({ example: { ...prev.example, search: search || '' } }))
 
@@ -85,7 +93,9 @@ const useForecastStore = create(
                 page: page ?? prev.example.page,
                 size: size || prev.example.size,
                 search: search || prev.example.search,
-                paginate: paginate ?? true
+                paginate: paginate ?? true,
+                date_from: date_from ?? prev.example.date_from,
+                date_to: date_to ?? prev.example.date_to,
               }
             }))
             useForecastStore.getState().get.list()

@@ -19,6 +19,7 @@ import { useMedia } from 'react-use';
 import { Badge, Button, Flex, Input, Text } from 'rizzui';
 import useOrderStore from '@/store/plant/order/order.service';
 import moment from 'moment';
+import RefreshIndicator from '../../common/refresh-indicator';
 
 const paymentStatusOptions = Object.entries(shippingStatuses).map(
   ([value, label]) => ({
@@ -85,7 +86,11 @@ export default function Filters<TData extends Record<string, any>>({
           <PiFunnel className="me-1.5 h-[18px] w-[18px]" strokeWidth={1.7} />
           {isLarge && showFilters ? 'Hide Filters' : 'Filters'}
         </Button>
-
+        <RefreshIndicator
+          onClick={async () => {
+            useOrderStore.getState().get.paginate({});
+          }}
+        />
         <ToggleColumns table={table} />
       </Flex>
     </Flex>
