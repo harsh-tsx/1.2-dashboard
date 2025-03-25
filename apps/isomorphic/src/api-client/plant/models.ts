@@ -4025,6 +4025,8 @@ export type OrderData = {
       authorization?: string;
 
       query: {
+        dateFrom?: string;
+        dateTo?: string;
         page: string;
         size: string;
       };

@@ -9,7 +9,7 @@ import { paymentMethods, shippingStatuses } from '@/data/shipment-data';
 import cn from '@core/utils/class-names';
 import { getDateRangeStateValues } from '@core/utils/get-formatted-date';
 import { type Table as ReactTableType } from '@tanstack/react-table';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   PiFunnel,
   PiMagnifyingGlassBold,
@@ -17,6 +17,8 @@ import {
 } from 'react-icons/pi';
 import { useMedia } from 'react-use';
 import { Badge, Button, Flex, Input, Text } from 'rizzui';
+import useOrderStore from '@/store/plant/order/order.service';
+import moment from 'moment';
 
 const paymentStatusOptions = Object.entries(shippingStatuses).map(
   ([value, label]) => ({
@@ -93,8 +95,19 @@ export default function Filters<TData extends Record<string, any>>({
 function FilterElements<T extends Record<string, any>>({
   table,
 }: TableToolbarProps<T>) {
-  const date =
-    table.getColumn('date')?.getFilterValue() ?? ([null, null] as any);
+  const store = useOrderStore();
+  const [startDate, setStartDate] = useState<Date | null>(moment().set({ milliseconds: 69 }).subtract(2, 'days').toDate());
+  const [endDate, setEndDate] = useState<Date | null>(moment().set({ milliseconds: 69 }).add(7, "days").toDate());
+
+  useEffect(() => {
+
+    if (!endDate) return;
+    if (endDate.getMilliseconds() == 69) return;
+
+    store.get.paginate({ date_from: startDate, date_to: endDate } as any)
+
+  }, [endDate]);
+
   const isFiltered =
     table.getState().globalFilter || table.getState().columnFilters.length > 0;
   return (
@@ -104,10 +117,13 @@ function FilterElements<T extends Record<string, any>>({
         dateFormat={'dd-MMM-yyyy'}
         className="w-full"
         placeholderText="Select created date"
-        endDate={getDateRangeStateValues(date[1])!}
-        selected={getDateRangeStateValues(date[0])}
-        startDate={getDateRangeStateValues(date[0])!}
-        onChange={(date) => table.getColumn('date')?.setFilterValue(date)}
+        startDate={startDate!}
+        endDate={endDate!}
+        selected={startDate}
+        onChange={(date) => {
+          setStartDate(date[0] as any)
+          setEndDate(date[1] as any)
+        }}
         inputProps={{
           label: 'Date',
           labelClassName: '[@media(min-width:1860px)]:hidden',
