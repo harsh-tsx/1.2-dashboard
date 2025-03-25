@@ -7,7 +7,7 @@ import AvatarCard from '@core/ui/avatar-card';
 import DateCell from '@core/ui/date-cell';
 import { createColumnHelper } from '@tanstack/react-table';
 import Link from 'next/link';
-import { Badge, Checkbox, Flex, Text } from 'rizzui';
+import { Badge, Box, Checkbox, Flex, Text } from 'rizzui';
 import { ListTableDataType } from './table';
 import { table } from 'console';
 import ModalIconButton from '../../modal-icon-button';
@@ -21,6 +21,7 @@ import { plantSchema } from '@/validators/plant.schema';
 import useWaterCanStore from '@/store/plant/can/can.service';
 import { waterCanUpdateSchema } from '@/validators/can.schema';
 import cn from '@core/utils/class-names';
+import Image from 'next/image';
 
 const columnHelper = createColumnHelper<ListTableDataType>();
 
@@ -86,12 +87,44 @@ export const ListColumns = [
     size: 250,
     header: 'name',
     enableSorting: false,
-    cell: ({ row }) => (
-      <AvatarCard
-        src={row.original.qr_url}
-        name={row.original.id.toString()}
-      />
-    ),
+    cell: ({ row, ...rest }) => {
+      const color = statusColors.get(row.original.status);
+      return (
+
+        <ModalIconButton
+          icon={
+            <AvatarCard
+              src={row.original.qr_url}
+              name={row.original.id.toString()}
+            />
+          }
+          view={<Box className='p-2 flex flex-col items-center justify-center' >
+            <Image
+              src={row.original.qr_url}
+              alt={row.original.id.toString()}
+              width={300}
+              height={300}
+              objectFit='contain'
+            />
+            <Text>{row.original?.id}</Text>
+            <Flex align="center" gap="2" className="w-auto">
+              <Badge renderAsDot className={color?.[1]} />
+              <Text
+                className={cn('font-medium capitalize', color?.[0])}
+              >
+                {row.original.status}
+              </Text>
+
+            </Flex>
+          </Box>}
+          customSize="600px"
+          className="mt-0  cursor-pointer"
+          onClickCustom={() => {
+          }}
+        />
+
+      )
+    },
   }),
   columnHelper.accessor('plant.name', {
     id: 'plant.name',
