@@ -58,7 +58,7 @@ const QRCodePDF = ({ qrData }: { qrData: WaterCan[] }) => {
     return (
         <Document>
             {Array.from({ length: Math.ceil(qrData.length / 35) }, (_, pageIndex) => (
-                <Page size="A4" style={styles.page} key={pageIndex}>
+                <Page size="TABLOID" style={styles.page} key={pageIndex}>
                     <View style={styles.qrGrid}>
                         {qrData.slice(pageIndex * 35, (pageIndex + 1) * 35).map((data, index) => (
                             <View style={styles.qrContainer} key={index}>
